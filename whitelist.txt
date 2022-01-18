@@ -1,0 +1,15 @@
+bpy
+filepath
+idname
+mainfile
+popen
+pylint
+runtime
+splitext
+outliner
+utils
+unlink
+unregister
+viewport
+vrm
+vscode
