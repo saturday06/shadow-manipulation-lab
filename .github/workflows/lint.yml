@@ -12,7 +12,7 @@ jobs:
       - name: Install deb packages
         run: |
           sudo apt-get update -qq || true
-          sudo apt-get install -y clang-format glslang-tools nkf python3 shellcheck uchardet
+          sudo apt-get install -y nkf python3 shellcheck uchardet
         env:
           DEBIAN_FRONTEND: noninteractive
       - uses: actions/checkout@v2
@@ -75,21 +75,8 @@ jobs:
           exit $result
       - name: Check whitelist.txt ordering
         run: LC_ALL=C sort whitelist.txt | diff -u whitelist.txt -
-      - name: Validate GLSL
-        run: |
-          git ls-files "**.glsl" | while read -r orig; do
-            echo "$orig"
-            versioned="/tmp/$(basename "$orig")"
-            echo "#version 330" > "$versioned"
-            cat "$orig" >> "$versioned"
-            glslangValidator "$versioned"
-          done
       - name: Shellcheck
         run: shellcheck $(git ls-files "*.sh")
-      - name: Format GLSL (May break syntax!)
-        run: |
-          clang-format -style="{BasedOnStyle: Chromium, IndentWidth: 4}" -i $(git ls-files "**.glsl")
-          git diff --exit-code
       - name: Install poetry
         run: |
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
