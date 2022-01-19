@@ -2,14 +2,14 @@ bpy
 filepath
 idname
 mainfile
+outliner
 popen
 pylint
 runtime
 splitext
-outliner
-utils
 unlink
 unregister
+utils
 viewport
 vrm
 vscode
