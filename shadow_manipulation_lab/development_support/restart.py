@@ -1,12 +1,15 @@
 import bpy
 from bpy.app.handlers import persistent
-from typing import Set, Any
+from typing import Set, Any, Optional
 import contextlib
 import subprocess
+import functools
 import tempfile
 import os
 import sys
 
+START_OK_FILE_PATH_OPTION = "--shadow-manipulation-lab-start-ok-file-path="
+START_OK_FILE_CONTENT = b"ok"
 AUTO_EXPORT_OPTION = "--shadow-manipulation-lab-export"
 AUTO_IMPORT_OPTION = "--shadow-manipulation-lab-import"
 
@@ -24,8 +27,9 @@ def auto_export() -> None:
     if not bpy.data.filepath:
         return
     vrm_path = os.path.splitext(bpy.data.filepath)[0] + ".vrm"
-    if not os.path.exists(vrm_path):
-        raise Exception(f'No "{vrm_path}"')
+    if os.path.exists(vrm_path):
+        os.unlink(vrm_path)
+
     bpy.ops.export_scene.vrm(filepath=vrm_path)
 
 
@@ -37,6 +41,22 @@ if persistent:  # for fake-bpy-modules
             return
 
         extra_args = sys.argv[sys.argv.index("--") + 1 :]
+
+        start_ok_file_path: Optional[str] = None
+        for extra_arg in extra_args:
+            if extra_arg.startswith(START_OK_FILE_PATH_OPTION):
+                start_ok_file_path = extra_arg.replace(START_OK_FILE_PATH_OPTION, "", 1)
+                break
+
+        if start_ok_file_path is None:
+            return
+
+        if not os.path.exists(start_ok_file_path):
+            raise Exception(f'No "{start_ok_file_path}"')
+
+        with open(start_ok_file_path, "wb") as start_ok_file:
+            start_ok_file.write(START_OK_FILE_CONTENT)
+
         if AUTO_IMPORT_OPTION in extra_args:
             bpy.app.timers.register(auto_import, first_interval=0.5)
             return
@@ -49,6 +69,31 @@ else:
 
     def load_post(_dummy: Any) -> None:
         raise NotImplementedError
+
+
+def wait_for_start_ok(path: str) -> Optional[float]:
+    with open(path, "rb") as file:
+        if file.read() == START_OK_FILE_CONTENT:
+            bpy.ops.wm.quit_blender()
+    return 0.5
+
+
+def start_blender_and_quit(path: str, *extra_args: str) -> None:
+    start_ok_file_path = tempfile.NamedTemporaryFile(
+        prefix="start_ok", delete=False
+    ).name
+    subprocess.Popen(
+        [
+            bpy.app.binary_path,
+            "--start-console",
+            path,
+            "--",
+            START_OK_FILE_PATH_OPTION + start_ok_file_path,
+        ]
+        + list(extra_args),
+        start_new_session=True,
+    )
+    bpy.app.timers.register(functools.partial(wait_for_start_ok, start_ok_file_path))
 
 
 class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):  # type: ignore[misc] # noqa: N801
@@ -67,15 +112,8 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):  # type:
         old_path = reload_path + ".old.blend"
         bpy.ops.wm.save_as_mainfile(filepath=reload_path, check_existing=False)
         bpy.ops.wm.save_as_mainfile(filepath=old_path, check_existing=False)
-        subprocess.Popen(
-            [
-                bpy.app.binary_path,
-                "--start-console",
-                reload_path,
-            ],
-            start_new_session=True,
-        )
-        bpy.ops.wm.quit_blender()
+
+        start_blender_and_quit(reload_path)
         return {"FINISHED"}
 
 
@@ -115,17 +153,8 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):  # type: ig
             pass
 
         bpy.ops.wm.save_as_mainfile(filepath=reload_path, check_existing=False)
-        subprocess.Popen(
-            [
-                bpy.app.binary_path,
-                "--start-console",
-                reload_path,
-                "--",
-                AUTO_IMPORT_OPTION,
-            ],
-            start_new_session=True,
-        )
-        bpy.ops.wm.quit_blender()
+
+        start_blender_and_quit(reload_path, AUTO_IMPORT_OPTION)
         return {"FINISHED"}
 
 
@@ -139,15 +168,8 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_export(bpy.types.Operator):  # typ
         if not bpy.data.filepath:
             raise Exception("Please save .blend file")
 
-        bpy.ops.wm.save_as_mainfile(filepath=bpy.data.filepath, check_existing=False)
-        subprocess.Popen(
-            [
-                bpy.app.binary_path,
-                "--start-console",
-                "--",
-                AUTO_EXPORT_OPTION,
-            ],
-            start_new_session=True,
-        )
-        bpy.ops.wm.quit_blender()
+        reload_path = bpy.data.filepath
+        bpy.ops.wm.save_as_mainfile(filepath=bpy.data.filepath + ".old.blend", check_existing=False)
+
+        start_blender_and_quit(reload_path, AUTO_EXPORT_OPTION)
         return {"FINISHED"}
