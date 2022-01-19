@@ -1,10 +1,12 @@
 *
 !*/
+!*.bat
 !*.blend
 !*.glsl
 !*.jpeg
 !*.md
 !*.py
+!*.sh
 !/.flake8
 !/.editorconfig
 !/.gitattributes
