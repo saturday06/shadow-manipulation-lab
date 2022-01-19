@@ -84,12 +84,6 @@ jobs:
             cat "$orig" >> "$versioned"
             glslangValidator "$versioned"
           done
-      - name: Shellcheck
-        run: shellcheck $(git ls-files "*.sh")
-      - name: Format GLSL (May break syntax!)
-        run: |
-          clang-format -style="{BasedOnStyle: Chromium, IndentWidth: 4}" -i $(git ls-files "**.glsl")
-          git diff --exit-code
       - name: Install poetry
         run: |
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
