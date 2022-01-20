@@ -1,5 +1,7 @@
 bpy
+dirname
 filepath
+getpid
 idname
 mainfile
 outliner

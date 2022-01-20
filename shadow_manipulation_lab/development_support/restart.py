@@ -81,7 +81,13 @@ def start_blender_and_quit(path: str, extra_arg: Optional[str] = None) -> None:
         restart_environ["SML_START_OK_FILE_PATH"] = start_ok_file_path
         restart_environ["SML_EXTRA_ARG"] = extra_arg if extra_arg else ""
         subprocess.Popen(
-            restart_script + ".bat",
+            [
+                restart_environ["COMSPEC"],
+                "/c",
+                "start",
+                "",  # title
+                restart_script + ".bat",
+            ],
             env=restart_environ,
         )
     else:
