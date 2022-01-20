@@ -71,7 +71,7 @@ def start_blender_and_quit(path: str, extra_arg: Optional[str] = None) -> None:
     restart_script = join(
         dirname(dirname(dirname(__file__))),
         "scripts",
-        "shadow_manipulation_lab_restart",
+        "restart",
     )
     if platform.system() == "Windows":
         restart_environ = os.environ.copy()
