@@ -58,16 +58,20 @@ else:
 
 
 def wait_for_start_ok(path: str) -> Optional[float]:
-    with open(path, "rt") as file:
+    with open(path, "rt", encoding="ascii") as file:
         if file.read().strip() == "start_ok":
             bpy.ops.wm.quit_blender()
     return 0.5
 
 
+def create_named_temporary_file(prefix: str = "", suffix: str = "") -> str:
+    # pylint: disable=consider-using-with;
+    return tempfile.NamedTemporaryFile(prefix=prefix, suffix=suffix, delete=False).name
+    # pylint: enable=consider-using-with;
+
+
 def start_blender_and_quit(path: str, extra_arg: Optional[str] = None) -> None:
-    start_ok_file_path = tempfile.NamedTemporaryFile(
-        prefix="start_ok", delete=False
-    ).name
+    start_ok_file_path = create_named_temporary_file(prefix="start_ok")
 
     restart_script = join(
         dirname(dirname(dirname(__file__))),
@@ -118,9 +122,7 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):  # type:
         print("Save Restart Load")
         reload_path = bpy.data.filepath
         if not reload_path or not os.path.exists(reload_path):
-            reload_path = tempfile.NamedTemporaryFile(
-                prefix="reload", suffix=".blend", delete=False
-            ).name
+            reload_path = create_named_temporary_file(prefix="reload", suffix=".blend")
         old_path = reload_path + ".old.blend"
         bpy.ops.wm.save_as_mainfile(filepath=reload_path, check_existing=False)
         bpy.ops.wm.save_as_mainfile(filepath=old_path, check_existing=False)
