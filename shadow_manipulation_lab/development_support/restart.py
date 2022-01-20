@@ -1,14 +1,15 @@
-import bpy
-from bpy.app.handlers import persistent
-from typing import Set, Any, Optional
 import contextlib
 import functools
-import subprocess
-import tempfile
 import os
-from os.path import dirname, join
-import sys
 import platform
+import subprocess
+import sys
+import tempfile
+from os.path import dirname, join
+from typing import Any, Optional, Set
+
+import bpy
+from bpy.app.handlers import persistent
 
 AUTO_EXPORT_OPTION = "--shadow-manipulation-lab-export"
 AUTO_IMPORT_OPTION = "--shadow-manipulation-lab-import"

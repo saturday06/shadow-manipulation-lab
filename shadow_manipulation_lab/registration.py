@@ -3,7 +3,6 @@ import bpy.utils
 
 from .development_support import restart
 
-
 classes = [
     restart.SHADOW_MANIPULATION_LAB_OT_save_restart_load,
     restart.SHADOW_MANIPULATION_LAB_OT_restart_import,
