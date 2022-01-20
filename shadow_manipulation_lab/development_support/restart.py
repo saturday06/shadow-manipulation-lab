@@ -85,6 +85,7 @@ def start_blender_and_quit(path: str, extra_arg: Optional[str] = None) -> None:
         restart_environ["SML_BLEND_FILE_PATH"] = path
         restart_environ["SML_START_OK_FILE_PATH"] = start_ok_file_path
         restart_environ["SML_EXTRA_ARG"] = extra_arg if extra_arg else ""
+        # pylint: disable=consider-using-with;
         subprocess.Popen(
             [
                 restart_environ["COMSPEC"],
@@ -95,7 +96,9 @@ def start_blender_and_quit(path: str, extra_arg: Optional[str] = None) -> None:
             ],
             env=restart_environ,
         )
+        # pylint: enable=consider-using-with;
     else:
+        # pylint: disable=consider-using-with;
         subprocess.Popen(
             [
                 restart_script + ".sh",
@@ -109,6 +112,7 @@ def start_blender_and_quit(path: str, extra_arg: Optional[str] = None) -> None:
             + ([extra_arg] if extra_arg else []),
             start_new_session=True,
         )
+        # pylint: enable=consider-using-with;
     bpy.app.timers.register(functools.partial(wait_for_start_ok, start_ok_file_path))
 
 
