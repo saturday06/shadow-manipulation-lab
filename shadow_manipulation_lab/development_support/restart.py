@@ -21,7 +21,15 @@ def auto_import() -> None:
     vrm_path = os.path.splitext(bpy.data.filepath)[0] + ".vrm"
     if not os.path.exists(vrm_path):
         raise Exception(f'No "{vrm_path}"')
+
+    key = "BLENDER_VRM_AUTOMATIC_LICENSE_CONFIRMATION"
+    val = os.environ.get(key)
+    os.environ[key] = "true"
     bpy.ops.import_scene.vrm(filepath=vrm_path)
+    if val is not None:
+        os.environ[key] = val
+    else:
+        del os.environ[key]
 
 
 def auto_export() -> None:
