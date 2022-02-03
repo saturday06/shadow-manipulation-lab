@@ -113,7 +113,6 @@ def start_blender_and_quit(path: str, extra_arg: Optional[str] = None) -> None:
                 str(os.getpid()),
                 start_ok_file_path,
                 bpy.app.binary_path,
-                "--start-console",
                 path,
                 "--",
             ]
