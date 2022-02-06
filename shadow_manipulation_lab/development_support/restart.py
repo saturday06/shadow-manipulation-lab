@@ -81,11 +81,7 @@ def create_named_temporary_file(prefix: str = "", suffix: str = "") -> str:
 def start_blender_and_quit(path: str, extra_arg: Optional[str] = None) -> None:
     start_ok_file_path = create_named_temporary_file(prefix="start_ok")
 
-    restart_script = join(
-        dirname(dirname(dirname(__file__))),
-        "scripts",
-        "restart",
-    )
+    restart_script = join(dirname(__file__), "restart")
     if platform.system() == "Windows":
         restart_environ = os.environ.copy()
         restart_environ["SML_WAIT_PID"] = str(os.getpid())
