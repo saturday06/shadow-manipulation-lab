@@ -2,6 +2,7 @@ import contextlib
 import functools
 import os
 import platform
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -38,8 +39,12 @@ def auto_export() -> None:
     vrm_path = os.path.splitext(bpy.data.filepath)[0] + ".vrm"
     if os.path.exists(vrm_path):
         os.unlink(vrm_path)
+    glb_path = vrm_path + ".glb"
+    if os.path.exists(glb_path):
+        os.unlink(glb_path)
 
     bpy.ops.export_scene.vrm(filepath=vrm_path)
+    shutil.copy(vrm_path, glb_path)
 
 
 if persistent:  # for fake-bpy-modules
