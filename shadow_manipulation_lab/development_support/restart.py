@@ -168,7 +168,7 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):  # type: ig
             obj.hide_viewport = False
             with contextlib.suppress(RuntimeError):
                 context.scene.collection.objects.link(obj)
-            obj.select_set(True)
+            obj.select_set(state=True)
 
         bpy.ops.object.delete()
 
