@@ -2,6 +2,7 @@ bpy
 dirname
 filepath
 getpid
+glb
 idname
 mainfile
 outliner
