@@ -163,7 +163,7 @@ importlib-metadata = {version = ">=0.9", markers = "python_version < \"3.8\""}
 
 [[package]]
 name = "flake8-spellcheck"
-version = "0.25.0"
+version = "0.26.0"
 description = "Spellcheck variables, comments and docstrings"
 category = "dev"
 optional = false
@@ -441,8 +441,8 @@ flake8-simplify = [
     {file = "flake8_simplify-0.18.1.tar.gz", hash = "sha256:8344a6a77b214ad7b3559d06a42c97333b73b11034abb018ea02cebba9fdebf1"},
 ]
 flake8-spellcheck = [
-    {file = "flake8-spellcheck-0.25.0.tar.gz", hash = "sha256:17e539e9299dcc595f812e9f7233e12c413bdd4b2e614621aaa06e289605bb6a"},
-    {file = "flake8_spellcheck-0.25.0-py2.py3-none-any.whl", hash = "sha256:0f3df63e2638b55f57f3da7c1085baf45ebfec008922d3ebfeabd44dcf853450"},
+    {file = "flake8-spellcheck-0.26.0.tar.gz", hash = "sha256:882de0b5c374fa9312ea4165f71f5583e6f4616f1661c5598378353df50796f4"},
+    {file = "flake8_spellcheck-0.26.0-py2.py3-none-any.whl", hash = "sha256:78be6dd8b1dd91f8a6ad0cf36dcfee7851b3faed97842ef9a138021743e67bea"},
 ]
 importlib-metadata = [
     {file = "importlib_metadata-4.2.0-py3-none-any.whl", hash = "sha256:057e92c15bc8d9e8109738a48db0ccb31b4d9d5cfbee5a8670879a30be66304b"},
