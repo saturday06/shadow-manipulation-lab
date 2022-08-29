@@ -111,7 +111,7 @@ jobs:
           git diff --exit-code
       - name: Raise error for testing
         run: |
-          if [ "4e5c6d57d2992f87cd4ec3d74bf9043c2846c37c" = "$(git rev-parse HEAD~)" ]; then
+          if [ "0f2baac14918281eb961ca48716183d6d0c1a6ba" = "${GITHUB_SHA}~" ]; then
             exit 0
           else
             exit 1
