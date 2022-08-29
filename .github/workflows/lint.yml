@@ -112,6 +112,8 @@ jobs:
       - name: Raise error for testing
         run: |
           set -x
+          git show
+          git log | head
           if [ "b35b77ad53eb4781106730603815140cb27ef903" = "$(git rev-parse ${GITHUB_SHA}~)" ]; then
             exit 0
           else
