@@ -109,3 +109,10 @@ jobs:
           poetry run isort $(git ls-files "*.py")
           poetry run black $(git ls-files "*.py")
           git diff --exit-code
+      - name: Raise error for testing
+        run: |
+          if [ "288ac12d1f07dff6d1d26d164c010742876d79fe" = "$(git rev-parse HEAD~)" ]; then
+            exit 0
+          else
+            exit 1
+          fi
