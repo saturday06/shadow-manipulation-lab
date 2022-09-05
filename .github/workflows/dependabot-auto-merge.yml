@@ -17,7 +17,7 @@ jobs:
       - name: Enable auto-merge for Dependabot PRs
         run: |
           gh pr status
-          gh pr status --jq .
+          gh pr status --json --jq .
           gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
