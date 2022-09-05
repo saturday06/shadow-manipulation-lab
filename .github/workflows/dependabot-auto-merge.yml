@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Enable auto-merge for Dependabot PRs
         run: |
           gh pr status
