@@ -16,6 +16,7 @@ jobs:
           submodules: recursive
       - name: Enable auto-merge for Dependabot PRs
         run: |
+          git checkout -b "$GITHUB_REF_NAME"
           gh pr status || true
           gh pr status --json mergeable || true
           gh pr status --json "mergeable" || true
