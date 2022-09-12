@@ -19,6 +19,7 @@ jobs:
           gh pr status || true
           gh pr status --json mergeable || true
           gh pr status --json "mergeable" || true
+          gh pr status --json mergeable_state || true
           echo gh pr merge --auto --merge "$PR_URL"
           exit 1
         env:
