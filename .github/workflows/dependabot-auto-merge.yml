@@ -18,7 +18,7 @@ jobs:
         run: |
           gh pr checkout "$PR_NUMBER"
           gh pr status --json statusCheckRollup || true
-          gh pr status --json statusCheckRollup --jq '.currentBranch.statusCheckRollup[] | select(.workflowName != $Env.GITHUB_WORKFLOW) | .conclusion' | tee conclusions.txt
+          gh pr status --json statusCheckRollup --jq '.currentBranch.statusCheckRollup[] | select(.workflowName != $ENV.GITHUB_WORKFLOW) | .conclusion' | tee conclusions.txt
           if [ "$(uniq conclusions.txt)" != '"OKKKK"'' ]; then
             exit 0
           fi
