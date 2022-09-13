@@ -20,7 +20,7 @@ jobs:
           for retry in $(seq 18 -1 0); do
             sleep 10
             gh pr status --json statusCheckRollup --jq . | tee statusCheckRollup.json
-            jq '.currentBranch.statusCheckRollup[] | select(.workflowName != $ENV.GITHUB_WORKFLOW)' | tee CheckRuns.txt
+            jq '.currentBranch.statusCheckRollup[] | select(.workflowName != $ENV.GITHUB_WORKFLOW)' statusCheckRollup.json | tee CheckRuns.json
             if [ "$(jq .status CheckRuns.json | uniq)" = '"COMPLETED"' ]; then
               continue
             elif [ "$(jq .conclusion CheckRuns.json | uniq)" = '"SUCCESS"' ]; then
