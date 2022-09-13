@@ -18,20 +18,20 @@ jobs:
         run: |
           gh pr checkout "$PR_NUMBER"
 
-          for retry in $(seq 30 -1 0); do
+          for retry in $(seq 60 -1 0); do
             if [ "$retry" = "0" ]; then
-              echo tiemout
+              echo Timeout
               exit 0
             fi
 
-            sleep 10
+            sleep 60
 
             gh pr status --json statusCheckRollup --jq . | tee statusCheckRollup.json
             jq '.currentBranch.statusCheckRollup[] | select(.workflowName != $ENV.GITHUB_WORKFLOW)' statusCheckRollup.json | tee CheckRuns.json
             if [ "$(jq .status CheckRuns.json | uniq)" != '"COMPLETED"' ]; then
               continue
             elif [ "$(jq .conclusion CheckRuns.json | uniq)" != '"SUCCESS"' ]; then
-              echo skip
+              echo Skip
               exit 0
             fi
             break

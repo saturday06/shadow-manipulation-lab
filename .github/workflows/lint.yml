@@ -86,8 +86,8 @@ jobs:
         run: shellcheck $(git ls-files "*.sh")
       - name: Install poetry
         run: |
-          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
-          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Check pyproject.toml format
         run: poetry check
       - name: Install poetry dependencies
@@ -109,13 +109,3 @@ jobs:
           poetry run isort $(git ls-files "*.py")
           poetry run black $(git ls-files "*.py")
           git diff --exit-code
-      - name: Raise error for testing
-        run: |
-          set -x
-          git show
-          git log | head
-          if [ "b35b77ad53eb4781106730603815140cb27ef903" = "$(git rev-parse ${GITHUB_SHA}~)" ]; then
-            exit 0
-          else
-            exit 1
-          fi
