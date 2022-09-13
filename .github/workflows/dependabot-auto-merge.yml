@@ -17,19 +17,28 @@ jobs:
       - name: Enable auto-merge for Dependabot PRs
         run: |
           gh pr checkout "$PR_NUMBER"
-          for retry in $(seq 18 -1 0); do
-            sleep 10
-            gh pr status --json statusCheckRollup --jq . | tee statusCheckRollup.json
-            jq '.currentBranch.statusCheckRollup[] | select(.workflowName != $ENV.GITHUB_WORKFLOW)' statusCheckRollup.json | tee CheckRuns.json
-            if [ "$(jq .status CheckRuns.json | uniq)" = '"COMPLETED"' ]; then
-              continue
-            elif [ "$(jq .conclusion CheckRuns.json | uniq)" = '"SUCCESS"' ]; then
-              break
-            elif [ "$retry" = "0" ]; then
+
+          for retry in $(seq 30 -1 0); do
+            if [ "$retry" = "0" ]; then
+              echo tiemout
               exit 0
             fi
+
+            sleep 10
+
+            gh pr status --json statusCheckRollup --jq . | tee statusCheckRollup.json
+            jq '.currentBranch.statusCheckRollup[] | select(.workflowName != $ENV.GITHUB_WORKFLOW)' statusCheckRollup.json | tee CheckRuns.json
+            if [ "$(jq .status CheckRuns.json | uniq)" != '"COMPLETED"' ]; then
+              continue
+            elif [ "$(jq .conclusion CheckRuns.json | uniq)" != '"SUCCESS"' ]; then
+              echo skip
+              exit 0
+            fi
+            break
           done
+
           gh pr merge --auto --merge "$PR_URL"
+
         env:
           WORKFLOW_NAME: ${{github.workflow}}
           PR_URL: ${{github.event.pull_request.html_url}}
