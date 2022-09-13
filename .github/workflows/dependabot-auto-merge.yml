@@ -18,15 +18,16 @@ jobs:
         run: |
           gh pr checkout "$PR_NUMBER"
           for retry in $(seq 18 -1 0); do
-            gh pr status --json statusCheckRollup || true
-            gh pr status --json statusCheckRollup --jq '.currentBranch.statusCheckRollup[] | select(.workflowName != $ENV.GITHUB_WORKFLOW) | .conclusion' | tee conclusions.txt
-            if [ "$(uniq conclusions.txt)" = '"OKKKK"' ]; then
+            sleep 10
+            gh pr status --json statusCheckRollup --jq . | tee statusCheckRollup.json
+            jq '.currentBranch.statusCheckRollup[] | select(.workflowName != $ENV.GITHUB_WORKFLOW)' | tee CheckRuns.txt
+            if [ "$(jq .status CheckRuns.json | uniq)" = '"COMPLETED"' ]; then
+              continue
+            elif [ "$(jq .conclusion CheckRuns.json | uniq)" = '"SUCCESS"' ]; then
               break
-            fi
-            if [ "$retry" = "0" ]; then
+            elif [ "$retry" = "0" ]; then
               exit 0
             fi
-            sleep 10
           done
           gh pr merge --auto --merge "$PR_URL"
         env:
