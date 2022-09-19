@@ -158,6 +158,9 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):  # type: ig
             filepath=bpy.data.filepath + ".old.blend", check_existing=False, copy=True
         )
 
+        if context.view_layer.objects.active is not None and context.mode != "OBJECT":
+            bpy.ops.object.mode_set(mode="OBJECT")
+
         for c in bpy.data.collections:
             for obj in list(c.objects):
                 c.objects.unlink(obj)
