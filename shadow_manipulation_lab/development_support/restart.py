@@ -161,25 +161,30 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):  # type: ig
         if context.view_layer.objects.active is not None and context.mode != "OBJECT":
             bpy.ops.object.mode_set(mode="OBJECT")
 
-        for c in bpy.data.collections:
-            for obj in list(c.objects):
-                c.objects.unlink(obj)
+        for _ in range(3):
+            for c in bpy.data.collections:
+                for obj in list(c.objects):
+                    c.objects.unlink(obj)
 
-        for obj in bpy.data.objects:
-            obj.hide_render = False
-            obj.hide_select = False
-            obj.hide_viewport = False
-            with contextlib.suppress(RuntimeError):
-                context.scene.collection.objects.link(obj)
-            obj.select_set(state=True)
+            for obj in bpy.data.objects:
+                obj.hide_render = False
+                obj.hide_select = False
+                obj.hide_viewport = False
+                with contextlib.suppress(RuntimeError):
+                    context.scene.collection.objects.link(obj)
+                obj.select_set(state=True)
 
-        bpy.ops.object.delete()
+            bpy.ops.object.delete()
 
-        while bpy.data.collections:
-            bpy.data.collections.remove(bpy.data.collections[0])
+            while bpy.data.collections:
+                bpy.data.collections.remove(bpy.data.collections[0])
 
-        while bpy.ops.outliner.orphans_purge() == {"FINISHED"}:
-            pass
+            for obj in bpy.data.objects:
+                with contextlib.suppress(RuntimeError):
+                    context.scene.collection.objects.unlink(obj)
+
+            while bpy.ops.outliner.orphans_purge() == {"FINISHED"}:
+                pass
 
         bpy.ops.wm.save_as_mainfile(filepath=reload_path, check_existing=False)
 
