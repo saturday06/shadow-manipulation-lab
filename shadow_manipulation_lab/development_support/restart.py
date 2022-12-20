@@ -164,9 +164,14 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):  # type: ig
         for _ in range(3):
             for c in bpy.data.collections:
                 for obj in list(c.objects):
+                    if obj.type == "LIGHT":
+                        continue
                     c.objects.unlink(obj)
 
             for obj in bpy.data.objects:
+                if obj.type == "LIGHT":
+                    obj.select_set(state=False)
+                    continue
                 obj.hide_render = False
                 obj.hide_select = False
                 obj.hide_viewport = False
