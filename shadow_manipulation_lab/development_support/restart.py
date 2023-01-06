@@ -181,10 +181,14 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):  # type: ig
 
             bpy.ops.object.delete()
 
-            while bpy.data.collections:
+            while bpy.data.collections and list(bpy.data.collections) != [
+                context.scene.collection
+            ]:
                 bpy.data.collections.remove(bpy.data.collections[0])
 
             for obj in bpy.data.objects:
+                if obj.type == "LIGHT":
+                    continue
                 with contextlib.suppress(RuntimeError):
                     context.scene.collection.objects.unlink(obj)
 
