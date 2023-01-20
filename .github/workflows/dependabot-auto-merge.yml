@@ -20,7 +20,7 @@ jobs:
           for retry in $(seq 60 -1 0); do
             if [ "$retry" = "0" ]; then
               echo Timeout
-              exit 0
+              exit 1
             fi
 
             sleep 60
@@ -36,8 +36,28 @@ jobs:
             break
           done
 
-          gh pr merge --auto --merge "$PR_URL"
+          set -x
 
+          git fetch
+          current_hash=$(git rev-parse HEAD)
+          base_ref_name=$(gh pr status --json baseRefName --jq .currentBranch.baseRefName)
+          if ! git merge --ff-only "origin/$base_ref_name": then
+            git reset --hard "$current_hash"
+            gh pr comment --body "@dependabot rebase"
+            exit 0
+          fi
+
+          git reset --hard "$current_hash"
+
+          for retry in $(seq 10); do
+            if gh pr merge --auto --merge "$PR_URL"; then
+              exit 0
+            fi
+            sleep 180
+          done
+
+          echo Error
+          exit 1
         env:
           WORKFLOW_NAME: ${{github.workflow}}
           PR_URL: ${{github.event.pull_request.html_url}}
