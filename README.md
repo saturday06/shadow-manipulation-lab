@@ -12,3 +12,4 @@ New-Item -ItemType Junction -Path "$Env:APPDATA\Blender Foundation\Blender\BLEND
 # Windows Command Prompt
 mklink /j "%APPDATA%\Blender Foundation\Blender\BLENDER_VERSION\scripts\addons\shadow-manipulation-lab-repo" shadow_manipulation_lab
 ```
+m 
