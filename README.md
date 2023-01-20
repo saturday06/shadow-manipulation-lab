@@ -1,6 +1,6 @@
 # shadow-manipulation-lab
 
-Hi!
+Hey!
 
 ```
 # Linux
