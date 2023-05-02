@@ -1,5 +1,4 @@
 bpy
-dirname
 filepath
 getpid
 glb
@@ -9,7 +8,6 @@ outliner
 popen
 pylint
 runtime
-splitext
 unlink
 unregister
 utils

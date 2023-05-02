@@ -17,7 +17,7 @@
 !/LICENSE
 !/poetry.lock
 !/pyproject.toml
-!/whitelist.txt
+!/dictionary.txt
 
 *.blend1
 *.pyc

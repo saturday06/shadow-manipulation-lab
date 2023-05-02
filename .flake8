@@ -10,3 +10,4 @@ per-file-ignores =
     scripts/*.py:INP001
 
 dictionaries=en_US,python,technical
+whitelist=dictionary.txt
