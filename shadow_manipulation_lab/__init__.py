@@ -8,7 +8,7 @@ bl_info = {
     "name": "Shadow Manipulation Lab",
     "author": "saturday06",
     "version": (1, 0, 0),
-    "blender": (2, 80, 0),
+    "blender": (2, 93, 0),
     "location": "File > Import-Export",
     "description": "Import-Edit-Export VRM",
     "warning": "",
@@ -23,7 +23,7 @@ def register() -> None:
     import bpy
 
     if bpy.app.version < bl_info["blender"]:
-        raise Exception(
+        raise NotImplementedError(
             f"This add-on doesn't support Blender version less than {bl_info['blender']} "
             + f"but the current version is {bpy.app.version}"
         )

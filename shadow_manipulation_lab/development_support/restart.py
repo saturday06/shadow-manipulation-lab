@@ -165,7 +165,7 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):  # type: ig
     def execute(self, context: bpy.types.Context) -> Set[str]:
         reload_path = Path(bpy.data.filepath)
         if not bpy.data.filepath or not reload_path.exists():
-            raise Exception("Please save .blend file")
+            raise ValueError("Please save .blend file")
 
         bpy.ops.wm.save_as_mainfile(
             filepath=str(reload_path.with_suffix(".old.blend")),
@@ -225,7 +225,7 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_export(bpy.types.Operator):  # typ
     def execute(self, _context: bpy.types.Context) -> Set[str]:
         reload_path = Path(bpy.data.filepath)
         if not bpy.data.filepath or not reload_path.exists():
-            raise Exception("Please save .blend file")
+            raise ValueError("Please save .blend file")
         bpy.ops.wm.save_as_mainfile(filepath=str(reload_path), check_existing=False)
         bpy.ops.wm.save_as_mainfile(
             filepath=str(reload_path.with_suffix(".old.blend")), check_existing=False
