@@ -6,8 +6,8 @@ authors = ["Isamu Mogi <isamu@leafytree.jp>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.7"
-"fake-bpy-module-2.82" = "20230117"
+python = "^3.9"
+"fake-bpy-module-2.93" = "20210701"
 
 [tool.poetry.dev-dependencies]
 autoflake = "*"
@@ -24,10 +24,10 @@ pep8-naming = "*"
 pylint = "*"
 
 [tool.black]
-target-version = ['py37']
+target-version = ['py39']
 
 [tool.mypy]
-python_version = 3.7
+python_version = 3.9
 strict = true
 
 [[tool.mypy.overrides]]
@@ -41,6 +41,25 @@ module = [
     "mathutils",
 ]
 ignore_missing_imports = true
+
+[tool.pyright]
+pythonVersion = "3.9"
+pythonPlatform = "All"
+typeCheckingMode = "strict"
+
+reportGeneralTypeIssues = false
+reportIncompatibleMethodOverride = false
+reportMissingTypeStubs = false
+reportOptionalContextManager = false
+reportOptionalMemberAccess = false
+reportOptionalSubscript = false
+reportUnknownArgumentType = false
+reportUnknownLambdaType = false
+reportUnknownMemberType = false
+reportUnknownParameterType = false
+reportUnknownVariableType = false
+reportUnnecessaryComparison = false
+reportUnnecessaryContains = false
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

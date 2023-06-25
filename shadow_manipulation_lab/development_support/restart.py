@@ -19,18 +19,25 @@ AUTO_IMPORT_OPTION = "--shadow-manipulation-lab-import"
 def auto_import() -> None:
     if not bpy.data.filepath:
         return
-    vrm_path = Path(bpy.data.filepath).with_suffix(".vrm")
-    if not vrm_path.exists():
-        raise Exception(f'No "{vrm_path}"')
 
-    key = "BLENDER_VRM_AUTOMATIC_LICENSE_CONFIRMATION"
-    val = os.environ.get(key)
-    os.environ[key] = "true"
-    bpy.ops.import_scene.vrm(filepath=str(vrm_path))
-    if val is not None:
-        os.environ[key] = val
-    else:
-        del os.environ[key]
+    vrm_path = Path(bpy.data.filepath).with_suffix(".vrm")
+    if vrm_path.exists():
+        key = "BLENDER_VRM_AUTOMATIC_LICENSE_CONFIRMATION"
+        val = os.environ.get(key)
+        os.environ[key] = "true"
+        bpy.ops.import_scene.vrm(filepath=str(vrm_path))
+        if val is not None:
+            os.environ[key] = val
+        else:
+            del os.environ[key]
+        return
+
+    vrma_path = Path(bpy.data.filepath).with_suffix(".vrm")
+    if vrma_path.exists():
+        bpy.ops.import_scene.vrma(filepath=str(vrma_path))
+        return
+
+    raise ValueError(f'No "{vrm_path}" or "{vrma_path}"')
 
 
 def auto_export() -> None:
