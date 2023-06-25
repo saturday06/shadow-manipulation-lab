@@ -32,7 +32,7 @@ def auto_import() -> None:
             del os.environ[key]
         return
 
-    vrma_path = Path(bpy.data.filepath).with_suffix(".vrm")
+    vrma_path = Path(bpy.data.filepath).with_suffix(".vrma")
     if vrma_path.exists():
         bpy.ops.import_scene.vrma(filepath=str(vrma_path))
         return
