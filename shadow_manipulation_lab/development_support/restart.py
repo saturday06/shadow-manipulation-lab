@@ -37,6 +37,11 @@ def auto_import() -> None:
         bpy.ops.import_scene.vrma(filepath=str(vrma_path))
         return
 
+    vrma_debug_path = Path(bpy.data.filepath).with_suffix(".vrma_debug.blend")
+    if vrma_debug_path.exists():
+        bpy.ops.import_scene.vrma_debug(filepath=str(vrma_debug_path))
+        return
+
     raise ValueError(f'No "{vrm_path}" or "{vrma_path}"')
 
 
