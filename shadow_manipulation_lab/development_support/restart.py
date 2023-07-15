@@ -49,14 +49,16 @@ def auto_export() -> None:
     if not bpy.data.filepath:
         return
     vrm_path = Path(bpy.data.filepath).with_suffix(".vrm")
+    vrma_path = Path(bpy.data.filepath).with_suffix(".vrma")
     if vrm_path.exists():
         vrm_path.unlink()
-    glb_path = vrm_path.with_suffix(".glb")
-    if glb_path.exists():
-        glb_path.unlink()
-
-    bpy.ops.export_scene.vrm(filepath=str(vrm_path))
-    shutil.copy(vrm_path, glb_path)
+        glb_path = vrm_path.with_suffix(".glb")
+        if glb_path.exists():
+            glb_path.unlink()
+        bpy.ops.export_scene.vrm(filepath=str(vrm_path))
+        shutil.copy(vrm_path, glb_path)
+    elif vrma_path.exists():
+        bpy.ops.export_scene.vrma(filepath=str(vrma_path))
 
 
 if persistent:  # for fake-bpy-modules
