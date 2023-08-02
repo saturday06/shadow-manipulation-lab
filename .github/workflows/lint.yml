@@ -93,19 +93,15 @@ jobs:
       - name: Install poetry dependencies
         run: poetry install
       - name: Check source code formatting
-        run: poetry run black --check --diff $(git ls-files "*.py")
+        run: poetry run black --check --diff $(git ls-files "*.py" "*.pyi")
       - name: Pylint
-        run: |
-          poetry remove fake-bpy-module-2.93 # pylint and fake-bpy-module are incompatible
-          poetry run pylint --rcfile .pylintrc.ci $(git ls-files "*.py")
-          git checkout .
-          poetry install
+        run: poetry run pylint $(git ls-files "*.py")
       - name: Mypy
-        run: echo poetry run mypy --show-error-code $(git ls-files "*.py")
+        run: echo poetry run mypy --show-error-code $(git ls-files "*.py" "*.pyi")
       - name: Flake8
-        run: echo poetry run flake8 --count --show-source --statistics $(git ls-files "*.py")
+        run: echo poetry run flake8 --count --show-source --statistics $(git ls-files "*.py" "*.pyi")
       - name: Check import sorting order
         run: |
-          echo poetry run isort $(git ls-files "*.py")
-          echo poetry run black $(git ls-files "*.py")
+          echo poetry run isort $(git ls-files "*.py" "*.pyi")
+          echo poetry run black $(git ls-files "*.py" "*.pyi")
           echo git diff --exit-code

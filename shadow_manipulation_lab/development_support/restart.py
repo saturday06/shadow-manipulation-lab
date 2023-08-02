@@ -7,7 +7,7 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
-from typing import Any, Optional, Set
+from typing import Any, Optional, Set, Union
 
 import bpy
 from bpy.app.handlers import persistent
@@ -61,33 +61,26 @@ def auto_export() -> None:
         bpy.ops.export_scene.vrma(filepath=str(vrma_path))
 
 
-if persistent:  # for fake-bpy-modules
+@persistent
+def load_post(_dummy: Any) -> None:
+    if "--" not in sys.argv:
+        return
 
-    @persistent  # type: ignore[misc]
-    def load_post(_dummy: Any) -> None:
-        if "--" not in sys.argv:
-            return
+    extra_args = sys.argv[sys.argv.index("--") + 1 :]
 
-        extra_args = sys.argv[sys.argv.index("--") + 1 :]
+    if AUTO_IMPORT_OPTION in extra_args:
+        bpy.app.timers.register(auto_import, first_interval=0.5)
+        return
 
-        if AUTO_IMPORT_OPTION in extra_args:
-            bpy.app.timers.register(auto_import, first_interval=0.5)
-            return
-
-        if AUTO_EXPORT_OPTION in extra_args:
-            bpy.app.timers.register(auto_export, first_interval=0.5)
-            return
-
-else:
-
-    def load_post(_dummy: Any) -> None:
-        raise NotImplementedError
+    if AUTO_EXPORT_OPTION in extra_args:
+        bpy.app.timers.register(auto_export, first_interval=0.5)
+        return
 
 
-def wait_for_start_ok(path: str) -> Optional[float]:
-    with open(path, "rt", encoding="ascii") as file:
-        if file.read().strip() == "start_ok":
-            bpy.ops.wm.quit_blender()
+def wait_for_start_ok(path: Path) -> Optional[float]:
+    if path.read_text(encoding="ascii").strip() == "start_ok":
+        bpy.ops.wm.quit_blender()
+        return None
     return 0.5
 
 
@@ -128,23 +121,25 @@ def start_blender_and_quit(path: Path, extra_arg: Optional[str] = None) -> None:
         # pylint: enable=consider-using-with;
     else:
         # pylint: disable=consider-using-with;
+        args: list[Union[str, Path]] = [
+            str(restart_script.with_suffix(".sh")),
+            str(os.getpid()),
+            start_ok_file_path,
+            bpy.app.binary_path,
+            path,
+            "--",
+        ]
+        if extra_arg:
+            args.append(extra_arg)
         subprocess.Popen(
-            [
-                str(restart_script.with_suffix(".sh")),
-                str(os.getpid()),
-                start_ok_file_path,
-                bpy.app.binary_path,
-                path,
-                "--",
-            ]
-            + ([extra_arg] if extra_arg else []),
+            args,
             start_new_session=True,
         )
         # pylint: enable=consider-using-with;
     bpy.app.timers.register(functools.partial(wait_for_start_ok, start_ok_file_path))
 
 
-class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):  # type: ignore[misc] # noqa: N801
+class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.save_restart_load"
     bl_label = "Shadow Manipulation Lab: Save Restart Load"
     bl_description = "Save Restart Load"
@@ -163,7 +158,7 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):  # type:
         return {"FINISHED"}
 
 
-class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):  # type: ignore[misc] # noqa: N801
+class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.restart_import"
     bl_label = "Shadow Manipulation Lab: Restart Import"
     bl_description = "Restart Import"
@@ -223,7 +218,7 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):  # type: ig
         return {"FINISHED"}
 
 
-class SHADOW_MANIPULATION_LAB_OT_save_restart_export(bpy.types.Operator):  # type: ignore[misc] # noqa: N801
+class SHADOW_MANIPULATION_LAB_OT_save_restart_export(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.save_restart_export"
     bl_label = "Shadow Manipulation Lab: Save Restart Export"
     bl_description = "Restart Import"

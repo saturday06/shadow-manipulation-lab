@@ -6,10 +6,10 @@ authors = ["Isamu Mogi <isamu@leafytree.jp>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.9"
-"fake-bpy-module-2.93" = "20230117"
+python = "==3.10.*"
+bpy = "3.6.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 autoflake = "*"
 black = "*"
 flake8 = "*"
@@ -29,37 +29,46 @@ target-version = ['py39']
 [tool.mypy]
 python_version = 3.9
 strict = true
+mypy_path = "$MYPY_CONFIG_FILE_DIR/typings"
 
-[[tool.mypy.overrides]]
-module = [
-    "bgl",
-    "bmesh.*",
-    "bpy.*",
-    "bpy_extras.*",
-    "gpu",
-    "gpu_extras.*",
-    "mathutils",
+[tool.pylint."messages control"]
+disable = [
+    "raw-checker-failed",
+    "bad-inline-option",
+    "locally-disabled",
+    "file-ignored",
+    "suppressed-message",
+    "useless-suppression",
+    "deprecated-pragma",
+    "use-symbolic-message-instead",
+    "broad-exception-caught",
+    "duplicate-code",
+    "fixme",
+    "import-error",
+    "import-outside-toplevel",
+    "invalid-name",
+    "line-too-long",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "missing-module-docstring",
+    "too-few-public-methods",
+    "too-many-arguments",
+    "too-many-boolean-expressions",
+    "too-many-branches",
+    "too-many-instance-attributes",
+    "too-many-lines",
+    "too-many-locals",
+    "too-many-nested-blocks",
+    "too-many-public-methods",
+    "too-many-return-statements",
+    "too-many-statements",
 ]
-ignore_missing_imports = true
 
 [tool.pyright]
 pythonVersion = "3.9"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
-
-reportGeneralTypeIssues = false
-reportIncompatibleMethodOverride = false
-reportMissingTypeStubs = false
-reportOptionalContextManager = false
-reportOptionalMemberAccess = false
-reportOptionalSubscript = false
-reportUnknownArgumentType = false
-reportUnknownLambdaType = false
-reportUnknownMemberType = false
-reportUnknownParameterType = false
-reportUnknownVariableType = false
-reportUnnecessaryComparison = false
-reportUnnecessaryContains = false
+reportMissingModuleSource = false
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

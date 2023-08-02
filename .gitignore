@@ -18,6 +18,7 @@
 !/poetry.lock
 !/pyproject.toml
 !/dictionary.txt
+!/typings
 
 *.blend1
 *.pyc

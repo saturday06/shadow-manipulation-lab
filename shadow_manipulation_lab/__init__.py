@@ -20,14 +20,6 @@ bl_info = {
 
 
 def register() -> None:
-    import bpy
-
-    if bpy.app.version < bl_info["blender"]:
-        raise NotImplementedError(
-            f"This add-on doesn't support Blender version less than {bl_info['blender']} "
-            + f"but the current version is {bpy.app.version}"
-        )
-
     # Lazy import to minimize initialization before blender version checking and reload_package().
     from . import registration
 
@@ -37,11 +29,6 @@ def register() -> None:
 
 
 def unregister() -> None:
-    import bpy
-
-    if bpy.app.version < bl_info["blender"]:
-        return
-
     # Lazy import to minimize initialization before blender version checking and reload_package().
     from . import registration
 
