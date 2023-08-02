@@ -22,7 +22,7 @@ jobs:
         run: git config core.quotepath off
       - name: Check file permissions
         run: |
-          git ls-files ':!*.sh' | while read -r f; do
+          git ls-files ':!*.sh' ':!typings' | while read -r f; do
             echo $f
             if [ -x "$f" ]; then
               echo "$f has unnecessary executable permission."
