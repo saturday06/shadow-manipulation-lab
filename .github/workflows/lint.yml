@@ -74,7 +74,7 @@ jobs:
         run: |
           result=0
           for word in $(cat dictionary.txt); do
-            if ! git grep -i "$word" "*.py" > /dev/null; then
+            if ! git grep -i "$word" "*.py" "*.pyi" > /dev/null; then
               >&2 echo dictionary.txt:$word is no longer necessary
               result=1
             fi
