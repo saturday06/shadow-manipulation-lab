@@ -21,28 +21,17 @@ def auto_import() -> None:
         return
 
     vrm_path = Path(bpy.data.filepath).with_suffix(".vrm")
-    if vrm_path.exists():
-        key = "BLENDER_VRM_AUTOMATIC_LICENSE_CONFIRMATION"
-        val = os.environ.get(key)
-        os.environ[key] = "true"
-        bpy.ops.import_scene.vrm(filepath=str(vrm_path))
-        if val is not None:
-            os.environ[key] = val
-        else:
-            del os.environ[key]
+    if not vrm_path.exists():
         return
 
-    vrma_path = Path(bpy.data.filepath).with_suffix(".vrma")
-    if vrma_path.exists():
-        bpy.ops.import_scene.vrma(filepath=str(vrma_path))
-        return
-
-    vrma_debug_path = Path(bpy.data.filepath).with_suffix(".vrma_debug.blend")
-    if vrma_debug_path.exists():
-        bpy.ops.import_scene.vrma_debug(filepath=str(vrma_debug_path))
-        return
-
-    raise ValueError(f'No "{vrm_path}" or "{vrma_path}"')
+    key = "BLENDER_VRM_AUTOMATIC_LICENSE_CONFIRMATION"
+    val = os.environ.get(key)
+    os.environ[key] = "true"
+    bpy.ops.import_scene.vrm(filepath=str(vrm_path))
+    if val is not None:
+        os.environ[key] = val
+    else:
+        del os.environ[key]
 
 
 def auto_export() -> None:
@@ -61,6 +50,14 @@ def auto_export() -> None:
         bpy.ops.export_scene.vrma(filepath=str(vrma_path))
 
 
+def auto_import_vrma_debug() -> None:
+    vrma_path = Path(bpy.data.filepath).with_suffix(".vrma")
+    if not vrma_path.exists():
+        return
+
+    bpy.ops.import_scene.vrma(filepath=str(vrma_path))
+
+
 @persistent
 def load_post(_dummy: Any) -> None:
     if "--" not in sys.argv:
@@ -75,6 +72,8 @@ def load_post(_dummy: Any) -> None:
     if AUTO_EXPORT_OPTION in extra_args:
         bpy.app.timers.register(auto_export, first_interval=0.5)
         return
+
+    bpy.app.timers.register(auto_import_vrma_debug, first_interval=0.5)
 
 
 def wait_for_start_ok(path: Path) -> Optional[float]:
