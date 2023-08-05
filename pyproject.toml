@@ -22,6 +22,7 @@ isort = "*"
 mypy = "*"
 pep8-naming = "*"
 pylint = "*"
+pyright = "*"
 
 [tool.black]
 target-version = ['py39']
