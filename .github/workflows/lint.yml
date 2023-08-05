@@ -96,10 +96,12 @@ jobs:
         run: poetry run black --check --diff $(git ls-files "*.py" "*.pyi")
       - name: Pylint
         run: poetry run pylint $(git ls-files "*.py")
+      - name: Pyright
+        run: git ls-files "*.py" | xargs poetry run pyright
       - name: Mypy
-        run: echo poetry run mypy --show-error-code $(git ls-files "*.py" "*.pyi")
+        run: poetry run mypy --show-error-code $(git ls-files "*.py" "*.pyi")
       - name: Flake8
-        run: echo poetry run flake8 --count --show-source --statistics $(git ls-files "*.py" "*.pyi")
+        run: poetry run flake8 --count --show-source --statistics $(git ls-files "*.py" "*.pyi")
       - name: Check import sorting order
         run: |
           echo poetry run isort $(git ls-files "*.py" "*.pyi")
