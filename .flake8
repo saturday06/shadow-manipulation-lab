@@ -9,11 +9,12 @@ per-file-ignores =
     # https://github.com/adamchainz/flake8-no-pep420/blob/2.0.0/README.rst#inp001-file-is-part-of-an-implicit-namespace-package
     scripts/*.py:INP001
     # pyi
-    *.pyi:F401,E301,E302,E305,E701,SC200
+    *.pyi:F401,E301,E302,E305,E701,N802,SC100,SC200
 
 dictionaries=en_US,python,technical
 whitelist=dictionary.txt
 ignore-names=
     bpy_struct
     bpy_prop_collection
+    bpy_prop_array
     SHADOW_MANIPULATION_LAB_OT_*
