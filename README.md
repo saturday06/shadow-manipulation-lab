@@ -6,7 +6,7 @@ Hi!
 - shadow_manipulation_lab.restart_import
 - shadow_manipulation_lab.save_restart_export
 
-```
+```text
 # Linux
 ln -s "$PWD/shadow_manipulation_lab" "$HOME/.config/blender/BLENDER_VERSION/scripts/addons/shadow_manipulation_lab"
 # macOS
