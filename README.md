@@ -2,9 +2,9 @@
 
 Hi!
 
-shadow_manipulation_lab.save_restart_load
-shadow_manipulation_lab.restart_import
-shadow_manipulation_lab.save_restart_export
+- shadow_manipulation_lab.save_restart_load
+- shadow_manipulation_lab.restart_import
+- shadow_manipulation_lab.save_restart_export
 
 ```
 # Linux
