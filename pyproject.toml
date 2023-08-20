@@ -25,10 +25,10 @@ pylint = "*"
 pyright = "*"
 
 [tool.black]
-target-version = ['py39']
+target-version = ["py39"]
 
 [tool.mypy]
-python_version = 3.9
+python_version = "3.9"
 strict = true
 mypy_path = "$MYPY_CONFIG_FILE_DIR/typings"
 
