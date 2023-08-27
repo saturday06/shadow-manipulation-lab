@@ -1,0 +1,15 @@
+<Configuration>
+  <VGpu>Enable</VGpu>
+  <!--
+  <MappedFolders>
+    <MappedFolder>
+      <HostFolder>C:\Users\Public\Downloads</HostFolder>
+      <SandboxFolder>C:\Users\WDAGUtilityAccount\Downloads</SandboxFolder>
+      <ReadOnly>true</ReadOnly>
+    </MappedFolder>
+  </MappedFolders>
+  -->
+  <LogonCommand>
+    <Command>cmd /c start powershell -Command "Set-PSDebug -Trace 1; Start-BitsTransfer -Source 'https://download.blender.org/release/Blender3.6/blender-3.6.2-windows-x64.msi' -Destination blender.msi; msiexec.exe /qn /i blender.msi; Start-Process 'https://github.com/saturday06/VRM-Addon-for-Blender'; echo 'OK'; Pause"</Command>
+  </LogonCommand>
+</Configuration>
