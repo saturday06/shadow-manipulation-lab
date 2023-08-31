@@ -31,37 +31,22 @@ python_version = "3.9"
 strict = true
 mypy_path = "$MYPY_CONFIG_FILE_DIR/typings"
 
+[tool.pylint.design]
+min-public-methods = 1
+
+[tool.pylint.format]
+max-line-length = 120 # https://wiki.blender.org/wiki/Process/Addons/Guidelines
+
 [tool.pylint."messages control"]
 disable = [
-    "raw-checker-failed",
-    "bad-inline-option",
-    "locally-disabled",
-    "file-ignored",
-    "suppressed-message",
-    "useless-suppression",
-    "deprecated-pragma",
-    "use-symbolic-message-instead",
     "broad-exception-caught",
-    "duplicate-code",
     "fixme",
     "import-error",
     "import-outside-toplevel",
     "invalid-name",
-    "line-too-long",
     "missing-class-docstring",
     "missing-function-docstring",
     "missing-module-docstring",
-    "too-few-public-methods",
-    "too-many-arguments",
-    "too-many-boolean-expressions",
-    "too-many-branches",
-    "too-many-instance-attributes",
-    "too-many-lines",
-    "too-many-locals",
-    "too-many-nested-blocks",
-    "too-many-public-methods",
-    "too-many-return-statements",
-    "too-many-statements",
 ]
 
 [tool.pyright]
