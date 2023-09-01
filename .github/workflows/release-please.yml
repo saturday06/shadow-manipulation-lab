@@ -17,3 +17,5 @@ jobs:
         with:
           release-type: python
           package-name: release-please-action
+          include-v-in-tag: false
+          tag-separator: _
