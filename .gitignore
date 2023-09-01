@@ -12,7 +12,7 @@
 !/.editorconfig
 !/.gitattributes
 !/.gitignore
-!/.pylintrc.ci
+!/.markdownlint.yaml
 !/.github/workflows/*.yml
 !/.github/*.yml
 !/LICENSE
