@@ -17,7 +17,6 @@ jobs:
         with:
           release-type: python
           package-name: release-please-action
-          include-v-in-tag: false
-          tag-separator: TTT
+          tag-separator: "foo"
           extra-files: |
             shadow_manipulation_lab/__init__.py
