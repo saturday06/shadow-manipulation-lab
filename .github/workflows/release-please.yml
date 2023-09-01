@@ -18,6 +18,6 @@ jobs:
           release-type: python
           package-name: release-please-action
           include-v-in-tag: false
-          tag-separator: _
+          tag-separator: TTT
           extra-files: |
             shadow_manipulation_lab/__init__.py
