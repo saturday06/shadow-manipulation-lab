@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "shadow-manipulation-lab"
-version = "0.1.0" # Dummy version. See __init__.bl_info["version"] instead.
+version = "0.2.0" # Dummy version. See __init__.bl_info["version"] instead.
 description = ""
 authors = ["Isamu Mogi <isamu@leafytree.jp>"]
 license = "MIT"
