@@ -19,3 +19,5 @@ jobs:
           package-name: release-please-action
           include-v-in-tag: false
           tag-separator: _
+          extra-files: |
+            shadow_manipulation_lab/__init__.py
