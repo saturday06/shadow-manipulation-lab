@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.4.0...v0.5.0) (2023-09-02)
+
+
+### Features
+
+* aaa ([d908b6f](https://github.com/saturday06/shadow-manipulation-lab/commit/d908b6f7ec36a356e4a5592545141ec364aebb10))
+
 ## [0.4.0](https://github.com/saturday06/shadow-manipulation-lab/compare/0.3.0...0.4.0) (2023-09-01)
 
 
