@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "shadow-manipulation-lab"
-version = "0.7.0"
+version = "0.8.0"
 description = ""
 authors = ["Isamu Mogi <isamu@leafytree.jp>"]
 license = "MIT"
