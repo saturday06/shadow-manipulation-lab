@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.8.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.7.0...v0.8.0) (2023-09-03)
+
+
+### Features
+
+* a ([06dc1f5](https://github.com/saturday06/shadow-manipulation-lab/commit/06dc1f50b332c7d04ce142056775f90f459c1068))
+* aaa ([3d0db15](https://github.com/saturday06/shadow-manipulation-lab/commit/3d0db15d5315e5dda7c848b454c1326264ac92d2))
+* ok super linter ([cc90cdf](https://github.com/saturday06/shadow-manipulation-lab/commit/cc90cdff579aef593a8223a0af2b776f6b57fba7))
+* v ([8a5b897](https://github.com/saturday06/shadow-manipulation-lab/commit/8a5b897b73dcc29b052439afb760197a715d0e7f))
+
 ## [0.7.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.6.0...v0.7.0) (2023-09-02)
 
 
