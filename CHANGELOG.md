@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.11.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.10.0...v0.11.0) (2023-09-03)
+
+
+### Features
+
+* a ([90c749d](https://github.com/saturday06/shadow-manipulation-lab/commit/90c749d111bb4623390e7e361a2487dc4efeb09c))
+* aaa ([3d0db15](https://github.com/saturday06/shadow-manipulation-lab/commit/3d0db15d5315e5dda7c848b454c1326264ac92d2))
+* r ([d0fea07](https://github.com/saturday06/shadow-manipulation-lab/commit/d0fea07f24238f19ae04ce5ac12eb9d456f61351))
+* v ([8a5b897](https://github.com/saturday06/shadow-manipulation-lab/commit/8a5b897b73dcc29b052439afb760197a715d0e7f))
+* x ([612551f](https://github.com/saturday06/shadow-manipulation-lab/commit/612551f807a59ab53f15d782c86b7bf8ecb3f2f2))
+* y ([cb3503a](https://github.com/saturday06/shadow-manipulation-lab/commit/cb3503a55a0ab1de58321ec2d0f3856c2ef3bd8d))
+* z ([693b432](https://github.com/saturday06/shadow-manipulation-lab/commit/693b43273ca35f2c6a3bed4bdd4967d43cbffb92))
+
 ## [0.10.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.9.0...v0.10.0) (2023-09-03)
 
 
