@@ -21,6 +21,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: python
           package-name: release-please-action
+          bootstrap-sha: cc90cdff579aef593a8223a0af2b776f6b57fba7
           extra-files: |
             shadow_manipulation_lab/__init__.py
       - name: Release
