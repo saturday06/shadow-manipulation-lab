@@ -2,8 +2,18 @@
 
 set -eux
 
-curl -L \
-    -H "Accept: application/vnd.github+json" \
-    -H "Authorization: Bearer ${GITHUB_TOKEN}" \
-    -H "X-GitHub-Api-Version: 2022-11-28" \
-    "https://api.github.com/repos/saturday06/VRM-Addon-for-Blender/releases/tags/${RELEASE_TAG_NAME}"
+if ! curl \
+    --fail \
+    --show-error \
+    --location \
+    --output release.json \
+    --header "Accept: application/vnd.github+json" \
+    --header "Authorization: Bearer ${GITHUB_TOKEN}" \
+    --header "X-GitHub-Api-Version: 2022-11-28" \
+    "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG_NAME}"; then
+
+  cat release.json
+  exit 1
+fi
+
+cat release.json

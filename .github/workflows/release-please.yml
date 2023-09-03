@@ -23,12 +23,10 @@ jobs:
           package-name: release-please-action
           extra-files: |
             shadow_manipulation_lab/__init__.py
-      - name: Tweak Release
-        run: |
-          echo ${{ steps.release.outputs.tag_name }}
-          curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/saturday06/VRM-Addon-for-Blender/releases/tags/${{ steps.release.outputs.tag_name }}
+      - name: Release
+        run: ./scripts/release.sh
         if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          RELEASE_TAG_NAME: ${{ steps.release.outputs.tag_name }}
