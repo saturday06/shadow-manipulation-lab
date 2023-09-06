@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.17.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.16.0...v0.17.0) (2023-09-06)
+
+
+### Features
+
+* a ([8c11db8](https://github.com/saturday06/shadow-manipulation-lab/commit/8c11db8b77bd51be363b08c9cadbcf9c08214f03))
+* a ([90c749d](https://github.com/saturday06/shadow-manipulation-lab/commit/90c749d111bb4623390e7e361a2487dc4efeb09c))
+* aaa ([3d0db15](https://github.com/saturday06/shadow-manipulation-lab/commit/3d0db15d5315e5dda7c848b454c1326264ac92d2))
+* dependabot auto merge ([cc70f9b](https://github.com/saturday06/shadow-manipulation-lab/commit/cc70f9b66608678ae6d3992789b954748cd4efd5))
+* nanimo wakaran ([6bdc060](https://github.com/saturday06/shadow-manipulation-lab/commit/6bdc0601fcf71c915b994105f6cd1fa7c0fc0795))
+* r ([d0fea07](https://github.com/saturday06/shadow-manipulation-lab/commit/d0fea07f24238f19ae04ce5ac12eb9d456f61351))
+* release script ([8bad75e](https://github.com/saturday06/shadow-manipulation-lab/commit/8bad75ef119768f6aeb4a3f04f41d8a2442aefe0))
+* v ([8a5b897](https://github.com/saturday06/shadow-manipulation-lab/commit/8a5b897b73dcc29b052439afb760197a715d0e7f))
+* wip ([ca8f824](https://github.com/saturday06/shadow-manipulation-lab/commit/ca8f824b3179c1dd66967f7e421de098d972630b))
+* x ([612551f](https://github.com/saturday06/shadow-manipulation-lab/commit/612551f807a59ab53f15d782c86b7bf8ecb3f2f2))
+* y ([cb3503a](https://github.com/saturday06/shadow-manipulation-lab/commit/cb3503a55a0ab1de58321ec2d0f3856c2ef3bd8d))
+* z ([693b432](https://github.com/saturday06/shadow-manipulation-lab/commit/693b43273ca35f2c6a3bed4bdd4967d43cbffb92))
+
 ## [0.16.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.15.0...v0.16.0) (2023-09-06)
 
 
