@@ -20,9 +20,6 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
-          draft: true
-          draft-pull-request: true
-          prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: python
           package-name: release-please-action
