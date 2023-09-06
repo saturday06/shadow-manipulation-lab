@@ -1,1 +1,1 @@
-print("x" + "y" + "z")
+print("x")
