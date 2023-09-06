@@ -13,11 +13,15 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
-          draft: false
-          draft-pull-request: false
+          draft: true
+          draft-pull-request: true
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: python
