@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.17.0...v0.18.0) (2023-09-06)
+
+
+### Features
+
+* nanimo x ([17c7359](https://github.com/saturday06/shadow-manipulation-lab/commit/17c73599612e7ce2ac5ea11d59c1bdafd3e79a91))
+
 ## [0.17.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.16.0...v0.17.0) (2023-09-06)
 
 
