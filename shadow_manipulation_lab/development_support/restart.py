@@ -37,6 +37,7 @@ def auto_import() -> None:
 def auto_export() -> None:
     if not bpy.data.filepath:
         return
+
     vrm_path = Path(bpy.data.filepath).with_suffix(".vrm")
     vrma_path = Path(bpy.data.filepath).with_suffix(".vrma")
     if vrm_path.exists():
@@ -51,6 +52,9 @@ def auto_export() -> None:
 
 
 def auto_import_vrma_debug() -> None:
+    if not bpy.data.filepath:
+        return
+
     vrma_path = Path(bpy.data.filepath).with_suffix(".vrma")
     if not vrma_path.exists():
         return
