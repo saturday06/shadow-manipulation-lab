@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.18.0...v0.19.0) (2023-09-27)
+
+
+### Features
+
+* update typings ([c2eb560](https://github.com/saturday06/shadow-manipulation-lab/commit/c2eb5604c1cd11a32e1e43aa3a474bf20a62c96b))
+* z ([cf37c28](https://github.com/saturday06/shadow-manipulation-lab/commit/cf37c28f39e2e5b96542de9ed3170df7b3b8fe8e))
+
 ## [0.18.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v0.17.0...v0.18.0) (2023-09-06)
 
 
