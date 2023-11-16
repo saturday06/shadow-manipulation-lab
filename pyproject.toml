@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "3.10.*"
-bpy = "3.6.*"
+bpy = "4.0.*"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"

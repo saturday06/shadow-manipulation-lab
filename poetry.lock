@@ -87,15 +87,15 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "bpy"
-version = "3.6.0"
+version = "4.0.0"
 description = "Blender as a Python module"
 optional = false
 python-versions = "==3.10.*"
 files = [
-    {file = "bpy-3.6.0-cp310-cp310-macosx_10_15_x86_64.whl", hash = "sha256:1215d5b972fd71ae1ddcb45108e25b2b3a0d7b89645365bca01341604dcecb5f"},
-    {file = "bpy-3.6.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:4bc8bb77cc88143e78c04645351a7791d0e412c84f78a4771e68052ecac7d41c"},
-    {file = "bpy-3.6.0-cp310-cp310-manylinux_2_28_x86_64.whl", hash = "sha256:ede2c95ace7848f4f5a075a7d8cc3a9e643c335f4596c3c15087d93c7ae5f56a"},
-    {file = "bpy-3.6.0-cp310-cp310-win_amd64.whl", hash = "sha256:3b4a9d2add44c4689435ee1e7b18cbb4c2be49149443825d9c6181dfb60b4381"},
+    {file = "bpy-4.0.0-cp310-cp310-macosx_10_15_x86_64.whl", hash = "sha256:fb3f0d8c2ffb4dfa26d9cb31ccd59b9cc7336d5bc3b6b8f067642b191785cf10"},
+    {file = "bpy-4.0.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:97dce1885b04296c3d27ddfde3e078acdc3ccf455983bbf46c681f966b61612a"},
+    {file = "bpy-4.0.0-cp310-cp310-manylinux_2_28_x86_64.whl", hash = "sha256:d6caceb7598232df42dcaa13433c6fee91ea811c67a3e32816643840f97c30cf"},
+    {file = "bpy-4.0.0-cp310-cp310-win_amd64.whl", hash = "sha256:57e66dcf1a99e0bdbb8fbaad52e6c922b9454e3b9a06ce698852ab66bc6a31b1"},
 ]
 
 [package.dependencies]
@@ -894,4 +894,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.10.*"
-content-hash = "721f39735853a6d516524b1bb5721ba36258afeb92ac6f5117f2eaabe3944099"
+content-hash = "8bcde49dd8565dae862a319e387c1f2310425ceb88ccc2325a0bcf18a2bb1cae"
