@@ -210,7 +210,7 @@ version = "1.11.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mypy-extensions" },
-    { name = "tomli", marker = "python_full_version < '3.11'" },
+    { name = "tomli", marker = "python_full_version == '3.10.*'" },
     { name = "typing-extensions" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/b6/9c/a4b3bda53823439cf395db8ecdda6229a83f9bf201714a68a15190bb2919/mypy-1.11.1.tar.gz", hash = "sha256:f404a0b069709f18bbdb702eb3dcfe51910602995de00bd39cea3050b5772d08", size = 3078369 }
@@ -322,14 +322,14 @@ wheels = [
 
 [[package]]
 name = "pyright"
-version = "1.1.377"
+version = "1.1.380"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "nodeenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/49/f0/25b0db363d6888164adb7c828b877bbf2c30936955fb9513922ae03e70e4/pyright-1.1.377.tar.gz", hash = "sha256:aabc30fedce0ded34baa0c49b24f10e68f4bfc8f68ae7f3d175c4b0f256b4fcf", size = 17484 }
+sdist = { url = "https://files.pythonhosted.org/packages/fa/bc/3bb71d02125dae6730d64bb32571c0eda5e5d86483b198b7f6dd82c49c6f/pyright-1.1.380.tar.gz", hash = "sha256:e6ceb1a5f7e9f03106e0aa1d6fbb4d97735a5e7ffb59f3de6b2db590baf935b2", size = 17487 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/34/c9/89c40c4de44fe9463e77dddd0c4e2d2dd7a93e8ddc6858dfe7d5f75d263d/pyright-1.1.377-py3-none-any.whl", hash = "sha256:af0dd2b6b636c383a6569a083f8c5a8748ae4dcde5df7914b3f3f267e14dd162", size = 18223 },
+    { url = "https://files.pythonhosted.org/packages/c9/fc/527c58a3b66d5a16dbb124e1c40cf9f207147f5a36f224fb29eb786a0763/pyright-1.1.380-py3-none-any.whl", hash = "sha256:a6404392053d8848bacc7aebcbd9d318bb46baf1a1a000359305481920f43879", size = 18219 },
 ]
 
 [[package]]
@@ -401,7 +401,7 @@ requires-dist = [
 dev = [
     { name = "codespell", specifier = "==2.3.0" },
     { name = "mypy", specifier = "==1.11.1" },
-    { name = "pyright", specifier = "==1.1.377" },
+    { name = "pyright", specifier = "==1.1.380" },
     { name = "ruff", specifier = "==0.6.1" },
     { name = "starry-bpy-typings", git = "https://github.com/saturday06/VRM-Addon-for-Blender?subdirectory=typings&branch=main" },
 ]
