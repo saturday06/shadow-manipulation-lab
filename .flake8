@@ -1,20 +1,2 @@
 [flake8]
-# https://wiki.blender.org/wiki/Process/Addons/Guidelines
-max-line-length = 120
-# https://github.com/PyCQA/pycodestyle/issues/373
-extend-ignore = E203
-per-file-ignores =
-    # Dynamically generated tests can have misspelt words
-    tests/test_GENERATED_*.py:SC200
-    # https://github.com/adamchainz/flake8-no-pep420/blob/2.0.0/README.rst#inp001-file-is-part-of-an-implicit-namespace-package
-    scripts/*.py:INP001
-    # pyi
-    *.pyi:F401,E301,E302,E305,E701,N802,SC100,SC200
-
-dictionaries=en_US,python,technical
-whitelist=dictionary.txt
-ignore-names=
-    bpy_struct
-    bpy_prop_collection
-    bpy_prop_array
-    SHADOW_MANIPULATION_LAB_OT_*
+exclude = * # Please use Ruff instead.

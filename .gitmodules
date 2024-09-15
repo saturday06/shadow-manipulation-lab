@@ -1,3 +1,0 @@
-[submodule "typings"]
-	path = typings
-	url = git@github.com:saturday06/starry-bpy-type-stubs.git

@@ -73,25 +73,12 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-      - name: Check pyproject.toml format
-        run: poetry check
-      - name: Install poetry dependencies
-        run: poetry install
-      - name: Check source code formatting
-        run: git ls-files "*.py" "*.pyi" | xargs poetry run black --check --diff
-      - name: Pylint
-        run: git ls-files "*.py" "*.pyi" | xargs poetry run pylint
-      - name: Pyright
-        run: git ls-files "*.py" "*.pyi" | xargs poetry run pyright
-      - name: Mypy
-        run: git ls-files "*.py" "*.pyi" | xargs poetry run mypy --show-error-codes
-      - name: Flake8
-        run: git ls-files "*.py" "*.pyi" | xargs poetry run flake8 --count --show-source --statistics
-      - name: Check import sorting order
+      - name: Lint
+        run: ./tools/lint.sh
+      - name: Format
         run: |
-          git ls-files "*.py" "*.pyi" | xargs poetry run isort
-          git ls-files "*.py" "*.pyi" | xargs poetry run black
-          git diff --exit-code
+          ./tools/format.sh
+          git diff --check
       # - name: Super-Linter
       #   uses: github/super-linter@v5
       #   env:

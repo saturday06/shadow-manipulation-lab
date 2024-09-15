@@ -13,13 +13,17 @@
 !/.gitattributes
 !/.gitignore
 !/.markdownlint.yaml
+!/.node-version
+!/.prettierignore
+!/.prettierrc
 !/.github/workflows/*.yml
 !/.github/*.yml
 !/LICENSE
-!/poetry.lock
+!/package.json
+!/package-lock.json
 !/pyproject.toml
+!/uv.lock
 !/dictionary.txt
-!/typings
 
 *.blend1
 *.pyc

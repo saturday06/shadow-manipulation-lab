@@ -9,23 +9,76 @@ indent_style = space
 tab_width = 4
 trim_trailing_whitespace = true
 
-[*.yml]
-indent_size = 2
-
 [*.bat]
 charset = latin1
 end_of_line = crlf
 indent_size = 2
 
-[*.sh]
+[*.css]
 indent_size = 2
 
-[*.wsb]
-end_of_line = crlf
+[*.toml]
 indent_size = 2
 
 [*.{yml,yaml}]
 indent_size = 2
 
+[*.xml]
+indent_size = 2
+
+[*.html]
+indent_size = 2
+
+[*.rb]
+indent_size = 2
+
+[*.{js,json,json5}]
+indent_size = 2
+
+[*.md]
+indent_size = 2
+
+[*.patch]
+trim_trailing_whitespace = false
+
+[*.sh]
+indent_size = 2
+
+[*.wsb]
+indent_size = 2
+
 [/.gitmodules]
 indent_style = tab
+
+[/LICENSE]
+indent_size = 1
+
+[/docs/website/static/CNAME]
+insert_final_newline = false
+
+[*.{blend,gif,glb,ico,jpg,png,pptx,pyc,tga,vrm}]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+indent_size = unset
+indent_style = unset
+tab_width = unset
+trim_trailing_whitespace = unset
+
+[{.git,.venv,node_modules}/**]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+indent_size = unset
+indent_style = unset
+tab_width = unset
+trim_trailing_whitespace = unset
+
+[**/{.ruff_cache,.mypy_cache}/**]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+indent_size = unset
+indent_style = unset
+tab_width = unset
+trim_trailing_whitespace = unset
