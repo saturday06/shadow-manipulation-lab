@@ -18,7 +18,7 @@ dependencies = [
 [tool.uv]
 dev-dependencies = [
     "codespell == 2.3.0",
-    "mypy == 1.11.1",
+    "mypy ==1.11.2",
     "pyright ==1.1.380",
     "ruff == 0.6.1",
     "starry-bpy-typings",
