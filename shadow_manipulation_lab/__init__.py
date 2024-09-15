@@ -1,6 +1,7 @@
 #
 #
-# Please don't import anything in global scope to detect script reloading and minimize initialization.
+# Please don't import anything in global scope to detect script reloading
+# and minimize initialization.
 #
 #
 
@@ -24,7 +25,8 @@ bl_info = {
 
 
 def register() -> None:
-    # Lazy import to minimize initialization before blender version checking and reload_package().
+    # Lazy import to minimize initialization before blender version checking
+    # and reload_package().
     from . import registration
 
     # pylint: enable=import-self,no-name-in-module
@@ -33,7 +35,8 @@ def register() -> None:
 
 
 def unregister() -> None:
-    # Lazy import to minimize initialization before blender version checking and reload_package().
+    # Lazy import to minimize initialization before blender version checking
+    # and reload_package().
     from . import registration
 
     registration.unregister()

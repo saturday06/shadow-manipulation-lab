@@ -1,7 +1,7 @@
 [project]
 name = "shadow-manipulation-lab"
 requires-python = "== 3.10.*" # I actually want to use 3.9, but bpy 3.6.* doesn't allow it.
-version = "1.0.0" # Dummy version. See __init__.bl_info["version"] instead.
+version = "0.19.0"
 authors = [
     {name = "Isamu Mogi"},
 ]
@@ -97,11 +97,7 @@ extend-ignore-names = [
     "glTF2ImportUserExtension",
     "EXPORT_SCENE_OT_*",
     "IMPORT_SCENE_OT_*",
-    "ICYP_OT_*",
-    "VRM_OT_*",
-    "VRM_PT_*",
-    "VRM_UL_*",
-    "WM_OT_*",
+    "SHADOW_MANIPULATION_LAB_OT_*",
 ]
 
 [tool.ruff.lint.pydocstyle]

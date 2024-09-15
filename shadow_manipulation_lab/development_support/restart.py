@@ -6,8 +6,9 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from collections.abc import Set as AbstractSet
 from pathlib import Path
-from typing import Any, Optional, Set, Union
+from typing import Optional, Union
 
 import bpy
 from bpy.app.handlers import persistent
@@ -63,7 +64,7 @@ def auto_import_vrma_debug() -> None:
 
 
 @persistent
-def load_post(_dummy: Any) -> None:
+def load_post(_dummy: object) -> None:
     if "--" not in sys.argv:
         return
 
@@ -146,9 +147,9 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.save_restart_load"
     bl_label = "Shadow Manipulation Lab: Save Restart Load"
     bl_description = "Save Restart Load"
-    bl_options = {"REGISTER"}
+    bl_options: AbstractSet[str] = {"REGISTER"}
 
-    def execute(self, _context: bpy.types.Context) -> Set[str]:
+    def execute(self, _context: bpy.types.Context) -> set[str]:
         print("Save Restart Load")
         reload_path = Path(bpy.data.filepath)
         if not bpy.data.filepath or not reload_path.exists():
@@ -165,12 +166,13 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.restart_import"
     bl_label = "Shadow Manipulation Lab: Restart Import"
     bl_description = "Restart Import"
-    bl_options = {"REGISTER"}
+    bl_options: AbstractSet[str] = {"REGISTER"}
 
-    def execute(self, context: bpy.types.Context) -> Set[str]:
+    def execute(self, context: bpy.types.Context) -> set[str]:
         reload_path = Path(bpy.data.filepath)
         if not bpy.data.filepath or not reload_path.exists():
-            raise ValueError("Please save .blend file")
+            message = "Please save .blend file"
+            raise ValueError(message)
 
         bpy.ops.wm.save_as_mainfile(
             filepath=str(reload_path.with_suffix(".old.blend")),
@@ -225,12 +227,13 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_export(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.save_restart_export"
     bl_label = "Shadow Manipulation Lab: Save Restart Export"
     bl_description = "Restart Import"
-    bl_options = {"REGISTER"}
+    bl_options: AbstractSet[str] = {"REGISTER"}
 
-    def execute(self, _context: bpy.types.Context) -> Set[str]:
+    def execute(self, _context: bpy.types.Context) -> set[str]:
         reload_path = Path(bpy.data.filepath)
         if not bpy.data.filepath or not reload_path.exists():
-            raise ValueError("Please save .blend file")
+            message = "Please save .blend file"
+            raise ValueError(message)
         bpy.ops.wm.save_as_mainfile(filepath=str(reload_path), check_existing=False)
         bpy.ops.wm.save_as_mainfile(
             filepath=str(reload_path.with_suffix(".old.blend")), check_existing=False
