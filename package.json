@@ -2,7 +2,6 @@
   "name": "node-js-tools-for-shadow-manipulation-lab",
   "private": true,
   "devDependencies": {
-    "gltf-validator": "*",
-    "prettier": "*"
+    "prettier": "3.2.4"
   }
 }
