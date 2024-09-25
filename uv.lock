@@ -322,15 +322,15 @@ wheels = [
 
 [[package]]
 name = "pyright"
-version = "1.1.382"
+version = "1.1.382.post0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "nodeenv" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f5/9d/7fc72c764d5067078303189c9cc4a6629459f0744dc26511981f12abe29b/pyright-1.1.382.tar.gz", hash = "sha256:0c953837aa9f1e1d8d46772ee7ebae845104db657e9216834dbdde567a11f177", size = 21493 }
+sdist = { url = "https://files.pythonhosted.org/packages/5a/7e/bc877dfbde1f486cc0da40c4ad3f609300d9364f83107587b99fb20e6b91/pyright-1.1.382.post0.tar.gz", hash = "sha256:4b84dd4439b0cbc662dff6aaf012cc0860f1c788932ac4c2a4b5d6c1280a5e20", size = 21514 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f8/96/dc7bc8bcfb1856bebe273d38faa1b3f4028b46945cd3aceeb0ded050cd9b/pyright-1.1.382-py3-none-any.whl", hash = "sha256:b6658802b2eca1107a6d63b6816903da4c7a53dffebc27cdbc02ebd904b7a18e", size = 18555 },
+    { url = "https://files.pythonhosted.org/packages/fd/20/7e6ef22601e97055902a8ce7b6310523524d77ad0a6d790bcd2e5ea4c1ca/pyright-1.1.382.post0-py3-none-any.whl", hash = "sha256:a82a20b6a6511d71c6c95de19c0f874f7e50a013f332e3799deaae66a4d237d1", size = 18652 },
 ]
 
 [[package]]
@@ -402,7 +402,7 @@ requires-dist = [
 dev = [
     { name = "codespell", specifier = "==2.3.0" },
     { name = "mypy", specifier = "==1.11.2" },
-    { name = "pyright", specifier = "==1.1.382" },
+    { name = "pyright", specifier = "==1.1.382.post0" },
     { name = "ruff", specifier = "==0.6.7" },
     { name = "starry-bpy-typings", git = "https://github.com/saturday06/VRM-Addon-for-Blender?subdirectory=typings&branch=main" },
 ]
