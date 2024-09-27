@@ -1,0 +1,24 @@
+schema_version = "1.0.0"
+
+id = "shadow-manipulation-lab"
+version = "1.0.0"
+name = "Shadow Manipulation Lab"
+tagline = "Shadow Manipulation Lab"
+maintainer = "Isamu Mogi <dyob@lunaport.net>"
+type = "add-on"
+
+website = "https://vrm-addon-for-blender.info"
+
+tags = ["Import-Export", "Animation", "Modeling", "Material", "Physics"]
+
+blender_version_min = "2.93.0"
+blender_version_max = "4.2.999"
+
+license = ["SPDX:MIT"]
+
+copyright = [
+  "2020 Isamu Mogi",
+]
+
+[permissions]
+files = "Import/export VRM from/to disk"

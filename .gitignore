@@ -25,6 +25,8 @@
 !/pyproject.toml
 !/uv.lock
 !/dictionary.txt
+!/shadow_manipulation_lab/blender_manifest.toml
+!/typings
 
 *.blend1
 *.pyc
