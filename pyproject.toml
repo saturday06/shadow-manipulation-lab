@@ -19,7 +19,7 @@ dependencies = [
 dev-dependencies = [
     "codespell == 2.3.0",
     "mypy ==1.11.2",
-    "ruff ==0.6.8",
+    "ruff ==0.6.9",
     "starry-bpy-typings",
 ]
 
