@@ -3,8 +3,8 @@
   "bootstrap-sha": "7f59835b04f8948babe08f6f57ebe39086574f71",
   "changelog-sections": [
     {
-      "type": "🚀 feat",
-      "section": "Features"
+      "type": "feat",
+      "section": "🚀 Features"
     },
     {
       "type": "fix",
