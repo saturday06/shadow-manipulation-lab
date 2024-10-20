@@ -26,6 +26,14 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
 
+  upload-release-archive:
+    runs-on: ubuntu-24.04
+    needs: release-please
+    if: ${{ jobs.release-please.steps.release.outputs.release_created }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.release.outputs.sha }}
       - name: Release
         run: ./tools/release.sh
         if: ${{ steps.release.outputs.release_created }}
