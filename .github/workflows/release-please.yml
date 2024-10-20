@@ -29,15 +29,15 @@ jobs:
   upload-release-archive:
     runs-on: ubuntu-24.04
     needs: release-please
-    if: ${{ jobs.release-please.steps.release.outputs.release_created }}
+    if: ${{ needs.release-please.steps.release.outputs.release_created }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ jobs.release-please.steps.release.outputs.sha }}
+          ref: ${{ needs.release-please.steps.release.outputs.sha }}
       - name: Release
         run: ./tools/release.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          RELEASE_TAG_NAME: ${{ jobs.release-please.steps.release.outputs.tag_name }}
-          RELEASE_UPLOAD_URL: ${{ jobs.release-please.steps.release.outputs.upload_url }}
+          RELEASE_TAG_NAME: ${{ needs.release-please.steps.release.outputs.tag_name }}
+          RELEASE_UPLOAD_URL: ${{ needs.release-please.steps.release.outputs.upload_url }}
