@@ -1,10 +1,10 @@
 {
-  "draft-pull-request": true,
+  "draft-pull-request": false,
   "bootstrap-sha": "7f59835b04f8948babe08f6f57ebe39086574f71",
   "packages": {
     ".": {
       "release-type": "python",
-      "draft": true,
+      "draft": false,
       "extra-files": [
         {
           "type": "generic",
