@@ -1,5 +1,6 @@
 {
   "release-type": "python",
+  "draft": true,
   "tag-separator": "_",
   "bootstrap-sha": "905886abfab3d857e30cd3cc4dfcd72d075373dd",
   "packages": {
