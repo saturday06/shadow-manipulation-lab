@@ -25,6 +25,8 @@ jobs:
       - name: Trigger Status Check
         if: ${{ steps.release.outputs.prs_created }}
         run: |
+          git config --global user.email "isamu@leafytree.jp"
+          git config --global user.name "[BOT] Isamu Mogi"
           pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq .number)
           gh pr checkout "$pr_number"
           git commit --allow-empty -m "chore: trigger status checks"
