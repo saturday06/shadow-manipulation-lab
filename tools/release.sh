@@ -19,4 +19,4 @@ fi
 cat release.json
 
 # gh release upload "$RELEASE_TAG_NAME" ./artifact/some-build-artifact.zip
-# gh release edit "$RELEASE_TAG_NAME" --draft=false --latest
+gh release edit "$RELEASE_TAG_NAME" --draft=false --latest
