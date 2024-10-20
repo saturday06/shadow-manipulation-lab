@@ -1,1 +1,1 @@
-print("oz")
+print("ozz")
