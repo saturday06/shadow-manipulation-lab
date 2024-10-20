@@ -25,6 +25,8 @@ jobs:
       - name: Trigger Status Check
         if: ${{ steps.release.outputs.prs_created }}
         run: |
+          echo "${{ steps.release.outputs.pr }}"
+          echo "${{ steps.release.outputs.prs }}"
           gh pr checkout "${{ steps.release.outputs.pr.number }}"
           git commit --allow-empty -m "chore: trigger status checks"
           git push origin HEAD
