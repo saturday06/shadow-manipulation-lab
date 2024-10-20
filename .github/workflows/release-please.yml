@@ -14,6 +14,10 @@ name: release-please
 jobs:
   release-please:
     runs-on: ubuntu-24.04
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      sha: ${{ steps.release.outputs.sha }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - name: lint
         if: ${{ github.event.workflow_run.conclusion != 'success' }}
@@ -29,18 +33,14 @@ jobs:
   upload-release-archive:
     runs-on: ubuntu-24.04
     needs: release-please
+    if: ${{ needs.release-please.result == 'success' }}
     steps:
-      - name: Check Vars
-        run: |
-          echo "${{ needs.release-please }}"
-          echo "${{ needs.release-please }}" | jq .
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.release-please.steps.release.outputs.sha }}
+          ref: ${{ needs.release-please.result }}
       - name: Release
         run: ./tools/release.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          RELEASE_TAG_NAME: ${{ needs.release-please.steps.release.outputs.tag_name }}
-          RELEASE_UPLOAD_URL: ${{ needs.release-please.steps.release.outputs.upload_url }}
+          RELEASE_TAG_NAME: ${{ needs.release-please.outputs.tag_name }}

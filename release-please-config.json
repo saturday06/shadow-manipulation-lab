@@ -1,6 +1,24 @@
 {
   "draft-pull-request": true,
   "bootstrap-sha": "7f59835b04f8948babe08f6f57ebe39086574f71",
+  "changelog-sections": [
+    {
+      "type": "🚀 feat",
+      "section": "Features"
+    },
+    {
+      "type": "fix",
+      "section": "🐞 Bug Fixes"
+    },
+    {
+      "type": "docs",
+      "section": "📝 Documentation"
+    },
+    {
+      "type": "BREAKING CHANGE",
+      "section": "💥 Breaking Changes"
+    }
+  ],
   "packages": {
     ".": {
       "release-type": "python",
