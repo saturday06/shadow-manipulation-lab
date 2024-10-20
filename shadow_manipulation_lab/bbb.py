@@ -1,1 +1,1 @@
-print("ozzzza wip wip")
+print("ozzzza wip woip")
