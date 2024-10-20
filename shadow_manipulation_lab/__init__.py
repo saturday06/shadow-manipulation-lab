@@ -8,7 +8,7 @@
 bl_info = {
     "name": "Shadow Manipulation Lab",
     "author": "saturday06",
-    "version": (1, 15, 0), # x-release-please-version
+    "version": (1, 15, 0),  # x-release-please-version
     "blender": (2, 93, 0),
     "location": "File > Import-Export",
     "description": "Import-Edit-Export VRM",
