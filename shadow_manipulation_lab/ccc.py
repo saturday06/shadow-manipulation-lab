@@ -1,1 +1,1 @@
-print("インターネットサバイバーaaazenin")
+print("abcde")
