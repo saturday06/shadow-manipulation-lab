@@ -21,6 +21,7 @@
   ],
   "packages": {
     ".": {
+      "pull-request-title-pattern": "🚀 Release ${version}",
       "release-type": "python",
       "draft": true,
       "extra-files": [
