@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.9.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.8.0...v1.9.0) (2024-10-20)
+
+
+### Features
+
+* aaa ([8f57346](https://github.com/saturday06/shadow-manipulation-lab/commit/8f57346e9f435a8019d42d7271df28ffe5578018))
+* bbb ([14f647e](https://github.com/saturday06/shadow-manipulation-lab/commit/14f647e2222f07b6f1e10c4bea73546287da1448))
+* bbb ([6fa5145](https://github.com/saturday06/shadow-manipulation-lab/commit/6fa5145572bc42a8d2d59019355697e909c7a026))
+* ccc ([65ecff9](https://github.com/saturday06/shadow-manipulation-lab/commit/65ecff9bb6a30e1f87abe481ab788a794031c4b9))
+
 ## [1.8.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.7.0...v1.8.0) (2024-10-20)
 
 
