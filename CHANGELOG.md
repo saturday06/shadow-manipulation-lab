@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.16.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.15.0...v1.16.0) (2024-10-20)
+
+
+### Features
+
+* a ([28ab62c](https://github.com/saturday06/shadow-manipulation-lab/commit/28ab62c4bbfa892ec3de6b779c8a3aaba9c73af6))
+* asdf ([4aa4b7a](https://github.com/saturday06/shadow-manipulation-lab/commit/4aa4b7ae5af2f42b3a72651006df075b0ae69439))
+* asdfa ([d217c24](https://github.com/saturday06/shadow-manipulation-lab/commit/d217c24afac10cb4e835a5a2ecef0022068df2da))
+* toml ([99fed3d](https://github.com/saturday06/shadow-manipulation-lab/commit/99fed3d6b018c65fa9790ca172ad6c49bda0f070))
+* v ([edb4607](https://github.com/saturday06/shadow-manipulation-lab/commit/edb46078be6864ca38518ae7667c84344237488a))
+
 ## [1.15.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.14.0...v1.15.0) (2024-10-20)
 
 ### Features
