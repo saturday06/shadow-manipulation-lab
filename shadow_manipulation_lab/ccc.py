@@ -1,1 +1,1 @@
-print("インターネットサバイバーaaa")
+print("インターネットサバイバーaaazenin")
