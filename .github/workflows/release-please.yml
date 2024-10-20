@@ -22,6 +22,14 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
 
+      - name: Trigger Status Check
+        if: ${{ steps.release.outputs.prs_created }}
+        run: |
+          gh pr checkout "${{ steps.release.outputs.pr.number }}"
+          git commit --allow-empty -m "chore: trigger status checks"
+          git push origin HEAD
+          exit 0
+
       - name: Release
         run: ./tools/release.sh
         if: ${{ steps.release.outputs.release_created }}
