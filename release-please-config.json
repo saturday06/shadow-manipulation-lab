@@ -8,6 +8,11 @@
         {
           "type": "generic",
           "path": "shadow_manipulation_lab/__init__.py"
+        },
+        {
+          "type": "toml",
+          "path": "shadow_manipulation_lab/blender_manifest.toml",
+          "jsonpath": "$.version"
         }
       ]
     }
