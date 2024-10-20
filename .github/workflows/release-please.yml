@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: lint
         if: ${{ github.event.workflow_run.conclusion != 'success' }}
-        run: exit 0
+        run: exit 1
 
       - uses: actions/checkout@v4
         with:
