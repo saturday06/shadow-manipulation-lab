@@ -7,6 +7,7 @@ permissions:
   contents: write
   pull-requests: write
   checks: write
+  statuses: write
 
 name: release-please
 
