@@ -1,8 +1,15 @@
 {
-  "release-type": "python",
-  "draft": true,
   "bootstrap-sha": "905886abfab3d857e30cd3cc4dfcd72d075373dd",
   "packages": {
-    ".": {}
+    ".": {
+        "release-type": "python",
+        "draft": true,
+        "extra-files": [
+        {
+          "type": "generic",
+          "path": "shadow_manipulation_lab/__init__.py"
+        }
+      ]
+    }
   }
 }
