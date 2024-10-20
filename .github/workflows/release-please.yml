@@ -13,19 +13,10 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: googleapis/release-please-action@v4
         with:
-          fetch-depth: 0
-          submodules: recursive
-      - uses: google-github-actions/release-please-action@v4
-        id: release
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: python
-          package-name: release-please-action
-          bootstrap-sha: cc90cdff579aef593a8223a0af2b776f6b57fba7
-          extra-files: |
-            shadow_manipulation_lab/__init__.py
+
       - name: Release
         run: ./scripts/release.sh
         if: ${{ steps.release.outputs.release_created }}
@@ -33,3 +24,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           RELEASE_TAG_NAME: ${{ steps.release.outputs.tag_name }}
+          RELEASE_UPLOAD_URL: ${{ steps.release.outputs.upload_url }}
