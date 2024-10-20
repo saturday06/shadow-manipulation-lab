@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.11.0...1.12.0) (2024-10-20)
+
+
+### Features
+
+* asdf ([e076d3b](https://github.com/saturday06/shadow-manipulation-lab/commit/e076d3b991ee75ac077f23753f0aa7977f06a167))
+
 ## [1.11.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.10.0...v1.11.0) (2024-10-20)
 
 
