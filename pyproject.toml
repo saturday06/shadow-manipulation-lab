@@ -1,7 +1,7 @@
 [project]
 name = "shadow-manipulation-lab"
 requires-python = "== 3.10.*" # I actually want to use 3.9, but bpy 3.6.* doesn't allow it.
-version = "1.18.0"
+version = "1.19.0"
 authors = [
     {name = "Isamu Mogi"},
 ]
