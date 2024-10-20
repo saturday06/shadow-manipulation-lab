@@ -1,5 +1,5 @@
 {
-  "draft-pull-request": false,
+  "draft-pull-request": true,
   "bootstrap-sha": "7f59835b04f8948babe08f6f57ebe39086574f71",
   "packages": {
     ".": {

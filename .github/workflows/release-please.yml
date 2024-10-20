@@ -22,19 +22,6 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
 
-      - name: Trigger Status Check
-        if: ${{ steps.release.outputs.prs_created }}
-        run: |
-          git config --global user.email "isamu@leafytree.jp"
-          git config --global user.name "[BOT] Isamu Mogi"
-          pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq .number)
-          gh pr checkout "$pr_number"
-          git commit --allow-empty -m "chore: trigger status checks"
-          git push origin HEAD
-          exit 0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Release
         run: ./tools/release.sh
         if: ${{ steps.release.outputs.release_created }}
