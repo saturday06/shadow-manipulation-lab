@@ -33,12 +33,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ steps.release.outputs.sha }}
+          ref: ${{ jobs.release-please.steps.release.outputs.sha }}
       - name: Release
         run: ./tools/release.sh
-        if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          RELEASE_TAG_NAME: ${{ steps.release.outputs.tag_name }}
-          RELEASE_UPLOAD_URL: ${{ steps.release.outputs.upload_url }}
+          RELEASE_TAG_NAME: ${{ jobs.release-please.steps.release.outputs.tag_name }}
+          RELEASE_UPLOAD_URL: ${{ jobs.release-please.steps.release.outputs.upload_url }}
