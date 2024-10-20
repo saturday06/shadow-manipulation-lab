@@ -29,8 +29,11 @@ jobs:
   upload-release-archive:
     runs-on: ubuntu-24.04
     needs: release-please
-    if: ${{ needs.release-please.steps.release.outputs.release_created }}
     steps:
+      - name: Check Vars
+        run: |
+          echo "${{ needs.release-please }}"
+          echo "${{ needs.release-please }}" | jq .
       - uses: actions/checkout@v4
         with:
           ref: ${{ needs.release-please.steps.release.outputs.sha }}
