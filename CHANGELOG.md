@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.19.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.18.0...v1.19.0) (2024-10-20)
+
+
+### Features
+
+* s ([f86a7ce](https://github.com/saturday06/shadow-manipulation-lab/commit/f86a7ce31cd1ab4b8618f9b0dc1797f9268b6b9a))
+* sss ([255ddbf](https://github.com/saturday06/shadow-manipulation-lab/commit/255ddbfc05c05a713cc218d3ab388ef544007df0))
+* sss ([7165a37](https://github.com/saturday06/shadow-manipulation-lab/commit/7165a3720e2f628b3d59c408ed6621b4db5b365f))
+* sss ([52c8bd4](https://github.com/saturday06/shadow-manipulation-lab/commit/52c8bd4dba4666291643b8bfffe2e008f12b4c81))
+* sss ([d63c76d](https://github.com/saturday06/shadow-manipulation-lab/commit/d63c76d2387196ef4395190ca369842b4726798e))
+* sss ([1fef6bd](https://github.com/saturday06/shadow-manipulation-lab/commit/1fef6bd49b0f5a673ad7bde6688d267da9b91b66))
+* sss ([b010651](https://github.com/saturday06/shadow-manipulation-lab/commit/b0106513dc95da3d9665cf84bf0fb2ab1cc97719))
+* sss ([45a9e12](https://github.com/saturday06/shadow-manipulation-lab/commit/45a9e121184e227015cb5fe561bdd8be0a34641b))
+
 ## [1.18.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.17.0...v1.18.0) (2024-10-20)
 
 
