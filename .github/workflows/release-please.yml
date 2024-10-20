@@ -30,6 +30,8 @@ jobs:
           git commit --allow-empty -m "chore: trigger status checks"
           git push origin HEAD
           exit 0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release
         run: ./tools/release.sh
