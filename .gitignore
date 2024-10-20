@@ -1,2 +1,5 @@
 /node_modules/
 __pycache__/
+/.venv/
+.mypy_cache/
+.ruff_cache/
