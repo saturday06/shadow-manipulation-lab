@@ -30,11 +30,11 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
-          # 通常の運用ではskip-github-pull-requestは有効化しない
-          # しかし、このレポジトリではrelease-please-actionがrelease-prがマージされたかどうかを検知できないため
-          # release-prがマージされたタイミングで、バージョンだけさらに進んだ全く同一のrelease-prが新規作成されてしまう
-          # それを防ぐため、skip-github-pull-request=falseで一度release-please-actionを実行し、重複したrelease-prの
-          # 作成を防ぐ。結果release_createdがfalseの場合ときは再度release-please-actionを実行し、通常通りrelease-prを
+          # 通常の運用ではskip-github-pull-requestは有効化しない。
+          # しかし、このレポジトリの運用ではrelease-please-actionがrelease-prがマージされたかを検知できないため
+          # release-prがマージされたタイミングで、バージョンだけ進んだ全く同一のrelease-prが新規作成されてしまう。
+          # それを防ぐため、はじめにskip-github-pull-request=falseで一度release-please-actionを実行する。
+          # 結果release_createdがfalseの場合ときは再度release-please-actionを実行し、通常通りrelease-prを
           # 作成したり更新したりする。
           skip-github-pull-request: true
 
