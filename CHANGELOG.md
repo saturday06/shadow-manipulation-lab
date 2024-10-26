@@ -1,5 +1,45 @@
 # Changelog
 
+## [1.22.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.21.0...v1.22.0) (2024-10-26)
+
+
+### 🚀 Features
+
+* a ([28ab62c](https://github.com/saturday06/shadow-manipulation-lab/commit/28ab62c4bbfa892ec3de6b779c8a3aaba9c73af6))
+* asdf ([4aa4b7a](https://github.com/saturday06/shadow-manipulation-lab/commit/4aa4b7ae5af2f42b3a72651006df075b0ae69439))
+* asdfa ([d217c24](https://github.com/saturday06/shadow-manipulation-lab/commit/d217c24afac10cb4e835a5a2ecef0022068df2da))
+* draft ([9444ac6](https://github.com/saturday06/shadow-manipulation-lab/commit/9444ac6786c7a498ba912d45cf69da2f9c69446f))
+* s ([f86a7ce](https://github.com/saturday06/shadow-manipulation-lab/commit/f86a7ce31cd1ab4b8618f9b0dc1797f9268b6b9a))
+* sss ([3ff247d](https://github.com/saturday06/shadow-manipulation-lab/commit/3ff247d46e92a59732b0019786180e553ca84a27))
+* sss ([4b1774b](https://github.com/saturday06/shadow-manipulation-lab/commit/4b1774b0a01c6d3494a7811676ff4e74544b5e1b))
+* sss ([a920c11](https://github.com/saturday06/shadow-manipulation-lab/commit/a920c1101995fce2f886bc9c0738ff60f760cac7))
+* sss ([111c702](https://github.com/saturday06/shadow-manipulation-lab/commit/111c702526eae3c0f94339138b5aaef48f20d509))
+* sss ([8484142](https://github.com/saturday06/shadow-manipulation-lab/commit/84841423803a8dbf176d9d5259b04f127e7e43bd))
+* sss ([3a30acd](https://github.com/saturday06/shadow-manipulation-lab/commit/3a30acd77c9f820b1472c2fd418eec27901e465a))
+* sss ([fd7685e](https://github.com/saturday06/shadow-manipulation-lab/commit/fd7685e7c083b4d06ce64c7108dff5b5ba5a7c15))
+* sss ([255ddbf](https://github.com/saturday06/shadow-manipulation-lab/commit/255ddbfc05c05a713cc218d3ab388ef544007df0))
+* sss ([7165a37](https://github.com/saturday06/shadow-manipulation-lab/commit/7165a3720e2f628b3d59c408ed6621b4db5b365f))
+* sss ([52c8bd4](https://github.com/saturday06/shadow-manipulation-lab/commit/52c8bd4dba4666291643b8bfffe2e008f12b4c81))
+* sss ([d63c76d](https://github.com/saturday06/shadow-manipulation-lab/commit/d63c76d2387196ef4395190ca369842b4726798e))
+* sss ([1fef6bd](https://github.com/saturday06/shadow-manipulation-lab/commit/1fef6bd49b0f5a673ad7bde6688d267da9b91b66))
+* sss ([b010651](https://github.com/saturday06/shadow-manipulation-lab/commit/b0106513dc95da3d9665cf84bf0fb2ab1cc97719))
+* sss ([45a9e12](https://github.com/saturday06/shadow-manipulation-lab/commit/45a9e121184e227015cb5fe561bdd8be0a34641b))
+* t ([31a964f](https://github.com/saturday06/shadow-manipulation-lab/commit/31a964ffa98f955b9d0495cf74401e4474456afb))
+* toml ([99fed3d](https://github.com/saturday06/shadow-manipulation-lab/commit/99fed3d6b018c65fa9790ca172ad6c49bda0f070))
+* v ([edb4607](https://github.com/saturday06/shadow-manipulation-lab/commit/edb46078be6864ca38518ae7667c84344237488a))
+* x ([3d9749f](https://github.com/saturday06/shadow-manipulation-lab/commit/3d9749fb10fc776b9ec0f9ba7dd78512d82d48a9))
+* x ([2092be3](https://github.com/saturday06/shadow-manipulation-lab/commit/2092be3b081223b2d904425edd18a7dab1121b2e))
+
+
+### 🐞 Bug Fixes
+
+* BUG ([90ab57e](https://github.com/saturday06/shadow-manipulation-lab/commit/90ab57e8cefb8b0f84d10b1212bd8a4615b90030))
+
+
+### 📝 Documentation
+
+* DOCUUU ([dcb5ea2](https://github.com/saturday06/shadow-manipulation-lab/commit/dcb5ea281e6d8de4536fba1e3cf4aec1251111fa))
+
 ## [1.21.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.20.0...v1.21.0) (2024-10-24)
 
 
