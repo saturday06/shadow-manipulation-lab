@@ -10,7 +10,7 @@ bl_info = {
     "author": "saturday06",
     "version": (
         1,  # x-release-please-major
-        23,  # x-release-please-minor
+        24,  # x-release-please-minor
         0,  # x-release-please-patch
     ),
     "blender": (2, 93, 0),

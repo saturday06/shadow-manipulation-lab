@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.24.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.23.0...v1.24.0) (2024-10-26)
+
+
+### 🚀 Features
+
+* ok ([7f99380](https://github.com/saturday06/shadow-manipulation-lab/commit/7f993803e11416025670a462d9c78b6d7f5ee759))
+
 ## [1.23.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v1.22.0...v1.23.0) (2024-10-26)
 
 
