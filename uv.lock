@@ -1,11 +1,11 @@
 version = 1
 requires-python = "==3.10.*"
 resolution-markers = [
-    "platform_machine == 'x86_64' and platform_system == 'Darwin'",
-    "platform_machine == 'arm64' and platform_system == 'Darwin'",
-    "platform_machine == 'x86_64' and platform_system == 'Linux'",
-    "platform_machine == 'AMD64' and platform_system == 'Windows'",
-    "(platform_machine != 'arm64' and platform_machine != 'x86_64' and platform_system == 'Darwin') or (platform_machine != 'x86_64' and platform_system == 'Linux') or (platform_machine != 'AMD64' and platform_system == 'Windows') or (platform_system != 'Darwin' and platform_system != 'Linux' and platform_system != 'Windows')",
+    "platform_machine == 'x86_64' and sys_platform == 'darwin'",
+    "platform_machine == 'arm64' and sys_platform == 'darwin'",
+    "platform_machine == 'x86_64' and sys_platform == 'linux'",
+    "platform_machine == 'AMD64' and sys_platform == 'win32'",
+    "(platform_machine != 'arm64' and platform_machine != 'x86_64' and sys_platform == 'darwin') or (platform_machine != 'x86_64' and sys_platform == 'linux') or (platform_machine != 'AMD64' and sys_platform == 'win32') or (sys_platform != 'darwin' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 
 [[package]]
@@ -13,10 +13,10 @@ name = "bpy"
 version = "3.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cython", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
-    { name = "numpy", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
-    { name = "requests", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
-    { name = "zstandard", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
+    { name = "cython", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
+    { name = "numpy", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
+    { name = "requests", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
+    { name = "zstandard", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/22/bf/32f0723c5debedec561c2b127bc108065717a244ad28ed2311207d8f3812/bpy-3.6.0-cp310-cp310-macosx_10_15_x86_64.whl", hash = "sha256:1215d5b972fd71ae1ddcb45108e25b2b3a0d7b89645365bca01341604dcecb5f", size = 183288309 },
@@ -39,7 +39,7 @@ name = "cffi"
 version = "1.17.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycparser", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
+    { name = "pycparser", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/fc/97/c783634659c2920c3fc70419e3af40972dbaf758daa229a7d6ea6135c90d/cffi-1.17.1.tar.gz", hash = "sha256:1c39c6016c32bc48dd54561950ebd6836e1670f2ae46128f67cf49e789c52824", size = 516621 }
 wheels = [
@@ -118,21 +118,21 @@ wheels = [
 
 [[package]]
 name = "mypy"
-version = "1.13.0"
+version = "1.14.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mypy-extensions" },
     { name = "tomli" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e8/21/7e9e523537991d145ab8a0a2fd98548d67646dc2aaaf6091c31ad883e7c1/mypy-1.13.0.tar.gz", hash = "sha256:0291a61b6fbf3e6673e3405cfcc0e7650bebc7939659fdca2702958038bd835e", size = 3152532 }
+sdist = { url = "https://files.pythonhosted.org/packages/8c/7b/08046ef9330735f536a09a2e31b00f42bccdb2795dcd979636ba43bb2d63/mypy-1.14.0.tar.gz", hash = "sha256:822dbd184d4a9804df5a7d5335a68cf7662930e70b8c1bc976645d1509f9a9d6", size = 3215684 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5e/8c/206de95a27722b5b5a8c85ba3100467bd86299d92a4f71c6b9aa448bfa2f/mypy-1.13.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:6607e0f1dd1fb7f0aca14d936d13fd19eba5e17e1cd2a14f808fa5f8f6d8f60a", size = 11020731 },
-    { url = "https://files.pythonhosted.org/packages/ab/bb/b31695a29eea76b1569fd28b4ab141a1adc9842edde080d1e8e1776862c7/mypy-1.13.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:8a21be69bd26fa81b1f80a61ee7ab05b076c674d9b18fb56239d72e21d9f4c80", size = 10184276 },
-    { url = "https://files.pythonhosted.org/packages/a5/2d/4a23849729bb27934a0e079c9c1aad912167d875c7b070382a408d459651/mypy-1.13.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:7b2353a44d2179846a096e25691d54d59904559f4232519d420d64da6828a3a7", size = 12587706 },
-    { url = "https://files.pythonhosted.org/packages/5c/c3/d318e38ada50255e22e23353a469c791379825240e71b0ad03e76ca07ae6/mypy-1.13.0-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:0730d1c6a2739d4511dc4253f8274cdd140c55c32dfb0a4cf8b7a43f40abfa6f", size = 13105586 },
-    { url = "https://files.pythonhosted.org/packages/4a/25/3918bc64952370c3dbdbd8c82c363804678127815febd2925b7273d9482c/mypy-1.13.0-cp310-cp310-win_amd64.whl", hash = "sha256:c5fc54dbb712ff5e5a0fca797e6e0aa25726c7e72c6a5850cfd2adbc1eb0a372", size = 9632318 },
-    { url = "https://files.pythonhosted.org/packages/3b/86/72ce7f57431d87a7ff17d442f521146a6585019eb8f4f31b7c02801f78ad/mypy-1.13.0-py3-none-any.whl", hash = "sha256:9c250883f9fd81d212e0952c92dbfcc96fc237f4b7c92f56ac81fd48460b3e5a", size = 2647043 },
+    { url = "https://files.pythonhosted.org/packages/ef/97/f00ded038482230e0beaaa08f9c5483a54530b362ad1b0d752d5d2b2f211/mypy-1.14.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:e971c1c667007f9f2b397ffa80fa8e1e0adccff336e5e77e74cb5f22868bee87", size = 11207956 },
+    { url = "https://files.pythonhosted.org/packages/68/67/8b4db0da19c9e3fa6264e948f1c135ab4dd45bede1809f4fdb613dc119f6/mypy-1.14.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:e86aaeaa3221a278c66d3d673b297232947d873773d61ca3ee0e28b2ff027179", size = 10363681 },
+    { url = "https://files.pythonhosted.org/packages/f5/00/56b1619ff1f3fcad2d411eccda60d74d20e73bda39c218d5ad2769980682/mypy-1.14.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:1628c5c3ce823d296e41e2984ff88c5861499041cb416a8809615d0c1f41740e", size = 12832976 },
+    { url = "https://files.pythonhosted.org/packages/e7/8b/9247838774b0bd865f190cc221822212091317f16310305ef924d9772532/mypy-1.14.0-cp310-cp310-musllinux_1_2_x86_64.whl", hash = "sha256:7fadb29b77fc14a0dd81304ed73c828c3e5cde0016c7e668a86a3e0dfc9f3af3", size = 13013704 },
+    { url = "https://files.pythonhosted.org/packages/b2/69/0c0868a6f3d9761d2f704d1fb6ef84d75998c27d342738a8b20f109a411f/mypy-1.14.0-cp310-cp310-win_amd64.whl", hash = "sha256:3fa76988dc760da377c1e5069200a50d9eaaccf34f4ea18428a3337034ab5a44", size = 9782230 },
+    { url = "https://files.pythonhosted.org/packages/39/32/0214608af400cdf8f5102144bb8af10d880675c65ed0b58f7e0e77175d50/mypy-1.14.0-py3-none-any.whl", hash = "sha256:2238d7f93fc4027ed1efc944507683df3ba406445a2b6c96e79666a045aadfab", size = 2752803 },
 ]
 
 [[package]]
@@ -180,10 +180,10 @@ name = "requests"
 version = "2.32.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "certifi", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
-    { name = "charset-normalizer", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
-    { name = "idna", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
-    { name = "urllib3", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
+    { name = "certifi", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
+    { name = "charset-normalizer", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
+    { name = "idna", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
+    { name = "urllib3", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/63/70/2bf7780ad2d390a8d301ad0b550f1581eadbd9a20f896afe06353c2a2913/requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760", size = 131218 }
 wheels = [
@@ -220,7 +220,7 @@ name = "shadow-manipulation-lab"
 version = "1.21.0"
 source = { editable = "." }
 dependencies = [
-    { name = "bpy", marker = "(platform_machine == 'arm64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_system == 'Windows')" },
+    { name = "bpy", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
 ]
 
 [package.dev-dependencies]
@@ -233,16 +233,16 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "bpy", marker = "platform_machine == 'arm64' and platform_system == 'Darwin'", specifier = "==3.6.*" },
-    { name = "bpy", marker = "platform_machine == 'x86_64' and platform_system == 'Darwin'", specifier = "==3.6.*" },
-    { name = "bpy", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'", specifier = "==3.6.*" },
-    { name = "bpy", marker = "platform_machine == 'AMD64' and platform_system == 'Windows'", specifier = "==3.6.*" },
+    { name = "bpy", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'", specifier = "==3.6.*" },
+    { name = "bpy", marker = "platform_machine == 'x86_64' and sys_platform == 'darwin'", specifier = "==3.6.*" },
+    { name = "bpy", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'", specifier = "==3.6.*" },
+    { name = "bpy", marker = "platform_machine == 'AMD64' and sys_platform == 'win32'", specifier = "==3.6.*" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "codespell", specifier = "==2.3.0" },
-    { name = "mypy", specifier = "==1.13.0" },
+    { name = "mypy", specifier = "==1.14.0" },
     { name = "ruff", specifier = "==0.8.4" },
     { name = "starry-bpy-typings", git = "https://github.com/saturday06/VRM-Addon-for-Blender?subdirectory=typings&branch=main" },
 ]
@@ -284,7 +284,7 @@ name = "zstandard"
 version = "0.23.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi", marker = "(platform_machine == 'arm64' and platform_python_implementation == 'PyPy' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_python_implementation == 'PyPy' and platform_system == 'Darwin') or (platform_machine == 'x86_64' and platform_python_implementation == 'PyPy' and platform_system == 'Linux') or (platform_machine == 'AMD64' and platform_python_implementation == 'PyPy' and platform_system == 'Windows')" },
+    { name = "cffi", marker = "(platform_machine == 'arm64' and platform_python_implementation == 'PyPy' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and platform_python_implementation == 'PyPy' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and platform_python_implementation == 'PyPy' and sys_platform == 'linux') or (platform_machine == 'AMD64' and platform_python_implementation == 'PyPy' and sys_platform == 'win32')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/ed/f6/2ac0287b442160a89d726b17a9184a4c615bb5237db763791a7fd16d9df1/zstandard-0.23.0.tar.gz", hash = "sha256:b2d8c62d08e7255f68f7a740bae85b3c9b8e5466baa9cbf7f57f1cde0ac6bc09", size = 681701 }
 wheels = [
