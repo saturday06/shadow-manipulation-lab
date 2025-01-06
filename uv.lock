@@ -249,7 +249,7 @@ dev = [
 [[package]]
 name = "starry-bpy-typings"
 version = "1.0.0"
-source = { git = "https://github.com/saturday06/VRM-Addon-for-Blender?subdirectory=typings&branch=main#863d97dfc68ffecf9e590d7531ada69955fa279f" }
+source = { git = "https://github.com/saturday06/VRM-Addon-for-Blender?subdirectory=typings&branch=main#b65bd1eda5df96a9b86ad5b058c2472fecf4a2eb" }
 
 [[package]]
 name = "tomli"
