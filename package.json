@@ -3,6 +3,6 @@
   "private": true,
   "devDependencies": {
     "prettier": "3.5.0",
-    "pyright": "1.1.393"
+    "pyright": "1.1.394"
   }
 }
