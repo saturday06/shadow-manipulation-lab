@@ -1,6 +1,6 @@
 [project]
 name = "shadow-manipulation-lab"
-requires-python = "== 3.10.*" # I actually want to use 3.9, but bpy 3.6.* doesn't allow it.
+requires-python = "==3.13.*" # I actually want to use 3.9, but bpy 3.6.* doesn't allow it.
 version = "1.21.0"
 authors = [
     {name = "Isamu Mogi"},
