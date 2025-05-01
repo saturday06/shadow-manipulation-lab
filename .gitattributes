@@ -8,6 +8,7 @@
 *.pyi text eol=lf
 *.toml text eol=lf
 *.html text eol=lf
+*.wsb text eol=crlf
 *.yml text eol=lf
 .* text eol=lf
 go.mod text eol=lf
