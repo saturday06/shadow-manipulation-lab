@@ -7,7 +7,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Install deb packages
         run: |
@@ -16,8 +16,7 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
+      - uses: actions/setup-node@v4
       - name: Disable git config core.quotepath
         run: git config core.quotepath off
       - name: Check file permissions
@@ -81,10 +80,16 @@ jobs:
         run: |
           ./tools/format.sh
           git diff --check
-      # - name: Super-Linter
-      #   uses: github/super-linter@v5
-      #   env:
-      #     LINTER_RULES_PATH: /
-      #     LOG_LEVEL: NOTICE
-      #     MARKDOWN_CONFIG_FILE: .markdownlint.yaml
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  super-linter:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive # needed for super-linter
+      - name: Super-Linter
+        uses: github/super-linter@v5
+        env:
+          LINTER_RULES_PATH: /
+          LOG_LEVEL: NOTICE
+          MARKDOWN_CONFIG_FILE: .markdownlint.yaml
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
