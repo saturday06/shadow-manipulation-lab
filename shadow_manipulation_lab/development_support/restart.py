@@ -152,7 +152,6 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):
     bl_options: AbstractSet[str] = {"REGISTER"}
 
     def execute(self, _context: bpy.types.Context) -> set[str]:
-        print("Save Restart Load")
         reload_path = Path(bpy.data.filepath)
         if not bpy.data.filepath or not reload_path.exists():
             reload_path = create_named_temporary_file(prefix="reload", suffix=".blend")

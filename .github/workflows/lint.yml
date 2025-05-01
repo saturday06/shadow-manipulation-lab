@@ -76,10 +76,10 @@ jobs:
       - name: UV Sync
         run: uv sync
       - name: Lint
-        run: ./tools/lint.sh || true
+        run: ./tools/lint.sh
       - name: Format
         run: |
-          ./tools/format.sh || true
+          ./tools/format.sh
           git diff --check
       # - name: Super-Linter
       #   uses: github/super-linter@v5
