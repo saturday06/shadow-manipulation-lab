@@ -73,6 +73,8 @@ jobs:
         run: |
           curl --fail --show-error --location https://astral.sh/uv/install.sh | sh
           echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+      - name: UV Sync
+        run: uv sync
       - name: Lint
         run: ./tools/lint.sh || true
       - name: Format
