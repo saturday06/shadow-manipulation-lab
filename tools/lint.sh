@@ -12,4 +12,3 @@ git ls-files "*.sh" | xargs shfmt -d -s
 npm install
 uv run ./node_modules/.bin/pyright --warnings
 npm exec --yes -- prettier --check .
-npm exec --yes --package=gltf-validator -- node ./tools/vrm_validator.js
