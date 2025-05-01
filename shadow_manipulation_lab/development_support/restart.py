@@ -28,13 +28,17 @@ def auto_import() -> None:
         key = "BLENDER_VRM_AUTOMATIC_LICENSE_CONFIRMATION"
         val = os.environ.get(key)
         os.environ[key] = "true"
-        bpy.ops.import_scene.vrm(filepath=str(vrm_path))
+        bpy.ops.import_scene.vrm(  # type: ignore[attr-defined]
+            filepath=str(vrm_path),
+        )
         if val is not None:
             os.environ[key] = val
         else:
             del os.environ[key]
     elif vrma_path.exists():
-        bpy.ops.import_scene.vrma(filepath=str(vrma_path))
+        bpy.ops.import_scene.vrma(  # type: ignore[attr-defined]
+            filepath=str(vrma_path),
+        )
 
 
 def auto_export() -> None:
@@ -48,10 +52,14 @@ def auto_export() -> None:
         glb_path = vrm_path.with_suffix(".glb")
         if glb_path.exists():
             glb_path.unlink()
-        bpy.ops.export_scene.vrm(filepath=str(vrm_path))
+        bpy.ops.export_scene.vrm(  # type: ignore[attr-defined]
+            filepath=str(vrm_path),
+        )
         shutil.copy(vrm_path, glb_path)
     elif vrma_path.exists():
-        bpy.ops.export_scene.vrma(filepath=str(vrma_path))
+        bpy.ops.export_scene.vrma(  # type: ignore[attr-defined]
+            filepath=str(vrma_path),
+        )
 
 
 def auto_import_vrma_debug() -> None:
@@ -62,7 +70,9 @@ def auto_import_vrma_debug() -> None:
     if not vrma_path.exists():
         return
 
-    bpy.ops.import_scene.vrma(filepath=str(vrma_path))
+    bpy.ops.import_scene.vrma(  # type: ignore[attr-defined]
+        filepath=str(vrma_path),
+    )
 
 
 @persistent
