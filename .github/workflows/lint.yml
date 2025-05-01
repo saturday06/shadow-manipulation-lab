@@ -85,7 +85,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: recursive # needed for super-linter
+          fetch-depth: 0 # for super-linter
       - name: Super-Linter
         uses: super-linter/super-linter@v7.3.0
         env:
