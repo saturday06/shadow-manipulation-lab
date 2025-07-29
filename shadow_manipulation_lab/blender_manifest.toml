@@ -20,4 +20,4 @@ copyright = [
 ]
 
 [permissions]
-files = "Import/export VRM from/to disk"
+files = "Auto reload and recreate VRM from/to disk"
