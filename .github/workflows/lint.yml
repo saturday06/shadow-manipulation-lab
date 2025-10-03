@@ -18,7 +18,7 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
       - name: Disable git config core.quotepath
         run: git config core.quotepath off
       - name: Check file permissions
