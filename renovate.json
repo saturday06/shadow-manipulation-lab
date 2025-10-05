@@ -1,24 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":disableDependencyDashboard",
-    "group:allNonMajor"
+    "config:best-practices",
+    "schedule:weekends",
+    ":automergeAll",
+    ":disableDependencyDashboard"
   ],
   "schedule": ["* 0 * * 5"],
+  "minimumReleaseAge": "14 days",
   "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
+    "groupName": "regular dependency updates",
+    "enabled": true
   },
   "packageRules": [
     {
-      "matchUpdateTypes": ["major", "minor", "patch"],
-      "automerge": true
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
-      "automerge": true
+      "groupName": "regular dependency updates",
+      "matchPackageNames": ["*"]
     },
     {
       "description": [
@@ -26,9 +23,9 @@
         "Blender fixes the Python version, but common package managers cannot derive the Python version ",
         "from the Blender version, so the Python version is also specified manually."
       ],
+      "matchCategories": ["python"],
       "matchPackageNames": ["python", "bpy"],
-      "rangeStrategy": "in-range-only",
-      "automerge": true
+      "rangeStrategy": "in-range-only"
     }
   ],
   "customManagers": [
