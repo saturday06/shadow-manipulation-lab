@@ -17,8 +17,8 @@ jobs:
           sudo apt-get install -y nkf python3 shellcheck shfmt uchardet
         env:
           DEBIAN_FRONTEND: noninteractive
-      - uses: actions/checkout@v4.3.0
-      - uses: actions/setup-node@v3.9.1
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
       - name: Disable git config core.quotepath
         run: git config core.quotepath off
       - name: Check file permissions
@@ -85,7 +85,7 @@ jobs:
   super-linter:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.3.0
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           fetch-depth: 0 # for super-linter
       - name: Super-Linter
