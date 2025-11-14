@@ -2,11 +2,10 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:best-practices",
-    "schedule:weekends",
+    "schedule:monthly",
     ":automergeAll",
     ":disableDependencyDashboard"
   ],
-  "schedule": ["* 0 * * 5"],
   "minimumReleaseAge": "14 days",
   "lockFileMaintenance": {
     "groupName": "regular dependency updates",
