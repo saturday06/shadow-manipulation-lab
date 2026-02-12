@@ -1,0 +1,39 @@
+{
+  "lock": {
+    "frozen": true
+  },
+  "exclude": [
+    ".cache/",
+    "CHANGELOG.md"
+  ],
+  "tasks": {
+    "pyright": "uv run -- deno run --permission-set=pyright --unstable-node-globals ./tools/pyright.cts --warnings",
+    "update-changelog": "deno run --permission-set=update-changelog ./tools/update_changelog.ts"
+  },
+  "permissions": {
+    "pyright": {
+      "env": true,
+      "ffi": true,
+      "read": true,
+      "run": true,
+      "sys": true,
+      "write": true
+    },
+    "update-changelog": {
+      "env": ["GITHUB_TOKEN", "GH_TOKEN", "IGNORE_TEST_WIN32"],
+      "net": true,
+      "read": [".git/config"],
+      "write": ["CHANGELOG.md"]
+    }
+  },
+  // Workaround for VitePress
+  // https://github.com/denoland/deno/issues/20609#issuecomment-2762970307
+  "nodeModulesDir": "auto",
+  "imports": {
+    "@octokit/rest": "npm:@octokit/rest@22.0.1",
+    "@octokit/types": "npm:@octokit/types@16.0.0",
+    "@types/node": "npm:@types/node@25.0.3",
+    "isomorphic-git": "npm:isomorphic-git@1.36.1",
+    "pyright": "npm:pyright@1.1.407"
+  }
+}

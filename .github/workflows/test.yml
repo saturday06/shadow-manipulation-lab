@@ -1,0 +1,144 @@
+# SPDX-License-Identifier: MIT OR GPL-3.0-or-later
+name: test
+
+permissions: {}
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, labeled]
+  push:
+  workflow_dispatch:
+
+env:
+  BLENDER_ARCHIVE_BASE_URL: https://download.blender.org/release
+
+jobs:
+  test-windows:
+    name: test-windows / ${{ matrix.blender.job_name_postfix }}
+    runs-on: windows-2025
+    strategy:
+      fail-fast: false
+      matrix:
+        blender:
+          - job_name_postfix: blender 4.2
+            archive_url_path: Blender4.2/blender-4.2.12-windows-x64.zip
+          - job_name_postfix: blender 4.5
+            archive_url_path: Blender4.5/blender-4.5.1-windows-x64.zip
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Cache archive
+        id: cache-archive
+        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5.0.2
+        with:
+          path: |
+            blender.zip
+            tests/temp
+          key: ${{ matrix.blender.archive_url_path }}-archive-9
+      - name: Download archive
+        if: ${{ steps.cache-archive.outputs.cache-hit != 'true' }}
+        env:
+          BLENDER_ARCHIVE_URL: ${{ env.BLENDER_ARCHIVE_BASE_URL }}/${{ matrix.blender.archive_url_path }}
+        run: |
+          $retry = 10
+          for (; $true; $retry--) {
+            try {
+              Start-BitsTransfer blender.zip -Source $env:BLENDER_ARCHIVE_URL
+              break
+            } catch {
+              if ($retry -le 0) {
+                throw $_.Exception
+              }
+            }
+            Start-Sleep -Seconds 60
+          }
+      - name: Test
+        run: |
+          Expand-Archive -LiteralPath blender.zip -DestinationPath "$env:TEMP\blender"
+          $env:BLENDER_TEST_BLENDER_PATH = (Get-ChildItem "$env:TEMP\blender\*\blender.exe")[0].FullName
+          & $env:BLENDER_TEST_BLENDER_PATH --background -noaudio --python-exit-code 1 --python tools\unittest_discover.py
+
+  test-macos:
+    name: test-macos / ${{ matrix.blender.job_name_postfix }}
+    runs-on: macos-15
+    strategy:
+      fail-fast: false
+      matrix:
+        blender:
+          - job_name_postfix: blender 4.2 arm64
+            archive_url_path: Blender4.2/blender-4.2.12-macos-arm64.dmg
+          - job_name_postfix: blender 4.5 arm64
+            archive_url_path: Blender4.5/blender-4.5.1-macos-arm64.dmg
+          - job_name_postfix: blender 4.5 x64
+            archive_url_path: Blender4.5/blender-4.5.1-macos-x64.dmg
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Cache archive
+        id: cache-archive
+        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5.0.2
+        with:
+          path: |
+            blender.dmg
+            tests/temp
+          key: ${{ matrix.blender.archive_url_path }}-archive-9
+      - name: Download archive
+        if: ${{ steps.cache-archive.outputs.cache-hit != 'true' }}
+        env:
+          BLENDER_ARCHIVE_URL: ${{ env.BLENDER_ARCHIVE_BASE_URL }}/${{ matrix.blender.archive_url_path }}
+        run: |
+          curl --fail --show-error --location --retry 5 --retry-all-errors --output blender.dmg "$BLENDER_ARCHIVE_URL"
+      - name: Install dependencies
+        run: |
+          for retry in $(seq 5 -1 0); do
+            if [ "$retry" -eq 0 ]; then
+              >&2 echo "Failed to install dependencies"
+              exit 1
+            fi
+            if brew update && perl -e 'alarm 300; exec @ARGV' -- brew install ffmpeg imagemagick; then
+              break
+            fi
+            sleep 300
+          done
+      - name: Test
+        run: |
+          hdiutil attach blender.dmg
+          cp -fr /Volumes/Blender/Blender.app /Applications
+          /Applications/Blender.app/Contents/MacOS/blender --background -noaudio --python-exit-code 1 --python tools/unittest_discover.py
+
+  test-linux:
+    name: test-linux / ${{ matrix.blender.job_name_postfix }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        blender:
+          - job_name_postfix: blender 4.5
+            archive_url_path: Blender4.5/blender-4.5.1-linux-x64.tar.xz
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Cache archive
+        id: cache-archive
+        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5.0.2
+        with:
+          path: |
+            blender.tar.xz
+            tests/temp
+          key: ${{ matrix.blender.archive_url_path }}-archive-9
+      - name: Download archive
+        if: ${{ steps.cache-archive.outputs.cache-hit != 'true' }}
+        env:
+          BLENDER_ARCHIVE_URL: ${{ env.BLENDER_ARCHIVE_BASE_URL }}/${{ matrix.blender.archive_url_path }}
+        run: |
+          curl --fail --show-error --location --retry 5 --retry-all-errors --output blender.tar.xz "$BLENDER_ARCHIVE_URL"
+      - name: Install dependencies
+        run: sudo ./tools/install_ubuntu_packages.sh
+      - name: Test
+        run: |
+          mkdir -p "${HOME}/.local/blender"
+          tar -x --strip-components=1 -f blender.tar.xz -C "${HOME}/.local/blender"
+          "${HOME}/.local/blender/blender" --background -noaudio --python-exit-code 1 --python tools/unittest_discover.py

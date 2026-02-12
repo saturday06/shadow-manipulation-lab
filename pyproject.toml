@@ -1,30 +1,34 @@
 [project]
 name = "shadow-manipulation-lab"
-requires-python = "==3.10.*" # I actually want to use 3.9, but bpy 3.6.* doesn't allow it.
-version = "1.21.0"
-authors = [
-    {name = "Isamu Mogi"},
-]
+version = "2.0.0"
+authors = [{name = "Isamu Mogi"}]
 license = {file = "LICENSE"}
+requires-python = "==3.10.*"
 
 dependencies = [
-    # https://github.com/saturday06/VRM-Addon-for-Blender/blob/2_20_35/poetry.lock#L10-L13
-    "bpy == 3.6.*; platform_system == 'Darwin' and platform_machine == 'x86_64'",
-    "bpy == 3.6.*; platform_system == 'Darwin' and platform_machine == 'arm64'",
-    "bpy == 3.6.*; platform_system == 'Linux' and platform_machine == 'x86_64'",
-    "bpy == 3.6.*; platform_system == 'Windows' and platform_machine == 'AMD64'",
+  # https://github.com/saturday06/VRM-Addon-for-Blender/blob/v3.10.1/uv.lock#L12-L27
+  "bpy == 3.6.*; python_version == '3.10.*'; platform_system == 'Darwin' and platform_machine == 'x86_64'",
+  "bpy == 3.6.*; python_version == '3.10.*'; platform_system == 'Darwin' and platform_machine == 'arm64'",
+  "bpy == 3.6.*; python_version == '3.10.*'; platform_system == 'Linux' and platform_machine == 'x86_64'",
+  "bpy == 3.6.*; python_version == '3.10.*'; platform_system == 'Windows' and platform_machine == 'AMD64'",
 ]
 
 [dependency-groups]
 dev = [
-    "codespell",
-    "mypy",
-    "ruff",
-    "starry-bpy-typings",
+  "codespell",
+  "pygit2",
+  "pyrefly",
+  "requests",
+  "ruff",
+  "starry-bpy-typings",
+  "tqdm",
+  "ty",
+  "types-pygit2",
+  "types-tqdm",
 ]
 
-[tool.uv.sources.bpy]
-index = "download.blender.org"
+[tool.uv.sources]
+bpy = {index = "download.blender.org"}
 
 [tool.uv.sources.starry-bpy-typings]
 git = "https://github.com/saturday06/VRM-Addon-for-Blender"
@@ -35,108 +39,101 @@ subdirectory = "typings"
 name = "download.blender.org"
 url = "https://download.blender.org/pypi/"
 
-[tool.ruff]
-target-version = "py39" # It overrides 'project.requires-python = "== 3.10.*"'
-src = ["src"]
-
 [tool.ruff.lint]
 allowed-confusables = [
-    "\u30ce", # Katakana Letter No
+  "\u30ce", # Katakana Letter No
 ]
 select = ["ALL"]
 ignore = [
-    # ----- fixing -----
+  # ----- fixing -----
 
-    "FBT003", # Boolean positional value in function call
+  "FBT003", # Boolean positional value in function call
 
-    # ----- ignored -----
+  # ----- ignored -----
 
-    # `COM812` may cause conflicts when used with the formatter in Ruff 0.1.6
-    "COM812", # Trailing comma missing
+  # `COM812` may cause conflicts when used with the formatter in Ruff 0.1.6
+  "COM812", # Trailing comma missing
 
-    "D100", # Missing docstring in public module
-    "D101", # Missing docstring in public class
-    "D102", # Missing docstring in public method
-    "D103", # Missing docstring in public function
-    "D104", # Missing docstring in public package
-    "D105", # Missing docstring in magic method
-    "D106", # Missing docstring in public nested class
-    "D107", # Missing docstring in `__init__`
-    "ERA001", # Found commented-out code
+  "D100", # Missing docstring in public module
+  "D101", # Missing docstring in public class
+  "D102", # Missing docstring in public method
+  "D103", # Missing docstring in public function
+  "D104", # Missing docstring in public package
+  "D105", # Missing docstring in magic method
+  "D106", # Missing docstring in public nested class
+  "D107", # Missing docstring in `__init__`
+  "ERA001", # Found commented-out code
 
-    # devcontainer for windows hosts doesn't set executable permissions properly.
-    "EXE002", # The file is executable but no shebang is present
+  # devcontainer for windows hosts doesn't set executable permissions properly.
+  "EXE002", # The file is executable but no shebang is present
 
-    # https://projects.blender.org/blender/blender/issues/63713
-    "FA100", # Missing `from __future__ import annotations`, but uses `x`
+  # https://projects.blender.org/blender/blender/issues/63713
+  "FA100", # Missing `from __future__ import annotations`, but uses `x`
 
-    "FIX002", # Line contains TODO, consider resolving the issue
+  "FIX002", # Line contains TODO, consider resolving the issue
 
-    # `ISC001` may cause conflicts when used with the formatter in Ruff 0.1.6
-    "ISC001", # Implicitly concatenated string literals on one line
+  # `ISC001` may cause conflicts when used with the formatter in Ruff 0.1.6
+  "ISC001", # Implicitly concatenated string literals on one line
 
-    "ISC003", # Explicitly concatenated string should be implicitly concatenated
-    "PERF203", # `try`-`except` within a loop incurs performance overhead
-    "PLC0415", # `import` should be at the top-level of a file
-    "PLR2004", # Magic value used in comparison, consider replacing 3 with a constant variable
+  "ISC003", # Explicitly concatenated string should be implicitly concatenated
+  "PERF203", # `try`-`except` within a loop incurs performance overhead
+  "PLC0415", # `import` should be at the top-level of a file
+  "PLR2004", # Magic value used in comparison, consider replacing 3 with a constant variable
 
-    # pytest is not currently used.
-    "PT", # flake8-pytest-style
+  # pytest is not currently used.
+  "PT", # flake8-pytest-style
 
-    "RET504", # Unnecessary assignment to `x` before `return` statement
+  "RET504", # Unnecessary assignment to `x` before `return` statement
 
-    # SIM118 does not handle `bpy_prop_collection` correctly.
-    "SIM118", # Use `key not in dict` instead of `key not in dict.keys()`
+  # SIM118 does not handle `bpy_prop_collection` correctly.
+  "SIM118", # Use `key not in dict` instead of `key not in dict.keys()`
 
-    "TC001", # Move application import `x` into a type-checking block
-    "TC002", # Move third-party import `x` into a type-checking block
-    "TC003", # Move standard library import `x` into a type-checking block
-    "TD002", # Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
-    "TD003", # Missing issue link on the line following this TODO
+  "TC001", # Move application import `x` into a type-checking block
+  "TC002", # Move third-party import `x` into a type-checking block
+  "TC003", # Move standard library import `x` into a type-checking block
+  "TD002", # Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
+  "TD003", # Missing issue link on the line following this TODO
 
-    # https://docs.blender.org/manual/en/4.2/advanced/extensions/addons.html#relative-imports
-    "TID252", # Relative imports from parent modules are banned
-]
-
-[tool.ruff.lint.per-file-ignores]
-"shadow_manipulation_lab/development_support/restart.py" = [
-    "S603", # `subprocess` call: check for execution of untrusted input
+  # https://projects.blender.org/blender/blender-manual/src/commit/585cc1a5eab811052ea4dda176dfce057cb6ad69/manual/advanced/extensions/addons.rst?display=source#L174-L183
+  "TID252", # Relative imports from parent modules are banned
 ]
 
 [tool.ruff.lint.pep8-naming]
 extend-ignore-names = [
-    "glTF2ExportUserExtension",
-    "glTF2ImportUserExtension",
-    "EXPORT_SCENE_OT_*",
-    "IMPORT_SCENE_OT_*",
-    "SHADOW_MANIPULATION_LAB_OT_*",
+  "glTF2ExportUserExtension",
+  "glTF2ImportUserExtension",
+  "EXPORT_SCENE_OT_*",
+  "IMPORT_SCENE_OT_*",
+  "ICYP_OT_*",
+  "FLUFFYCM_FH_*",
+  "FLUFFYCM_MT_*",
+  "FLUFFYCM_OT_*",
+  "FLUFFYCM_PT_*",
+  "FLUFFYCM_UL_*",
+  "WM_OT_*",
 ]
 
 [tool.ruff.lint.pydocstyle]
 convention = "pep257"
 
 [tool.ruff.lint.mccabe]
-max-complexity = 150
+max-complexity = 216
 
 [tool.ruff.lint.pylint]
 max-args = 19
-max-branches = 120
+max-branches = 215
 max-returns = 25
 max-statements = 550
 
-[tool.codespell]
-ignore-regex = ".* # codespell-ignore"
-
 [tool.mypy]
-python_version = "3.9"
-mypy_path = "$MYPY_CONFIG_FILE_DIR/typings:$MYPY_CONFIG_FILE_DIR/src"
-strict = true
-disallow_any_unimported = true
-disallow_any_decorated = true
-disallow_any_explicit = true
+exclude = ['.']
+ignore_errors = true # Please use pyright instead.
 
 [tool.black]
 extend-exclude = ".*" # Please use Ruff instead.
+
+[tool.codespell]
+skip = '*.lock,*.asset,node_modules,./tests/resources/unity/*/Library/*,./tests/resources/unity/*/Build/*'
 
 [tool.isort]
 extend_skip_glob = ["*"] # Please use Ruff instead.
@@ -145,14 +142,37 @@ extend_skip_glob = ["*"] # Please use Ruff instead.
 ignore-paths = "." # Please use Ruff instead.
 
 [tool.pyright]
-pythonVersion = "3.9"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
+exclude = [
+  # Too many files in Unity folders, causing
+  # 'Enumeration of workspace source files is taking longer than 10 seconds.'
+  # warning, so explicitly excluding them
+  "tests/resources/unity",
+
+  # Re-setting default exclusion folder settings since they get lost
+  # https://github.com/microsoft/pyright/blob/1.1.400/packages/pyright-internal/src/analyzer/service.ts#L793
+  "**/node_modules",
+  "**/__pycache__",
+  "**/.*",
+]
 
 reportMissingModuleSource = false
 reportCallInDefaultInitializer = true
-reportShadowedImports = true
+
+[tool.pyrefly]
+search-path = [
+  "src",
+]
+project-excludes = [
+  "node_modules/**",
+
+  # Re-setting default exclusion settings since they get lost
+  # https://github.com/facebook/pyrefly/blob/0.20.2/website/docs/configuration.mdx?plain=1#L129
+  "**/.[!/.]*",
+  "**/*venv/**",
+]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.9.2,<0.10.0"]
+build-backend = "uv_build"

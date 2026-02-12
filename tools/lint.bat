@@ -1,27 +1,45 @@
+@rem SPDX-License-Identifier: MIT OR GPL-3.0-or-later
+
 @echo off
-setlocal
 setlocal enabledelayedexpansion
 pushd "%~dp0.."
 set PYTHONUTF8=1
 set UV_LINK_MODE=copy
+
+set no_pause=0
+if "%1"=="/NoPause" set no_pause=1
+
 for /f "tokens=* usebackq" %%f in (`git ls-files "*.py"`) do ( set py_files=!py_files! %%f )
-for /f "tokens=* usebackq" %%f in (`git ls-files "*.pyi"`) do ( set pyi_files=!pyi_files! %%f )
+
 echo ### ruff ###
-call uv run ruff check %py_files% %pyi_files%
+call uv run ruff check
+if %errorlevel% neq 0 goto :error
+
 echo ### codespell ###
-call uv run codespell %py_files%
-echo ### mypy ###
-call uv run mypy --show-error-codes %py_files% %pyi_files%
+call uv run codespell
+if %errorlevel% neq 0 goto :error
+
+echo ### deno ###
+where deno > nul
+if %errorlevel% neq 0 (
+  echo *** Please install `deno` command ***
+  goto :error
+)
+
+echo ### deno lint ###
+call deno lint
+if %errorlevel% neq 0 goto :error
+
 echo ### pyright ###
-call uv run pyright %py_files% %pyi_files%
+call deno task pyright
+if %errorlevel% neq 0 goto :error
 
-where npm
-if %errorlevel% equ 0 call npm install
-
-echo ### prettier ###
-where npm
-if %errorlevel% equ 0 call npm exec --yes -- prettier --write .
 popd
+
+goto :quit
+:error
+rem echo error
+:quit
+if %no_pause% equ 0 pause
 endlocal
-endlocal
-pause
+echo on

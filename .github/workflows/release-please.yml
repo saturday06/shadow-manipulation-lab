@@ -1,18 +1,16 @@
+# SPDX-License-Identifier: MIT OR GPL-3.0-or-later
 name: release-please
 
 permissions: {}
 
 on:
-  workflow_run:
-    workflows: ["lint"]
+  push:
     branches: [main]
-    types:
-      - completed
+  workflow_dispatch:
 
 jobs:
   release-please:
     runs-on: ubuntu-24.04
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     outputs:
       release_release_created: ${{ steps.release.outputs.release_created }}
       release_sha: ${{ steps.release.outputs.sha }}
@@ -21,21 +19,24 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          fetch-depth: 0 # これをやるとrelease-please-actionが安定する気がする
-      - uses: googleapis/release-please-action@v4.3.0
+          fetch-depth: 0 # This seems to make release-please-action more stable
+          persist-credentials: false
+      - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
         id: release
         with:
-          # 通常の運用ではskip-github-pull-requestはfalseのままにする。
-          # しかし、このレポジトリの運用ではrelease-please-actionがrelease-prがマージされたかを検知できないため
-          # release-prがマージされたタイミングで、バージョンだけ進んだ不要なrelease-prが新規作成されてしまう。
-          # それを防ぐため、はじめに `skip-github-pull-request: true` で一度release-please-actionを実行する。
-          # 結果release_createdがfalseの場合ときは再度release-please-actionを実行し、通常通りrelease-prを
-          # 作成したり更新したりする。
+          # Normally, skip-github-pull-request should remain false.
+          # However, in this repository's workflow, release-please-action cannot detect
+          # when release-pr is merged, so an unnecessary release-pr with just a version
+          # bump gets created when release-pr is merged.
+          # To prevent this, we first run release-please-action with `skip-github-pull-request: true`.
+          # If release_created is false, we run release-please-action again to create or update
+          # release-pr as usual.
           skip-github-pull-request: true
-      - uses: googleapis/release-please-action@v4.3.0
+      - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
         if: ${{ !steps.release.outputs.release_created }}
+
   upload-release-archive:
     runs-on: ubuntu-24.04
     needs: release-please
@@ -43,11 +44,18 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
+          persist-credentials: false
           ref: ${{ needs.release-please.outputs.release_sha }}
+      - name: Install deb packages
+        run: sudo ./tools/install_ubuntu_packages.sh
       - name: Release
-        run: ./tools/release.sh
+        run: ./tools/release.sh "$RELEASE_TAG_NAME"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_TAG_NAME: ${{ needs.release-please.outputs.release_tag_name }}
+          BLENDER_EXTENSIONS_TOKEN: ${{ secrets.BLENDER_EXTENSIONS_TOKEN }}
+          # https://github.com/orgs/community/discussions/40405#discussioncomment-8361451
+          GIT_USER_NAME: ${{ format('[BOT] {0}', github.actor) }}
+          GIT_USER_EMAIL: ${{ format('{0}+{1}@users.noreply.github.com', github.actor_id, github.actor) }}
