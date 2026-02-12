@@ -8,7 +8,6 @@ import sys
 import tempfile
 from collections.abc import Set as AbstractSet
 from pathlib import Path
-from typing import Optional, Union
 
 import bpy
 from bpy.app.handlers import persistent
@@ -93,7 +92,7 @@ def load_post(_dummy: object) -> None:
     bpy.app.timers.register(auto_import_vrma_debug, first_interval=0.5)
 
 
-def wait_for_start_ok(path: Path) -> Optional[float]:
+def wait_for_start_ok(path: Path) -> float | None:
     if path.read_text(encoding="ascii").strip() == "start_ok":
         bpy.ops.wm.quit_blender()
         return None
@@ -108,7 +107,7 @@ def create_named_temporary_file(prefix: str = "", suffix: str = "") -> Path:
     # pylint: enable=consider-using-with;
 
 
-def start_blender_and_quit(path: Path, extra_arg: Optional[str] = None) -> None:
+def start_blender_and_quit(path: Path, extra_arg: str | None = None) -> None:
     start_ok_file_path = create_named_temporary_file(prefix="start_ok")
 
     restart_script = Path(__file__).parent / "restart"
@@ -122,7 +121,7 @@ def start_blender_and_quit(path: Path, extra_arg: Optional[str] = None) -> None:
         restart_environ["SML_BLENDER_PATH"] = str(binary_path)
         restart_environ["SML_BLEND_FILE_PATH"] = str(path)
         restart_environ["SML_START_OK_FILE_PATH"] = str(start_ok_file_path)
-        restart_environ["SML_EXTRA_ARG"] = extra_arg if extra_arg else ""
+        restart_environ["SML_EXTRA_ARG"] = extra_arg or ""
         # pylint: disable=consider-using-with;
         subprocess.Popen(
             [
@@ -137,7 +136,7 @@ def start_blender_and_quit(path: Path, extra_arg: Optional[str] = None) -> None:
         # pylint: enable=consider-using-with;
     else:
         # pylint: disable=consider-using-with;
-        args: list[Union[str, Path]] = [
+        args: list[str | Path] = [
             str(restart_script.with_suffix(".sh")),
             str(os.getpid()),
             start_ok_file_path,
