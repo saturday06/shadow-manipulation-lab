@@ -155,7 +155,7 @@ def start_blender_and_quit(path: Path, extra_arg: Optional[str] = None) -> None:
     bpy.app.timers.register(functools.partial(wait_for_start_ok, start_ok_file_path))
 
 
-class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):
+class SHADOWMANIPULATIONLAB_OT_save_restart_load(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.save_restart_load"
     bl_label = "Shadow Manipulation Lab: Save Restart Load"
     bl_description = "Save Restart Load"
@@ -173,7 +173,7 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):
         return {"FINISHED"}
 
 
-class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):
+class SHADOWMANIPULATIONLAB_OT_restart_import(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.restart_import"
     bl_label = "Shadow Manipulation Lab: Restart Import"
     bl_description = "Restart Import"
@@ -234,7 +234,7 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):
         return {"FINISHED"}
 
 
-class SHADOW_MANIPULATION_LAB_OT_save_restart_export(bpy.types.Operator):
+class SHADOWMANIPULATIONLAB_OT_save_restart_export(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.save_restart_export"
     bl_label = "Shadow Manipulation Lab: Save Restart Export"
     bl_description = "Restart Import"

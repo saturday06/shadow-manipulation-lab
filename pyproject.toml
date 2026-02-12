@@ -102,15 +102,11 @@ ignore = [
 extend-ignore-names = [
   "glTF2ExportUserExtension",
   "glTF2ImportUserExtension",
-  "EXPORT_SCENE_OT_*",
-  "IMPORT_SCENE_OT_*",
-  "ICYP_OT_*",
-  "FLUFFYCM_FH_*",
-  "FLUFFYCM_MT_*",
-  "FLUFFYCM_OT_*",
-  "FLUFFYCM_PT_*",
-  "FLUFFYCM_UL_*",
-  "WM_OT_*",
+  "SHADOWMANIPULATIONLAB_FH_*",
+  "SHADOWMANIPULATIONLAB_MT_*",
+  "SHADOWMANIPULATIONLAB_OT_*",
+  "SHADOWMANIPULATIONLAB_PT_*",
+  "SHADOWMANIPULATIONLAB_UL_*",
 ]
 
 [tool.ruff.lint.pydocstyle]
