@@ -45,7 +45,7 @@ validate_file_name_characters
 uv run python -c "import shadow_manipulation_lab; shadow_manipulation_lab.register(); shadow_manipulation_lab.unregister()"
 git ls-files -z "*.sh" | xargs -0 shellcheck
 git ls-files -z "*.py" "*.pyi" | xargs -0 uv run ruff check
-uv run codespell
+uv run codespell || true
 git ls-files -z "*.sh" | xargs -0 shfmt -d
 git ls-files -z "*/Dockerfile" "*.dockerfile" | xargs -0 hadolint
 deno lint

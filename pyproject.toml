@@ -134,7 +134,7 @@ ignore_errors = true # Please use pyright instead.
 extend-exclude = ".*" # Please use Ruff instead.
 
 [tool.codespell]
-skip = '*.lock,node_modules'
+skip = './deno.lock'
 
 [tool.isort]
 extend_skip_glob = ["*"] # Please use Ruff instead.
