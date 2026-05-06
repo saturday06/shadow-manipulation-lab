@@ -17,20 +17,21 @@ import pwd
 import stat
 import sys
 from pathlib import Path
-from typing import TYPE_CHECKING, NoReturn, TypeAlias
+from typing import TYPE_CHECKING, NoReturn
 
 import tqdm as type_checking_tqdm
 from pygit2 import Repository
+from typing_extensions import TypeAlias
 
 if TYPE_CHECKING:
     tqdm: TypeAlias = type_checking_tqdm.tqdm[NoReturn]  # noqa: PYI042
 else:
     tqdm: TypeAlias = type_checking_tqdm.tqdm  # noqa: PYI042
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
-def fixup_directory_owner_and_permission(
+def _fixup_directory_owner_and_permission(
     directory: Path, warning_messages: list[str], *, uid: int, gid: int, umask: int
 ) -> None:
     try:
@@ -57,7 +58,7 @@ def fixup_directory_owner_and_permission(
             warning_messages.append(f"Failed to change permission: {directory}")
 
 
-def fixup_files(
+def _fixup_files(
     warning_messages: list[str],
     progress: tqdm,
     *,
@@ -76,7 +77,7 @@ def fixup_files(
     # Conditions are unknown, but rarely all file owners become root:root
     # A warning about "operating on unsafe permission repository" appears, so
     # set ownership to yourself. Also reset permissions for recursive processing
-    fixup_directory_owner_and_permission(
+    _fixup_directory_owner_and_permission(
         workspace_path, warning_messages, uid=uid, gid=gid, umask=umask
     )
     total_progress_count += 1
@@ -90,7 +91,7 @@ def fixup_files(
         root_path = Path(root)
         progress.update()
         for directory_name in directory_names:
-            fixup_directory_owner_and_permission(
+            _fixup_directory_owner_and_permission(
                 root_path / directory_name,
                 warning_messages,
                 uid=uid,
@@ -190,7 +191,7 @@ def main() -> None:
 
     warning_messages: list[str] = []
     with tqdm(unit="files", ascii=" =", dynamic_ncols=True) as progress:
-        fixup_files(
+        _fixup_files(
             warning_messages,
             progress,
             workspace_path=workspace_path,
@@ -200,9 +201,9 @@ def main() -> None:
         )
     for index, warning_message in enumerate(warning_messages):
         if index > 5:
-            logger.warning("...")
+            _logger.warning("...")
             break
-        logger.warning(warning_message)
+        _logger.warning(warning_message)
 
 
 if __name__ == "__main__":
