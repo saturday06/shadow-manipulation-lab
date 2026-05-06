@@ -36,26 +36,3 @@ jobs:
           skip-github-pull-request: true
       - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
         if: ${{ !steps.release.outputs.release_created }}
-
-  upload-release-archive:
-    runs-on: ubuntu-24.04
-    needs: release-please
-    if: ${{ needs.release-please.result == 'success' && needs.release-please.outputs.release_release_created }}
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
-          ref: ${{ needs.release-please.outputs.release_sha }}
-      - name: Install deb packages
-        run: sudo ./tools/install_ubuntu_packages.sh
-      - name: Release
-        run: ./tools/release.sh "$RELEASE_TAG_NAME"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_TAG_NAME: ${{ needs.release-please.outputs.release_tag_name }}
-          BLENDER_EXTENSIONS_TOKEN: ${{ secrets.BLENDER_EXTENSIONS_TOKEN }}
-          # https://github.com/orgs/community/discussions/40405#discussioncomment-8361451
-          GIT_USER_NAME: ${{ format('[BOT] {0}', github.actor) }}
-          GIT_USER_EMAIL: ${{ format('{0}+{1}@users.noreply.github.com', github.actor_id, github.actor) }}
