@@ -39,6 +39,9 @@ subdirectory = "typings"
 name = "download.blender.org"
 url = "https://download.blender.org/pypi/"
 
+[tool.ruff]
+target-version = "py39" # It overrides 'project.requires-python = "== 3.10.*"'
+
 [tool.ruff.lint]
 allowed-confusables = [
   "\u30ce", # Katakana Letter No
@@ -85,6 +88,8 @@ ignore = [
 
   "RET504", # Unnecessary assignment to `x` before `return` statement
 
+  "S603", # `subprocess` call: check for execution of untrusted input
+
   # SIM118 does not handle `bpy_prop_collection` correctly.
   "SIM118", # Use `key not in dict` instead of `key not in dict.keys()`
 
@@ -102,15 +107,11 @@ ignore = [
 extend-ignore-names = [
   "glTF2ExportUserExtension",
   "glTF2ImportUserExtension",
-  "EXPORT_SCENE_OT_*",
-  "IMPORT_SCENE_OT_*",
-  "ICYP_OT_*",
-  "FLUFFYCM_FH_*",
-  "FLUFFYCM_MT_*",
-  "FLUFFYCM_OT_*",
-  "FLUFFYCM_PT_*",
-  "FLUFFYCM_UL_*",
-  "WM_OT_*",
+  "SHADOW_MANIPULATION_LAB_FH_*",
+  "SHADOW_MANIPULATION_LAB_MT_*",
+  "SHADOW_MANIPULATION_LAB_OT_*",
+  "SHADOW_MANIPULATION_LAB_PT_*",
+  "SHADOW_MANIPULATION_LAB_UL_*",
 ]
 
 [tool.ruff.lint.pydocstyle]
@@ -142,6 +143,7 @@ extend_skip_glob = ["*"] # Please use Ruff instead.
 ignore-paths = "." # Please use Ruff instead.
 
 [tool.pyright]
+pythonVersion = "3.9" # It overrides 'project.requires-python = "== 3.10.*"'
 pythonPlatform = "All"
 typeCheckingMode = "strict"
 exclude = [
@@ -149,6 +151,12 @@ exclude = [
   # 'Enumeration of workspace source files is taking longer than 10 seconds.'
   # warning, so explicitly excluding them
   "tests/resources/unity",
+
+  # Suppress the following warning
+  # The exclude list is missing default excludes such as '.venv'. Consider
+  # adding them to avoid analyzing unnecessary files.
+  # Pylance(missingDefaultExcludes)
+  "**/.venv",
 
   # Re-setting default exclusion folder settings since they get lost
   # https://github.com/microsoft/pyright/blob/1.1.400/packages/pyright-internal/src/analyzer/service.ts#L793
@@ -159,6 +167,7 @@ exclude = [
 
 reportMissingModuleSource = false
 reportCallInDefaultInitializer = true
+reportUninitializedInstanceVariable = true
 
 [tool.pyrefly]
 search-path = [

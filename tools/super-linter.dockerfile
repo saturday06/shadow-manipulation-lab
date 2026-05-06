@@ -6,7 +6,7 @@
 # Do not create a new user as it runs with the super-linter user
 # checkov:skip=CKV_DOCKER_3: "Ensure that a user for the container has been created"
 
-FROM ghcr.io/super-linter/super-linter:v8.3.2@sha256:e9d1895a1bdc1f9d9df41f688b27aa891743f23f9fae0f22a3e25eeda8f102db
+FROM ghcr.io/super-linter/super-linter:v8.6.0@sha256:35955a2af8395c8224c7072732b91350f7f02c2ae9ee751842776ef29092a6cc
 
 # https://github.com/super-linter/super-linter/blob/v7.3.0/README.md?plain=1#L297
 ENV LOG_LEVEL=WARN
@@ -17,8 +17,10 @@ ENV RUN_LOCAL=true
 # Exclude CHANGELOG.md as it is an automatically generated file by release-please
 ENV FILTER_REGEX_EXCLUDE="^/tmp/lint/CHANGELOG\.md$"
 
-ENV LINTER_RULES_PATH=/
-ENV DEFAULT_BRANCH=main
+# https://github.com/super-linter/super-linter?tab=readme-ov-file#configure-linters
+ENV LINTER_RULES_PATH=.
+
+ENV DEFAULT_BRANCH=HEAD
 ENV SAVE_SUPER_LINTER_SUMMARY=true
 
 ENV GITHUB_ACTIONS_CONFIG_FILE=.github/actionlint.yaml

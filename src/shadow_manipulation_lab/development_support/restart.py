@@ -122,7 +122,7 @@ def start_blender_and_quit(path: Path, extra_arg: Optional[str] = None) -> None:
         restart_environ["SML_BLENDER_PATH"] = str(binary_path)
         restart_environ["SML_BLEND_FILE_PATH"] = str(path)
         restart_environ["SML_START_OK_FILE_PATH"] = str(start_ok_file_path)
-        restart_environ["SML_EXTRA_ARG"] = extra_arg if extra_arg else ""
+        restart_environ["SML_EXTRA_ARG"] = extra_arg or ""
         # pylint: disable=consider-using-with;
         subprocess.Popen(
             [
