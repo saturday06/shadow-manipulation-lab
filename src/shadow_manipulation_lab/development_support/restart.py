@@ -6,9 +6,8 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from collections.abc import Set as AbstractSet
 from pathlib import Path
-from typing import Optional, Union
+from typing import ClassVar, Optional, Union
 
 import bpy
 from bpy.app.handlers import persistent
@@ -159,7 +158,7 @@ class SHADOW_MANIPULATION_LAB_OT_save_restart_load(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.save_restart_load"
     bl_label = "Shadow Manipulation Lab: Save Restart Load"
     bl_description = "Save Restart Load"
-    bl_options: AbstractSet[str] = {"REGISTER"}
+    bl_options: ClassVar[set[str]] = {"REGISTER"}
 
     def execute(self, _context: bpy.types.Context) -> set[str]:
         reload_path = Path(bpy.data.filepath)
@@ -177,7 +176,7 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.restart_import"
     bl_label = "Shadow Manipulation Lab: Restart Import"
     bl_description = "Restart Import"
-    bl_options: AbstractSet[str] = {"REGISTER"}
+    bl_options: ClassVar[set[str]] = {"REGISTER"}
 
     def execute(self, context: bpy.types.Context) -> set[str]:
         reload_path = Path(bpy.data.filepath)
@@ -237,8 +236,8 @@ class SHADOW_MANIPULATION_LAB_OT_restart_import(bpy.types.Operator):
 class SHADOW_MANIPULATION_LAB_OT_save_restart_export(bpy.types.Operator):
     bl_idname = "shadow_manipulation_lab.save_restart_export"
     bl_label = "Shadow Manipulation Lab: Save Restart Export"
-    bl_description = "Restart Import"
-    bl_options: AbstractSet[str] = {"REGISTER"}
+    bl_description = "Restart Export"
+    bl_options: ClassVar[set[str]] = {"REGISTER"}
 
     def execute(self, _context: bpy.types.Context) -> set[str]:
         reload_path = Path(bpy.data.filepath)
