@@ -3,9 +3,10 @@
   "specifiers": {
     "npm:@octokit/rest@22.0.1": "22.0.1_@octokit+core@7.0.6",
     "npm:@octokit/types@16.0.0": "16.0.0",
-    "npm:@types/node@25.0.3": "25.0.3",
-    "npm:isomorphic-git@1.36.1": "1.36.1",
-    "npm:pyright@1.1.407": "1.1.407"
+    "npm:@types/node@25.6.0": "25.6.0",
+    "npm:isomorphic-git@1.37.6": "1.37.6",
+    "npm:prettier@3.8.3": "3.8.3",
+    "npm:pyright@1.1.409": "1.1.409"
   },
   "npm": {
     "@octokit/auth-token@6.0.0": {
@@ -92,8 +93,8 @@
         "@octokit/openapi-types"
       ]
     },
-    "@types/node@25.0.3": {
-      "integrity": "sha512-W609buLVRVmeW693xKfzHeIV6nJGGz98uCPfeXI1ELMLXVeKYZ9m15fAMSaUPBHYLGFsVRcMmSCksQOrZV9BYA==",
+    "@types/node@25.6.0": {
+      "integrity": "sha512-+qIYRKdNYJwY3vRCZMdJbPLJAtGjQBudzZzdzwQYkEPQd+PJGixUL5QfvCLDaULoLv+RhT3LDkwEfKaAkgSmNQ==",
       "dependencies": [
         "undici-types"
       ]
@@ -133,8 +134,8 @@
         "function-bind"
       ]
     },
-    "call-bind@1.0.8": {
-      "integrity": "sha512-oKlSFMcMwpUg2ednkhQ454wfWiU/ul3CkJe/PEHcTKuiX6RpbehUiFMXu13HalGZxfUwCQzZG747YXBn1im9ww==",
+    "call-bind@1.0.9": {
+      "integrity": "sha512-a/hy+pNsFUTR+Iz8TCJvXudKVLAnz/DyeSUo10I5yvFDQJBFU2s9uqQpoSrJlroHUKoKqzg+epxyP9lqFdzfBQ==",
       "dependencies": [
         "call-bind-apply-helpers",
         "es-define-property",
@@ -256,8 +257,8 @@
         "has-symbols"
       ]
     },
-    "hasown@2.0.2": {
-      "integrity": "sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==",
+    "hasown@2.0.3": {
+      "integrity": "sha512-ej4AhfhfL2Q2zpMmLo7U1Uv9+PyhIZpgQLGT1F9miIGmiCJIoCgSmczFdrc97mWT4kVY72KA+WnnhJ5pghSvSg==",
       "dependencies": [
         "function-bind"
       ]
@@ -283,8 +284,8 @@
     "isarray@2.0.5": {
       "integrity": "sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw=="
     },
-    "isomorphic-git@1.36.1": {
-      "integrity": "sha512-fC8SRT8MwoaXDK8G4z5biPEbqf2WyEJUb2MJ2ftSd39/UIlsnoZxLGux+lae0poLZO4AEcx6aUVOh5bV+P8zFA==",
+    "isomorphic-git@1.37.6": {
+      "integrity": "sha512-qr1NFCPsVTZ6YGqTXw0CzamnsHyH9QQ1OTEfeXIweSljRUMzuHFCJdUn0wc6OcjtTDns6knxjPb7N6LmJeftOA==",
       "dependencies": [
         "async-lock",
         "clean-git-ref",
@@ -330,11 +331,15 @@
     "possible-typed-array-names@1.1.0": {
       "integrity": "sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg=="
     },
+    "prettier@3.8.3": {
+      "integrity": "sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==",
+      "bin": true
+    },
     "process@0.11.10": {
       "integrity": "sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A=="
     },
-    "pyright@1.1.407": {
-      "integrity": "sha512-zU+peTFEVUdokNQyUBhGQYt+NWI/3aiNlvBbDBSsn5Ti334XElFUs+GDjQzCbchYfkT+DvMAT3OkMcV4CuEfDg==",
+    "pyright@1.1.409": {
+      "integrity": "sha512-13VFQyw4mJzshZxcxiYbNjo1hG/WHSRDj70Y3lbJEHqCkI2dvBAUTti8VV6Ezsr5gT93pFvC0e/jAQS4JdHarA==",
       "optionalDependencies": [
         "fsevents"
       ],
@@ -406,14 +411,14 @@
         "is-typed-array"
       ]
     },
-    "undici-types@7.16.0": {
-      "integrity": "sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw=="
+    "undici-types@7.19.2": {
+      "integrity": "sha512-qYVnV5OEm2AW8cJMCpdV20CDyaN3g0AjDlOGf1OW4iaDEx8MwdtChUp4zu4H0VP3nDRF/8RKWH+IPp9uW0YGZg=="
     },
     "universal-user-agent@7.0.3": {
       "integrity": "sha512-TmnEAEAsBJVZM/AADELsK76llnwcf9vMKuPz8JflO1frO8Lchitr0fNaN9d+Ap0BjKtqWqd/J17qeDnXh8CL2A=="
     },
-    "which-typed-array@1.1.19": {
-      "integrity": "sha512-rEvr90Bck4WZt9HHFC4DJMsjvu7x+r6bImz0/BrbWb7A2djJ8hnZMrWnHo9F8ssv0OMErasDhftrfROTyqSDrw==",
+    "which-typed-array@1.1.20": {
+      "integrity": "sha512-LYfpUkmqwl0h9A2HL09Mms427Q1RZWuOHsukfVcKRq9q95iQxdw0ix1JQrqbcDR9PH1QDwf5Qo8OZb5lksZ8Xg==",
       "dependencies": [
         "available-typed-arrays",
         "call-bind",
@@ -432,9 +437,15 @@
     "dependencies": [
       "npm:@octokit/rest@22.0.1",
       "npm:@octokit/types@16.0.0",
-      "npm:@types/node@25.0.3",
-      "npm:isomorphic-git@1.36.1",
-      "npm:pyright@1.1.407"
-    ]
+      "npm:@types/node@25.6.0",
+      "npm:isomorphic-git@1.37.6",
+      "npm:pyright@1.1.409"
+    ],
+    "packageJson": {
+      "dependencies": [
+        "npm:prettier@3.8.3",
+        "npm:pyright@1.1.409"
+      ]
+    }
   }
 }

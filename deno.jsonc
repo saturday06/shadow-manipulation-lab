@@ -29,8 +29,8 @@
   "imports": {
     "@octokit/rest": "npm:@octokit/rest@22.0.1",
     "@octokit/types": "npm:@octokit/types@16.0.0",
-    "@types/node": "npm:@types/node@25.0.3",
-    "isomorphic-git": "npm:isomorphic-git@1.36.1",
-    "pyright": "npm:pyright@1.1.407"
+    "@types/node": "npm:@types/node@25.6.0",
+    "isomorphic-git": "npm:isomorphic-git@1.37.6",
+    "pyright": "npm:pyright@1.1.409"
   }
 }
