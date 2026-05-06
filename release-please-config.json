@@ -1,6 +1,8 @@
 {
+  "last-release-sha": "7d31010b0ec173988528db8a6c776f1aedd0b1e1",
+  "bootstrap-sha": "7d31010b0ec173988528db8a6c776f1aedd0b1e1",
+  "draft": true,
   "draft-pull-request": true,
-  "bootstrap-sha": "7f59835b04f8948babe08f6f57ebe39086574f71",
   "changelog-sections": [
     {
       "type": "BREAKING CHANGE",
@@ -12,7 +14,11 @@
     },
     {
       "type": "fix",
-      "section": "🐞 Bug Fixes"
+      "section": "🐛 Bug Fixes"
+    },
+    {
+      "type": "perf",
+      "section": "📈 Performance Improvements"
     },
     {
       "type": "docs",
@@ -23,15 +29,24 @@
     ".": {
       "pull-request-title-pattern": "chore${scope}: 🤖 release${component} ${version}",
       "release-type": "simple",
-      "draft": true,
       "extra-files": [
         {
           "type": "generic",
-          "path": "shadow_manipulation_lab/__init__.py"
+          "path": "src/shadow_manipulation_lab/__init__.py"
         },
         {
           "type": "toml",
-          "path": "shadow_manipulation_lab/blender_manifest.toml",
+          "path": "pyproject.toml",
+          "jsonpath": "$.project.version"
+        },
+        {
+          "type": "toml",
+          "path": "uv.lock",
+          "jsonpath": "$.package[?(@.name.value == 'shadow-manipulation-lab')].version"
+        },
+        {
+          "type": "toml",
+          "path": "src/shadow_manipulation_lab/blender_manifest.toml",
           "jsonpath": "$.version"
         }
       ]

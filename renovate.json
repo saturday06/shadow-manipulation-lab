@@ -2,9 +2,10 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:best-practices",
-    "schedule:monthly",
+    "schedule:weekends",
     ":automergeAll",
-    ":disableDependencyDashboard"
+    ":disableDependencyDashboard",
+    ":semanticCommitTypeAll(chore)"
   ],
   "minimumReleaseAge": "14 days",
   "lockFileMaintenance": {
@@ -17,11 +18,6 @@
       "matchPackageNames": ["*"]
     },
     {
-      "description": [
-        "Do not automatically update Blender and Python versions to the latest. Specify them manually. ",
-        "Blender fixes the Python version, but common package managers cannot derive the Python version ",
-        "from the Blender version, so the Python version is also specified manually."
-      ],
       "matchCategories": ["python"],
       "matchPackageNames": ["python", "bpy"],
       "rangeStrategy": "in-range-only"
@@ -30,14 +26,10 @@
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/^(./)?tools/install_nvm.sh$/"],
-      "matchStrings": [
-        "https://raw\\.githubusercontent\\.com/nvm-sh/nvm/v(?<currentValue>\\d+\\.\\d+\\.\\d+)/install\\.sh"
-      ],
+      "managerFilePatterns": ["/^.dvmrc$/"],
+      "matchStrings": ["(?<currentValue>\\d+\\.\\d+\\.\\d+)"],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "nvm-sh/nvm",
-      "extractVersionTemplate": "^v(?<version>\\d+\\.\\d+\\.\\d+)$",
-      "versioningTemplate": "semver"
+      "depNameTemplate": "denoland/deno"
     }
   ]
 }

@@ -1,0 +1,112 @@
+{
+  "name": "Shadow Manipulation Lab",
+  "runArgs": ["--hostname", "shadow-manipulation-lab-dev"],
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "../tools",
+    // PyPI's bpy package only provides amd64 version for Linux
+    // https://github.com/saturday06/VRM-Addon-for-Blender/blob/v3.11.5/uv.lock#L41-L44
+    "options": ["--platform=linux/amd64"]
+  },
+  "remoteUser": "developer",
+  "updateContentCommand": [
+    "/bin/bash",
+    // In devcontainer, permission settings may be lost, so explicitly specify the shell to execute.
+    // This script restores permissions, so subsequent scripts don't need to specify the shell.
+    "./tools/devcontainer_update_content_command.sh"
+  ],
+  "postStartCommand": "./tools/devcontainer_post_start_command.sh",
+  "postAttachCommand": "./tools/devcontainer_post_attach_command.sh",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/workspace,consistency=cached",
+  "portsAttributes": {
+    "6801": {
+      "label": "Web access to the desktop",
+      "protocol": "http",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "otherPortsAttributes": { "onAutoForward": "ignore" },
+  "mounts": [
+    // Configure folders to exclude from sharing with host
+    // https://github.com/microsoft/vscode-remote-release/issues/620#issuecomment-1086709509
+    "type=volume,target=${containerWorkspaceFolder}/.cache",
+    "type=volume,target=${containerWorkspaceFolder}/.ruff_cache",
+    "type=volume,target=${containerWorkspaceFolder}/.venv",
+    "type=volume,target=${containerWorkspaceFolder}/node_modules"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // https://github.com/microsoft/vscode-livepreview/issues/745#issuecomment-3019205373
+        "chat.sendElementsToChat.enabled": false,
+        "chat.sendElementsToChat.attachImages": false,
+        "chat.sendElementsToChat.attachCSS": false,
+
+        "python.testing.unittestArgs": ["-v", "-s", ".", "-p", "test_*.py"],
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+        "python.terminal.activateEnvironment": false,
+        "python.testing.pytestEnabled": false,
+        "python.testing.unittestEnabled": true,
+        "python.analysis.diagnosticSeverityOverrides": {
+          "reportMissingModuleSource": "none" // Suppressed here because pylance doesn't support the setting in pyproject.toml
+        },
+        "terminal.integrated.scrollback": 50000,
+        "[typescript]": {
+          "editor.defaultFormatter": "denoland.vscode-deno"
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "denoland.vscode-deno"
+        },
+        "launch": {
+          "configurations": [
+            {
+              "name": "Attach to Blender",
+              "type": "debugpy",
+              "request": "attach",
+              "connect": {
+                "host": "127.0.0.1",
+                "port": 5678
+              },
+              "pathMappings": [
+                {
+                  "localRoot": "${workspaceFolder}/src/shadow_manipulation_lab",
+                  "remoteRoot": "/home/developer/.config/blender/4.2/extensions/user_default/shadow_manipulation_lab"
+                },
+                {
+                  "localRoot": "${workspaceFolder}/src/shadow_manipulation_lab",
+                  "remoteRoot": "/home/developer/.config/blender/4.3/extensions/user_default/shadow_manipulation_lab"
+                },
+                {
+                  "localRoot": "${workspaceFolder}/src/shadow_manipulation_lab",
+                  "remoteRoot": "/home/developer/.config/blender/4.4/extensions/user_default/shadow_manipulation_lab"
+                },
+                {
+                  "localRoot": "${workspaceFolder}/src/shadow_manipulation_lab",
+                  "remoteRoot": "/home/developer/.config/blender/4.5/extensions/user_default/shadow_manipulation_lab"
+                },
+                {
+                  "localRoot": "${workspaceFolder}/src/shadow_manipulation_lab",
+                  "remoteRoot": "/home/developer/.config/blender/5.0/extensions/user_default/shadow_manipulation_lab"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "extensions": [
+        "EditorConfig.EditorConfig",
+        "Vue.volar",
+        "cesium.gltf-vscode",
+        "charliermarsh.ruff",
+        "denoland.vscode-deno",
+        "ms-azuretools.vscode-containers",
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  }
+}
