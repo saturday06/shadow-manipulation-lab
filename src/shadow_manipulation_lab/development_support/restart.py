@@ -1,5 +1,6 @@
 import contextlib
 import functools
+import logging
 import os
 import platform
 import shutil
@@ -14,6 +15,9 @@ from bpy.app.handlers import persistent
 
 AUTO_EXPORT_OPTION = "--shadow-manipulation-lab-export"
 AUTO_IMPORT_OPTION = "--shadow-manipulation-lab-import"
+
+_logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 
 def auto_import() -> None:
@@ -41,24 +45,28 @@ def auto_import() -> None:
 
 
 def auto_export() -> None:
+    _logger.info("Auto export started")
     if not bpy.data.filepath:
+        _logger.warning("No file path found, auto export skipped")
         return
+
+    _logger.info("Exporting VRM/VRMA")
 
     vrm_path = Path(bpy.data.filepath).with_suffix(".vrm")
     vrma_path = Path(bpy.data.filepath).with_suffix(".vrma")
     if vrm_path.exists():
         vrm_path.unlink()
-        glb_path = vrm_path.with_suffix(".glb")
-        if glb_path.exists():
-            glb_path.unlink()
-        bpy.ops.export_scene.vrm(  # type: ignore[attr-defined]
-            filepath=str(vrm_path),
-        )
-        shutil.copy(vrm_path, glb_path)
-    elif vrma_path.exists():
-        bpy.ops.export_scene.vrma(  # type: ignore[attr-defined]
-            filepath=str(vrma_path),
-        )
+    glb_path = vrm_path.with_suffix(".glb")
+    if glb_path.exists():
+        glb_path.unlink()
+    bpy.ops.export_scene.vrm(  # type: ignore[attr-defined]
+        filepath=str(vrm_path),
+    )
+    shutil.copy(vrm_path, glb_path)
+
+    bpy.ops.export_scene.vrma(  # type: ignore[attr-defined]
+        filepath=str(vrma_path),
+    )
 
 
 def auto_import_vrma_debug() -> None:
