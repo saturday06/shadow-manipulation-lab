@@ -9,8 +9,8 @@ bl_info = {
     "name": "Shadow Manipulation Lab",
     "author": "saturday06",
     "version": (
-        1,  # x-release-please-major
-        26,  # x-release-please-minor
+        2,  # x-release-please-major
+        0,  # x-release-please-minor
         0,  # x-release-please-patch
     ),
     "blender": (2, 93, 0),
