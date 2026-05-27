@@ -21,7 +21,7 @@ dev = [
   "requests",
   "ruff",
   "starry-bpy-typings",
-  "tomli",
+  "tomli", # for codespell
   "tqdm",
   "ty",
   "types-pygit2",
@@ -170,19 +170,6 @@ reportMissingModuleSource = false
 reportCallInDefaultInitializer = true
 reportUninitializedInstanceVariable = true
 
-[tool.pyrefly]
-search-path = [
-  "src",
-]
-project-excludes = [
-  "node_modules/**",
-
-  # Re-setting default exclusion settings since they get lost
-  # https://github.com/facebook/pyrefly/blob/0.20.2/website/docs/configuration.mdx?plain=1#L129
-  "**/.[!/.]*",
-  "**/*venv/**",
-]
-
 [build-system]
-requires = ["uv_build>=0.9.2,<0.10.0"]
+requires = ["uv_build>=0.11.7,<0.12.0"]
 build-backend = "uv_build"

@@ -25,29 +25,27 @@ validate_file_name_characters() (
 validate_permissions() (
   set +x
 
-  git ls-files -z ':!*.sh' ':!tools/*.py' | while IFS= read -r -d '' f; do
-    if [ -x "$f" ]; then
-      echo "$f has unnecessary executable permission."
-      exit 1
-    fi
-  done
-  git ls-files -z 'tools/*.sh' 'tools/*.py' | while IFS= read -r -d '' f; do
-    if [ ! -x "$f" ]; then
-      echo "$f has no executable permission."
-      exit 1
-    fi
-  done
+  if git ls-files --stage ':(exclude)tools/*.sh' ':(exclude)tools/*.py' | grep -Ev '^100644[[:space:]]'; then
+    echo "Some files have executable permission but shouldn't have."
+    exit 1
+  fi
+
+  if git ls-files --stage 'tools/*.sh' 'tools/*.py' | grep -Ev '^100755[[:space:]]'; then
+    echo "Some files have no executable permission."
+    exit 1
+  fi
 )
 
 cd "$(dirname "$0")/.."
 
 validate_file_name_characters
+validate_permissions
 uv run python -c "import shadow_manipulation_lab; shadow_manipulation_lab.register(); shadow_manipulation_lab.unregister()"
 git ls-files -z "*.sh" | xargs -0 shellcheck
 git ls-files -z "*.py" "*.pyi" | xargs -0 uv run ruff check
 uv run codespell
 git ls-files -z "*.sh" | xargs -0 shfmt -d
-git ls-files -z "*/Dockerfile" "*.dockerfile" | xargs -0 hadolint
 deno lint
 deno task pyright
 validate_permissions
+: ----- OK ----- : +

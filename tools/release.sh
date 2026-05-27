@@ -126,3 +126,4 @@ if [ "$release_postfix" = "release" ]; then
 else
   gh release edit "$release_tag_name" --prerelease
 fi
+: ----- OK ----- : +

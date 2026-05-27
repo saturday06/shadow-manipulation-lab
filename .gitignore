@@ -1,5 +1,6 @@
 *~
 *.blend1
+*.local.toml
 *.orig
 ci-super-linter-local-image.tar.gz
 .DS_Store
@@ -7,7 +8,6 @@ ci-super-linter-local-image.tar.gz
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
-/.cache/
 /.idea/
 /.venv/
 /.vscode/
@@ -16,3 +16,17 @@ ci-super-linter-local-image.tar.gz
 /release_output/
 /super-linter-output/
 __pycache__/
+
+/.local/**
+
+# commit /.local/tmp/.gitkeep
+!/.local/tmp/
+/.local/tmp/**
+!/.local/tmp/.gitkeep
+
+# commit /.local/var/cache/.gitkeep
+!/.local/var/
+/.local/var/**
+!/.local/var/cache
+/.local/var/cache/**
+!/.local/var/cache/.gitkeep

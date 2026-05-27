@@ -16,6 +16,8 @@ jobs:
   test-windows:
     name: test-windows / ${{ matrix.blender.job_name_postfix }}
     runs-on: windows-2025
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
@@ -30,12 +32,10 @@ jobs:
           persist-credentials: false
       - name: Cache archive
         id: cache-archive
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
-          path: |
-            blender.zip
-            tests/temp
-          key: ${{ matrix.blender.archive_url_path }}-archive-9
+          path: .local/tmp/blender.zip
+          key: ${{ matrix.blender.archive_url_path }}-archive-12
       - name: Download archive
         if: ${{ steps.cache-archive.outputs.cache-hit != 'true' }}
         env:
@@ -44,7 +44,7 @@ jobs:
           $retry = 10
           for (; $true; $retry--) {
             try {
-              Start-BitsTransfer blender.zip -Source $env:BLENDER_ARCHIVE_URL
+              Start-BitsTransfer .local\tmp\blender.zip -Source $env:BLENDER_ARCHIVE_URL
               break
             } catch {
               if ($retry -le 0) {
@@ -55,13 +55,15 @@ jobs:
           }
       - name: Test
         run: |
-          Expand-Archive -LiteralPath blender.zip -DestinationPath "$env:TEMP\blender"
-          $env:BLENDER_TEST_BLENDER_PATH = (Get-ChildItem "$env:TEMP\blender\*\blender.exe")[0].FullName
-          & $env:BLENDER_TEST_BLENDER_PATH --background -noaudio --python-exit-code 1 --python tools\unittest_discover.py
+          Expand-Archive -LiteralPath .local\tmp\blender.zip -DestinationPath .github\blender
+          $env:BLENDER_VRM_TEST_BLENDER_PATH = (Get-ChildItem ".github\blender\*\blender.exe")[0].FullName
+          & $env:BLENDER_VRM_TEST_BLENDER_PATH --background -noaudio --python-exit-code 1 --python tools\unittest_discover.py
 
   test-macos:
     name: test-macos / ${{ matrix.blender.job_name_postfix }}
     runs-on: macos-15
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
@@ -78,39 +80,49 @@ jobs:
           persist-credentials: false
       - name: Cache archive
         id: cache-archive
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
-          path: |
-            blender.dmg
-            tests/temp
-          key: ${{ matrix.blender.archive_url_path }}-archive-9
+          path: .local/tmp/blender.dmg
+          key: ${{ matrix.blender.archive_url_path }}-archive-12
       - name: Download archive
         if: ${{ steps.cache-archive.outputs.cache-hit != 'true' }}
         env:
           BLENDER_ARCHIVE_URL: ${{ env.BLENDER_ARCHIVE_BASE_URL }}/${{ matrix.blender.archive_url_path }}
         run: |
-          curl --fail --show-error --location --retry 5 --retry-all-errors --output blender.dmg "$BLENDER_ARCHIVE_URL"
+          curl --fail --show-error --location --retry 5 --retry-all-errors --output .local/tmp/blender.dmg "$BLENDER_ARCHIVE_URL"
       - name: Install dependencies
         run: |
+          set -x
           for retry in $(seq 5 -1 0); do
+            if perl \
+              -Mstrict \
+              -Mwarnings \
+              -e 'my $pid = fork(); if ($pid == 0) { exec(@ARGV); exit(1); } local $SIG{ALRM} = sub { kill(9, $pid); }; alarm(600); waitpid($pid, 0); exit($?);' \
+              -- \
+              sh -xc "brew update && brew install ffmpeg imagemagick"; then
+              break
+            fi
+
             if [ "$retry" -eq 0 ]; then
               >&2 echo "Failed to install dependencies"
               exit 1
             fi
-            if brew update && perl -e 'alarm 300; exec @ARGV' -- brew install ffmpeg imagemagick; then
-              break
-            fi
+
             sleep 300
           done
       - name: Test
         run: |
-          hdiutil attach blender.dmg
-          cp -fr /Volumes/Blender/Blender.app /Applications
-          /Applications/Blender.app/Contents/MacOS/blender --background -noaudio --python-exit-code 1 --python tools/unittest_discover.py
+          unpack_path=$(mktemp -d)
+          hdiutil attach .local/tmp/blender.dmg -mountpoint "$unpack_path"
+          cp -fr "${unpack_path}/Blender.app" .github/Blender.app
+          hdiutil detach "$unpack_path" || true
+          ./.github/Blender.app/Contents/MacOS/blender --background -noaudio --python-exit-code 1 --python tools/unittest_discover.py
 
   test-linux:
     name: test-linux / ${{ matrix.blender.job_name_postfix }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
@@ -123,22 +135,21 @@ jobs:
           persist-credentials: false
       - name: Cache archive
         id: cache-archive
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
-          path: |
-            blender.tar.xz
-            tests/temp
-          key: ${{ matrix.blender.archive_url_path }}-archive-9
+          path: .local/tmp/blender.tar.xz
+          key: ${{ matrix.blender.archive_url_path }}-archive-12
       - name: Download archive
         if: ${{ steps.cache-archive.outputs.cache-hit != 'true' }}
         env:
           BLENDER_ARCHIVE_URL: ${{ env.BLENDER_ARCHIVE_BASE_URL }}/${{ matrix.blender.archive_url_path }}
         run: |
-          curl --fail --show-error --location --retry 5 --retry-all-errors --output blender.tar.xz "$BLENDER_ARCHIVE_URL"
+          curl --fail --show-error --location --retry 5 --retry-all-errors --output .local/tmp/blender.tar.xz "$BLENDER_ARCHIVE_URL"
       - name: Install dependencies
-        run: sudo ./tools/install_ubuntu_packages.sh
+        run: if sudo --non-interactive true; then sudo ./tools/install_ubuntu_packages.sh; fi
       - name: Test
         run: |
-          mkdir -p "${HOME}/.local/blender"
-          tar -x --strip-components=1 -f blender.tar.xz -C "${HOME}/.local/blender"
-          "${HOME}/.local/blender/blender" --background -noaudio --python-exit-code 1 --python tools/unittest_discover.py
+          blender_base_path="$PWD/.github/blender"
+          mkdir -p "$blender_base_path"
+          tar -x --strip-components=1 -f .local/tmp/blender.tar.xz -C "$blender_base_path"
+          "${blender_base_path}/blender" --background -noaudio --python-exit-code 1 --python tools/unittest_discover.py

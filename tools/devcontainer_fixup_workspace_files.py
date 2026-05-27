@@ -17,11 +17,10 @@ import pwd
 import stat
 import sys
 from pathlib import Path
-from typing import TYPE_CHECKING, NoReturn
+from typing import TYPE_CHECKING, NoReturn, TypeAlias
 
 import tqdm as type_checking_tqdm
 from pygit2 import Repository
-from typing_extensions import TypeAlias
 
 if TYPE_CHECKING:
     tqdm: TypeAlias = type_checking_tqdm.tqdm[NoReturn]  # noqa: PYI042

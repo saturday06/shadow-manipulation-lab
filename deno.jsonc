@@ -1,36 +1,94 @@
 {
   "exclude": [
-    ".cache/",
+    ".local/",
     "CHANGELOG.md"
   ],
   "tasks": {
+    "devcontainer": "deno run --permission-set=devcontainer ./node_modules/.bin/devcontainer",
     "pyright": "uv run -- deno run --permission-set=pyright --unstable-node-globals ./tools/pyright.cts --warnings",
     "update-changelog": "deno run --permission-set=update-changelog ./tools/update_changelog.ts"
   },
   "permissions": {
+    "devcontainer": {
+      "env": true,
+      "read": {
+        "allow": [
+          ".",
+          "/tmp/devcontainercli-developer",
+          "/tmp/devcontainercli-developer/control-manifest.json",
+          "/tmp/devcontainercli-runner",
+          "/tmp/devcontainercli-runner/control-manifest.json"
+        ],
+        "ignore": ["/"]
+      },
+      "write": {
+        "allow": [
+          ".",
+          "/tmp/devcontainercli-developer",
+          "/tmp/devcontainercli-runner"
+        ]
+      },
+      "net": [
+        "containers.dev:443",
+        "ghcr.io:443",
+        "pkg-containers.githubusercontent.com:443",
+        "registry-1.docker.io:443",
+        "auth.docker.io:443",
+        "production.cloudflare.docker.com:443"
+      ],
+      "sys": [
+        "gid",
+        "homedir",
+        "userInfo",
+        "osRelease",
+        "uid"
+      ],
+      "run": {
+        "allow": [
+          "docker"
+        ]
+      }
+    },
     "pyright": {
       "env": true,
       "ffi": true,
       "read": true,
       "run": true,
-      "sys": true,
+      "sys": [
+        "osRelease"
+      ],
       "write": true
     },
     "update-changelog": {
-      "env": ["GITHUB_TOKEN", "GH_TOKEN", "IGNORE_TEST_WIN32"],
-      "net": true,
-      "read": [".git/config"],
-      "write": ["CHANGELOG.md"]
+      "env": {
+        "allow": [
+          "GITHUB_TOKEN",
+          "GH_TOKEN"
+        ],
+        "ignore": [
+          "IGNORE_TEST_WIN32"
+        ]
+      },
+      "net": [
+        "api.github.com:443"
+      ],
+      "read": [
+        ".git"
+      ],
+      "write": [
+        "CHANGELOG.md"
+      ]
     }
   },
   // Workaround for VitePress
   // https://github.com/denoland/deno/issues/20609#issuecomment-2762970307
   "nodeModulesDir": "auto",
   "imports": {
+    "@devcontainers/cli": "npm:@devcontainers/cli@0.87.0",
     "@octokit/rest": "npm:@octokit/rest@22.0.1",
     "@octokit/types": "npm:@octokit/types@16.0.0",
-    "@types/node": "npm:@types/node@25.6.0",
-    "isomorphic-git": "npm:isomorphic-git@1.37.6",
-    "pyright": "npm:pyright@1.1.409"
+    "@types/node": "npm:@types/node@25.9.1",
+    "isomorphic-git": "npm:isomorphic-git@1.38.3",
+    "pyright": "npm:pyright@1.1.410"
   }
 }
