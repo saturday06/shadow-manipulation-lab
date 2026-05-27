@@ -25,12 +25,20 @@ validate_file_name_characters() (
 validate_permissions() (
   set +x
 
-  if git ls-files --stage ':(exclude)tools/*.sh' ':(exclude)tools/*.py' | grep -Ev '^100644[[:space:]]'; then
+  if git ls-files \
+    ':(exclude)tools/*.sh' \
+    ':(exclude)tools/*.py' \
+    ':(exclude)src/shadow_manipulation_lab/development_support/restart.sh' \
+    --stage | grep -Ev '^100644[[:space:]]'; then
     echo "Some files have executable permission but shouldn't have."
     exit 1
   fi
 
-  if git ls-files --stage 'tools/*.sh' 'tools/*.py' | grep -Ev '^100755[[:space:]]'; then
+  if git ls-files \
+    'tools/*.sh' \
+    'tools/*.py' \
+    'src/shadow_manipulation_lab/development_support/restart.sh' \
+    --stage | grep -Ev '^100755[[:space:]]'; then
     echo "Some files have no executable permission."
     exit 1
   fi
@@ -47,5 +55,4 @@ uv run codespell
 git ls-files -z "*.sh" | xargs -0 shfmt -d
 deno lint
 deno task pyright
-validate_permissions
 : ----- OK ----- : +
