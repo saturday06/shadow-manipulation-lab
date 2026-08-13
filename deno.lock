@@ -1,16 +1,16 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@devcontainers/cli@0.87.0": "0.87.0",
+    "npm:@devcontainers/cli@0.88.0": "0.88.0",
     "npm:@octokit/rest@22.0.1": "22.0.1_@octokit+core@7.0.6",
     "npm:@octokit/types@16.0.0": "16.0.0",
-    "npm:@types/node@25.9.1": "25.9.1",
-    "npm:isomorphic-git@1.38.3": "1.38.3",
-    "npm:pyright@1.1.410": "1.1.410"
+    "npm:@types/node@25.9.5": "25.9.5",
+    "npm:isomorphic-git@1.41.3": "1.41.3",
+    "npm:pyright@1.1.411": "1.1.411"
   },
   "npm": {
-    "@devcontainers/cli@0.87.0": {
-      "integrity": "sha512-OVwjI0LH6cYilo2MXrnqYALtCwKM0dsdphNsIguw0ESRBG8s1wPIjDbPiDO5taxPTe3cLshsQYVZY1UpKtFaJA==",
+    "@devcontainers/cli@0.88.0": {
+      "integrity": "sha512-sMkruPy/icfov20mdQh2EjFYZogxvMEZptDEvg5/eMBIUOr2xr+8wlsI7nvDR6EJxoBjqoasXqgRGbiMqbaJ1w==",
       "bin": true
     },
     "@octokit/auth-token@6.0.0": {
@@ -97,8 +97,8 @@
         "@octokit/openapi-types"
       ]
     },
-    "@types/node@25.9.1": {
-      "integrity": "sha512-xfrlY7UD5rMJk3ZVJP8BNzS28J36YJg+xp+LPXV1TdWxr8uMH5A860QNxYDGQe/ylDSgjxE52Q9VnO7p75tJxg==",
+    "@types/node@25.9.5": {
+      "integrity": "sha512-OScDchr2fwuUmWdf4kZ9h7PcJiYDVInhJizG/biAq3cAvqwYktuy/TYGGdZNMtNTFUP7rnb0NU4TUdm82kt4Rg==",
       "dependencies": [
         "undici-types"
       ]
@@ -261,8 +261,8 @@
         "has-symbols"
       ]
     },
-    "hasown@2.0.3": {
-      "integrity": "sha512-ej4AhfhfL2Q2zpMmLo7U1Uv9+PyhIZpgQLGT1F9miIGmiCJIoCgSmczFdrc97mWT4kVY72KA+WnnhJ5pghSvSg==",
+    "hasown@2.0.4": {
+      "integrity": "sha512-T2UbfbBEF32wiepXIsMlTW9+dDYC6wMh/t/vYA4tuOMKqWz/n3vr1NFSxQiyP+zk2mXsoMA/i/7qV6LKut1t1A==",
       "dependencies": [
         "function-bind"
       ]
@@ -288,8 +288,8 @@
     "isarray@2.0.5": {
       "integrity": "sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw=="
     },
-    "isomorphic-git@1.38.3": {
-      "integrity": "sha512-rOpt0yIW9HD1o6mA4w2f4XP5Lj42QnccbFbhzkby6L+t9c2klQxf9seqyrw5x8JcWWnbuPuN7v7YJ7yvHj9OPA==",
+    "isomorphic-git@1.41.3": {
+      "integrity": "sha512-5O+pSDz+F8eUqhWHjvoF1kcCYtt9mjja5rHficiNFRAWbYfoiXoPfBKzLTqWyEKoEgLObu4TXthkCmYGpfkiyQ==",
       "dependencies": [
         "async-lock",
         "clean-git-ref",
@@ -338,8 +338,8 @@
     "process@0.11.10": {
       "integrity": "sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A=="
     },
-    "pyright@1.1.410": {
-      "integrity": "sha512-3ImEV3F3YPMJZDwmouvKj3Ytxkw/adZFGlsOsNKiS+B97Th4h7TFElFKpBG/j1nqx6kXFPQjnzOU+zTBOkki2g==",
+    "pyright@1.1.411": {
+      "integrity": "sha512-03S/vmS5lF1S/tVbKc2WNXCMq8JWCwta/qIYjj1jvqbQhoy+N3NgBzHTSmUlbYD6DJwqQ5XHf108QujoqeURvw==",
       "optionalDependencies": [
         "fsevents"
       ],
@@ -417,8 +417,8 @@
     "universal-user-agent@7.0.3": {
       "integrity": "sha512-TmnEAEAsBJVZM/AADELsK76llnwcf9vMKuPz8JflO1frO8Lchitr0fNaN9d+Ap0BjKtqWqd/J17qeDnXh8CL2A=="
     },
-    "which-typed-array@1.1.21": {
-      "integrity": "sha512-zbRA8cVm6io/d5W8uIe2hblzN76/Wm3v/yiythQvr+dpBWeqhPSWIDNj4zOyHi4zKbMK6DN34Xsr9jPHJERAEw==",
+    "which-typed-array@1.1.22": {
+      "integrity": "sha512-fvO4ExWMFsqyhG3AiPAObMuY1lxaqgYcxbc49CNdWDDECOJNgQyvsOWVwbZc+qf3rzRtxojBK+CMEv0Ld5CYpw==",
       "dependencies": [
         "available-typed-arrays",
         "call-bind",
@@ -435,12 +435,12 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:@devcontainers/cli@0.87.0",
+      "npm:@devcontainers/cli@0.88.0",
       "npm:@octokit/rest@22.0.1",
       "npm:@octokit/types@16.0.0",
-      "npm:@types/node@25.9.1",
-      "npm:isomorphic-git@1.38.3",
-      "npm:pyright@1.1.410"
+      "npm:@types/node@25.9.5",
+      "npm:isomorphic-git@1.41.3",
+      "npm:pyright@1.1.411"
     ]
   }
 }

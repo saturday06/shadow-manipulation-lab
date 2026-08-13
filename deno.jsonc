@@ -84,11 +84,11 @@
   // https://github.com/denoland/deno/issues/20609#issuecomment-2762970307
   "nodeModulesDir": "auto",
   "imports": {
-    "@devcontainers/cli": "npm:@devcontainers/cli@0.87.0",
+    "@devcontainers/cli": "npm:@devcontainers/cli@0.88.0",
     "@octokit/rest": "npm:@octokit/rest@22.0.1",
     "@octokit/types": "npm:@octokit/types@16.0.0",
-    "@types/node": "npm:@types/node@25.9.1",
-    "isomorphic-git": "npm:isomorphic-git@1.38.3",
-    "pyright": "npm:pyright@1.1.410"
+    "@types/node": "npm:@types/node@25.9.5",
+    "isomorphic-git": "npm:isomorphic-git@1.41.3",
+    "pyright": "npm:pyright@1.1.411"
   }
 }
