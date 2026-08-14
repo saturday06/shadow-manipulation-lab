@@ -4,6 +4,8 @@ FROM ubuntu:26.04@sha256:678c6550cc43645e08669028bc177f50be4e7c5b8cca677067b1914
 # https://github.com/hadolint/hadolint/wiki/DL4006
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+USER root
+
 RUN --mount=type=bind,source=.,target=/root/src/tools <<'INSTALL_PACKAGES'
   set -eu
 
@@ -39,8 +41,8 @@ export DISPLAY=:0
 export UV_LINK_MODE=copy
 SHELL_PROFILE_SCRIPT
 
-  mkdir -p ~/.config/tigervnc
-  cat <<'VNC_XSTARTUP_SCRIPT' >>~/.config/tigervnc/xstartup
+  mkdir -p ~/.vnc
+  cat <<'VNC_XSTARTUP_SCRIPT' >>~/.vnc/xstartup
 #!/bin/bash
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
@@ -49,7 +51,7 @@ xterm &
 (while sleep 1; do xterm -e blender --python-expr "import debugpy; debugpy.listen(5678)" --open-last || true; done) &
 exec openbox-session
 VNC_XSTARTUP_SCRIPT
-  chmod +x ~/.config/tigervnc/xstartup
+  chmod +x ~/.vnc/xstartup
 
   mkdir -p Desktop Documents Downloads Music Pictures Videos
   # https://docs.astral.sh/uv/getting-started/installation/
@@ -60,3 +62,6 @@ VNC_XSTARTUP_SCRIPT
   # Deno doesnot add newlines to the final line of shell config, so add them manually.
   echo | tee -a ~/.profile ~/.bash_profile ~/.bashrc ~/.zshrc
 SETUP_USER_DEVELOPER_LOCAL_ENVIRONMENT
+
+# cimg/base has PAGER=cat by default, but it is inconvenient in devcontainer, so change it to less.
+ENV PAGER=less
