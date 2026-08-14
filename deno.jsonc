@@ -4,9 +4,9 @@
     "CHANGELOG.md"
   ],
   "tasks": {
-    "devcontainer": "deno run --permission-set=devcontainer ./node_modules/.bin/devcontainer",
-    "pyright": "uv run -- deno run --permission-set=pyright --unstable-node-globals ./tools/pyright.cts --warnings",
-    "update-changelog": "deno run --permission-set=update-changelog ./tools/update_changelog.ts"
+    "devcontainer": "DENO_DIR=.local/var/cache/deno deno run --permission-set=devcontainer ./node_modules/.bin/devcontainer",
+    "pyright": "DENO_DIR=.local/var/cache/deno uv run -- deno run --permission-set=pyright --unstable-node-globals ./tools/pyright.cts --warnings",
+    "update-changelog": "DENO_DIR=.local/var/cache/deno deno run --permission-set=update-changelog ./tools/update_changelog.ts"
   },
   "permissions": {
     "devcontainer": {
@@ -89,6 +89,6 @@
     "@octokit/types": "npm:@octokit/types@17.0.0",
     "@types/node": "npm:@types/node@26.2.0",
     "isomorphic-git": "npm:isomorphic-git@1.41.3",
-    "pyright": "npm:pyright@1.1.411"
+    "pyright": "npm:pyright@1.1.412"
   }
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT OR GPL-3.0-or-later
+# SPDX-FileCopyrightText: Copyright 2026 @saturday06
 
 import argparse
 import logging

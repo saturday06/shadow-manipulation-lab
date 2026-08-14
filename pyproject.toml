@@ -17,16 +17,17 @@ dependencies = [
 dev = [
   "codespell",
   "pygit2",
-  "pyrefly",
   "requests",
   "ruff",
   "starry-bpy-typings",
   "tomli", # for codespell
   "tqdm",
-  "ty",
   "types-pygit2",
   "types-tqdm",
 ]
+
+[tool.uv]
+cache-dir = "./.local/var/cache/uv"
 
 [tool.uv.sources]
 bpy = {index = "download.blender.org"}

@@ -1,9 +1,6 @@
-#
-#
-# Please don't import anything in global scope to detect script reloading
-# and minimize initialization.
-#
-#
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: Copyright 2026 @saturday06
+from . import registration
 
 bl_info = {
     "name": "Shadow Manipulation Lab",
@@ -25,20 +22,10 @@ bl_info = {
 
 
 def register() -> None:
-    # Lazy import to minimize initialization before blender version checking
-    # and reload_package().
-    from . import registration
-
-    # pylint: enable=import-self,no-name-in-module
-
     registration.register()
 
 
 def unregister() -> None:
-    # Lazy import to minimize initialization before blender version checking
-    # and reload_package().
-    from . import registration
-
     registration.unregister()
 
 
