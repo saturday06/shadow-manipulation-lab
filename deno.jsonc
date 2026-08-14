@@ -86,8 +86,8 @@
   "imports": {
     "@devcontainers/cli": "npm:@devcontainers/cli@0.88.0",
     "@octokit/rest": "npm:@octokit/rest@22.0.1",
-    "@octokit/types": "npm:@octokit/types@16.0.0",
-    "@types/node": "npm:@types/node@25.9.5",
+    "@octokit/types": "npm:@octokit/types@17.0.0",
+    "@types/node": "npm:@types/node@26.2.0",
     "isomorphic-git": "npm:isomorphic-git@1.41.3",
     "pyright": "npm:pyright@1.1.411"
   }
