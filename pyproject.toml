@@ -1,6 +1,6 @@
 [project]
 name = "shadow-manipulation-lab"
-version = "5.0.0"
+version = "6.0.0"
 authors = [{name = "Isamu Mogi"}]
 license = {file = "LICENSE"}
 requires-python = "==3.10.*"
