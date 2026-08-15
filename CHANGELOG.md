@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v5.0.0...v6.0.0) (2026-08-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Yo!!!
+
+### 🚀 Features
+
+* Yo!!! ([3f95a41](https://github.com/saturday06/shadow-manipulation-lab/commit/3f95a41ee263ec14e8e22ba1cb73dbb9939e3953))
+
 ## [5.0.0](https://github.com/saturday06/shadow-manipulation-lab/compare/v4.0.0...v5.0.0) (2026-08-14)
 
 

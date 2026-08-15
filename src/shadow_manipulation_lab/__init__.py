@@ -6,7 +6,7 @@ bl_info = {
     "name": "Shadow Manipulation Lab",
     "author": "saturday06",
     "version": (
-        5,  # x-release-please-major
+        6,  # x-release-please-major
         0,  # x-release-please-minor
         0,  # x-release-please-patch
     ),
