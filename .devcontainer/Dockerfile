@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT OR GPL-3.0-or-later
-FROM ubuntu:resolute@sha256:678c6550cc43645e08669028bc177f50be4e7c5b8cca677067b1914d4afc7a03
+FROM ubuntu:resolute@sha256:2260313b31c8c011cd2eebe728008efac1b3982be73eb71348ea2648d2c0e09b
 
 # https://github.com/hadolint/hadolint/wiki/DL4006
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -56,8 +56,6 @@ VNC_XSTARTUP_SCRIPT
   # https://docs.astral.sh/uv/getting-started/installation/
   curl --fail --show-error --location https://astral.sh/uv/install.sh | sh
 
-  # https://github.com/denoland/deno/issues/25931#issuecomment-2406073767
-  curl --fail --show-error --location https://deno.land/install.sh | sh -s -- --yes
-  # Deno doesnot add newlines to the final line of shell config, so add them manually.
-  echo | tee -a ~/.profile ~/.bash_profile ~/.bashrc ~/.zshrc
+  # https://viteplus.dev/guide/
+  curl --fail --show-error --location https://vite.plus | VP_NODE_MANAGER=yes bash
 SETUP_USER_DEVELOPER_LOCAL_ENVIRONMENT
