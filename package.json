@@ -1,0 +1,24 @@
+{
+  "name": "shadow-manipulation-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "devcontainer": "devcontainer",
+    "pyright": "uv run -- vpx ./tools/pyright.cts --warnings",
+    "update-changelog": "vpx ./tools/update_changelog.ts",
+    "vrm-validator": "vpx ./tools/vrm_validator.ts"
+  },
+  "devDependencies": {
+    "@devcontainers/cli": "0.90.0",
+    "@octokit/rest": "22.0.1",
+    "@octokit/types": "18.0.0",
+    "@types/node": "26.6.6",
+    "isomorphic-git": "1.44.8",
+    "pyright": "1.1.414",
+    "vite-plus": "catalog:"
+  },
+  "engines": {
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+  },
+  "packageManager": "pnpm@12.16.1"
+}
