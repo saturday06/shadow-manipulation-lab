@@ -11,7 +11,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
     steps:
@@ -20,12 +20,14 @@ jobs:
           persist-credentials: false
       - name: Install deb packages
         run: if sudo --non-interactive true; then sudo ./tools/install_ubuntu_packages.sh; fi
-      - uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
+      - uses: voidzero-dev/setup-vp@68f39c78aaf39be468cabd2afb09c162574c84af # v1.21.2
         with:
-          deno-version-file: .deno-version
-      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+          node-version-file: .node-version
+          run-install: true
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
       - name: Install UV dependencies
         run: |
+          # Package installation fails about 5% of the time depending on the environment, so retry
           for _ in $(seq 5); do
             if uv sync; then
               break
@@ -39,7 +41,7 @@ jobs:
         run: ./tools/lint.sh
 
   super-linter:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
     steps:
@@ -50,7 +52,7 @@ jobs:
         run: ./tools/super-linter.sh -e SAVE_SUPER_LINTER_SUMMARY=false
 
   devcontainer:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
     steps:
@@ -63,16 +65,17 @@ jobs:
         with:
           path: .local/tmp/ci-devcontainer-cache
           key: devcontainer-${{ hashFiles('.devcontainer/devcontainer.json', '.devcontainer/Dockerfile') }}-1
-      - uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
+      - uses: voidzero-dev/setup-vp@68f39c78aaf39be468cabd2afb09c162574c84af # v1.21.2
         with:
-          deno-version-file: .deno-version
-      - uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0
+          node-version-file: .node-version
+          run-install: true
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
         with:
           driver: docker-container
       - run: |
           mkdir -p .local/tmp/ci-devcontainer-cache
-          deno task devcontainer build \
+          vp run devcontainer build \
             --cache-from type=local,src=.local/tmp/ci-devcontainer-cache \
             --cache-to type=local,dest=.local/tmp/ci-devcontainer-cache
-          deno task devcontainer up
-          deno task devcontainer exec -- cat src/shadow_manipulation_lab/__init__.py
+          vp run devcontainer up
+          vp run devcontainer exec -- cat src/io_scene_vrm/README.txt
