@@ -13,7 +13,9 @@ install_ubuntu_packages() (
     git \
     gnupg \
     imagemagick \
+    jq \
     less \
+    libegl1 \
     libsm6 \
     lsb-release \
     moreutils \
@@ -25,6 +27,7 @@ install_ubuntu_packages() (
     python3-pygit2 \
     python3-tqdm \
     python3-typing-extensions \
+    ripgrep \
     ruby \
     ruby-rmagick \
     shellcheck \

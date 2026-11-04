@@ -6,7 +6,7 @@
 # Do not create a new user as it runs with the super-linter user
 # checkov:skip=CKV_DOCKER_3: "Ensure that a user for the container has been created"
 
-FROM ghcr.io/super-linter/super-linter:v8.7.0@sha256:c05768164eed53bac7c82aade7a14a76955206d4962cd41be97118db96fa5996
+FROM ghcr.io/super-linter/super-linter:v9.0.0@sha256:7620fb6f07a1908b0642d9ddc4f49da7d9f2b9497bcafee4d3d151d1e5567c0b
 
 # https://github.com/super-linter/super-linter/blob/v7.3.0/README.md?plain=1#L297
 ENV LOG_LEVEL=WARN
@@ -31,12 +31,16 @@ ENV VALIDATE_BIOME_LINT=false
 ENV VALIDATE_CSS=false
 ENV VALIDATE_GIT_COMMITLINT=false
 ENV VALIDATE_JSCPD=false
+ENV VALIDATE_JSON_PRETTIER=false
 ENV VALIDATE_JSON=false
 ENV VALIDATE_PYTHON_BLACK=false
 ENV VALIDATE_PYTHON_ISORT=false
 ENV VALIDATE_PYTHON_MYPY=false
 ENV VALIDATE_PYTHON_PYLINT=false
-ENV VALIDATE_PYTHON_RUFF=false
 ENV VALIDATE_PYTHON_RUFF_FORMAT=false
-ENV VALIDATE_TYPESCRIPT_ES=false
+ENV VALIDATE_PYTHON_RUFF=false
 ENV VALIDATE_SPELL_CODESPELL=false
+ENV VALIDATE_TYPESCRIPT_ES=false
+ENV VALIDATE_TYPESCRIPT_PRETTIER=false
+ENV VALIDATE_VUE_PRETTIER=false
+ENV VALIDATE_YAML_PRETTIER=false

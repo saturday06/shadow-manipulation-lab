@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # SPDX-License-Identifier: MIT OR GPL-3.0-or-later
-# SPDX-FileCopyrightText: Copyright 2026 @saturday06
 """Restore the owner and permissions of the devcontainer workspace folder.
 
 This script should be run as root. Since root privileges are too powerful,
@@ -18,10 +17,11 @@ import pwd
 import stat
 import sys
 from pathlib import Path
-from typing import TYPE_CHECKING, NoReturn, TypeAlias
+from typing import TYPE_CHECKING, NoReturn
 
 import tqdm as type_checking_tqdm
 from pygit2 import Repository
+from typing_extensions import TypeAlias
 
 if TYPE_CHECKING:
     tqdm: TypeAlias = type_checking_tqdm.tqdm[NoReturn]  # noqa: PYI042

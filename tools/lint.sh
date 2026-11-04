@@ -53,6 +53,8 @@ git ls-files -z "*.sh" | xargs -0 shellcheck
 git ls-files -z "*.py" "*.pyi" | xargs -0 uv run ruff check
 uv run codespell
 git ls-files -z "*.sh" | xargs -0 shfmt -d
-deno lint
-deno task pyright
+vp install
+vp lint --deny-warnings
+vp run pyright
+vp run vrm-validator
 : ----- OK ----- : +

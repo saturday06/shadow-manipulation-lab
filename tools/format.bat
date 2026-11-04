@@ -15,15 +15,16 @@ call uv run ruff format
 echo ### ruff check --fix ###
 call uv run ruff check --fix
 
-echo ### deno ###
-where deno
+echo ### Vite+ ###
+where vp
 if %errorlevel% neq 0 (
-  echo *** Please install `deno` command ***
+  echo *** Please install `vp` command ***
   goto :error
 )
+call vp install
 
-echo ### deno fmt ###
-call deno fmt
+echo ### Vite+ format ###
+call vp fmt
 
 popd
 

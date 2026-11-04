@@ -6,7 +6,8 @@ set -eu -o pipefail
 cd "$(dirname "$0")/.."
 
 # In devcontainer, permission settings may be lost, so restore them.
-/bin/bash ./tools/devcontainer_fixup_workspace.sh
+sudo chmod 755 tools/devcontainer_fixup_workspace.sh
+./tools/devcontainer_fixup_workspace.sh
 
 # Docker images are aggressively cached and packages often remain outdated, so we update here
 sudo ./tools/install_ubuntu_packages.sh
@@ -19,15 +20,9 @@ git restore .local/var/cache/.gitkeep .local/tmp/.gitkeep
 # In such cases, processing continues. In the future, we will make it possible to pass tokens.
 uv self update || true
 
-deno upgrade
-
-# deno install may fail, so retry several times.
-for _ in $(seq 5); do
-  if deno install; then
-    break
-  fi
-  sleep 10
-done
+vp upgrade
+vp env use "$(cat .node-version)"
+vp install --frozen-lockfile
 
 # Enable immediate testing of the addon under development from the system Blender
 for blender_version in \
@@ -57,3 +52,6 @@ for blender_version in \
 done
 
 blender --background --python-expr 'import bpy; bpy.ops.preferences.addon_enable(module="bl_ext.user_default.shadow_manipulation_lab"); bpy.ops.wm.save_userpref()'
+  --background \
+  --python-expr \
+  'import bpy; bpy.ops.preferences.addon_enable(module="bl_ext.user_default.shadow_manipulation_lab" if bpy.app.version >= (4, 2) else "shadow_manipulation_lab"); bpy.ops.wm.save_userpref()'

@@ -44,6 +44,7 @@ rm -fr extension_output
 mkdir extension_output
 output_filepath="extension_output/extension_$(LC_ALL=C date -u +%Y%m%d%H%M%S)_$(git rev-parse HEAD).zip"
 
+vp run docs:copy-docs-to-src
 "$blender_path" --command extension build \
   --source-dir src/shadow_manipulation_lab \
   --output-filepath "$output_filepath"

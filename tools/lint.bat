@@ -19,19 +19,20 @@ echo ### codespell ###
 call uv run codespell
 if %errorlevel% neq 0 goto :error
 
-echo ### deno ###
-where deno > nul
+echo ### Vite+ ###
+where vp > nul
 if %errorlevel% neq 0 (
-  echo *** Please install `deno` command ***
+  echo *** Please install `vp` command ***
   goto :error
 )
+call vp install
 
-echo ### deno lint ###
-call deno lint
+echo ### Vite+ lint ###
+call vp lint --deny-warnings
 if %errorlevel% neq 0 goto :error
 
 echo ### pyright ###
-call deno task pyright
+call vp run pyright
 if %errorlevel% neq 0 goto :error
 
 popd
