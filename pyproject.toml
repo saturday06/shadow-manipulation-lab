@@ -3,7 +3,6 @@ name = "shadow-manipulation-lab"
 version = "6.0.0"
 authors = [{name = "Isamu Mogi"}]
 license = {file = "LICENSE"}
-requires-python = "==3.10.*"
 
 dependencies = [
   # https://github.com/saturday06/VRM-Addon-for-Blender/blob/v3.10.1/uv.lock#L12-L27
