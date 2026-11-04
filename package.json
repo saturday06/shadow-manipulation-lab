@@ -5,8 +5,8 @@
   "scripts": {
     "devcontainer": "devcontainer",
     "pyright": "uv run -- vpx ./tools/pyright.cts --warnings",
-    "update-changelog": "vpx ./tools/update_changelog.ts",
     "vrm-validator": "vpx ./tools/vrm_validator.ts"
+    "update-changelog": "vpx ./tools/update_changelog.ts"
   },
   "devDependencies": {
     "@devcontainers/cli": "0.90.0",
