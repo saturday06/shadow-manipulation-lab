@@ -12,7 +12,7 @@
     "@octokit/rest": "22.0.1",
     "@octokit/types": "18.0.0",
     "@types/node": "26.6.6",
-    "isomorphic-git": "1.44.8",
+    "isomorphic-git": "1.44.10",
     "pyright": "1.1.414",
     "vite-plus": "catalog:"
   },
@@ -22,5 +22,5 @@
       "version": "26.13.0"
     }
   },
-  "packageManager": "pnpm@12.16.1"
+  "packageManager": "pnpm@12.17.0"
 }
