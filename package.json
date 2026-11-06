@@ -16,8 +16,11 @@
     "pyright": "1.1.414",
     "vite-plus": "catalog:"
   },
-  "engines": {
-    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "26.13.0"
+    }
   },
   "packageManager": "pnpm@12.16.1"
 }
