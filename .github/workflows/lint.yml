@@ -38,6 +38,10 @@ jobs:
           git diff --exit-code
       - name: Lint
         run: ./tools/lint.sh
+      - run: gh extension install github/gh-actions-lock
+      - run: gh actions-lock --verify
+        env:
+          GH_TOKEN: ${{ github.token }}
 
   audit:
     runs-on: ubuntu-26.04

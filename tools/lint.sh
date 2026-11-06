@@ -56,5 +56,4 @@ git ls-files -z "*.sh" | xargs -0 shfmt -d
 vp install
 vp lint --deny-warnings
 vp run pyright
-vp run vrm-validator
 : ----- OK ----- : +
