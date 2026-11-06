@@ -50,7 +50,7 @@ for blender_version in \
   ln -Tfs "${PWD}/src/shadow_manipulation_lab" "${HOME}/.config/blender/$blender_version/scripts/addons/shadow_manipulation_lab"
 done
 
-blender --background --python-expr 'import bpy; bpy.ops.preferences.addon_enable(module="bl_ext.user_default.shadow_manipulation_lab"); bpy.ops.wm.save_userpref()'
+blender \
   --background \
   --python-expr \
   'import bpy; bpy.ops.preferences.addon_enable(module="bl_ext.user_default.shadow_manipulation_lab" if bpy.app.version >= (4, 2) else "shadow_manipulation_lab"); bpy.ops.wm.save_userpref()'
