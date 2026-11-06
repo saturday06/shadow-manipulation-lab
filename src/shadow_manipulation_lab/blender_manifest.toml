@@ -15,9 +15,7 @@ blender_version_min = "4.2.0"
 
 license = ["SPDX:MIT"]
 
-copyright = [
-  "2020 Isamu Mogi",
-]
+copyright = ["2020 Isamu Mogi"]
 
 [permissions]
 files = "Auto reload and recreate VRM from/to disk"

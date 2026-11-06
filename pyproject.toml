@@ -1,8 +1,8 @@
 [project]
 name = "shadow-manipulation-lab"
 version = "6.0.0"
-authors = [{name = "Isamu Mogi"}]
-license = {file = "LICENSE"}
+authors = [{ name = "Isamu Mogi" }]
+license = { file = "LICENSE" }
 
 dependencies = [
   # https://github.com/saturday06/VRM-Addon-for-Blender/blob/v3.10.1/uv.lock#L12-L27
@@ -29,7 +29,7 @@ dev = [
 cache-dir = "./.local/var/cache/uv"
 
 [tool.uv.sources]
-bpy = {index = "download.blender.org"}
+bpy = { index = "download.blender.org" }
 
 [tool.uv.sources.starry-bpy-typings]
 git = "https://github.com/saturday06/VRM-Addon-for-Blender"
