@@ -89,4 +89,4 @@ jobs:
             --cache-from type=local,src=.local/tmp/ci-devcontainer-cache \
             --cache-to type=local,dest=.local/tmp/ci-devcontainer-cache
           vp run devcontainer up
-          vp run devcontainer exec -- cat src/io_scene_vrm/README.txt
+          vp run devcontainer exec -- cat src/shadow_manipulation_lab/__init__.py
