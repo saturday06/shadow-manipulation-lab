@@ -509,7 +509,7 @@ wheels = [
 
 [[package]]
 name = "shadow-manipulation-lab"
-version = "6.0.0"
+version = "7.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "bpy", marker = "(python_full_version < '3.11' and platform_machine == 'arm64' and sys_platform == 'darwin') or (python_full_version < '3.11' and platform_machine == 'x86_64' and sys_platform == 'darwin') or (python_full_version < '3.11' and platform_machine == 'x86_64' and sys_platform == 'linux') or (python_full_version < '3.11' and platform_machine == 'AMD64' and sys_platform == 'win32')" },
